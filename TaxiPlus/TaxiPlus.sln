@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiPlus", "TaxiPlus\TaxiPlus.csproj", "{16E6D2A6-CC39-485A-ABFE-96B97163D78F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiPlus.DAL", "TaxiPlus.DAL\TaxiPlus.DAL.csproj", "{B803545C-2A01-410E-BD18-ACBBA8A00ED1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16E6D2A6-CC39-485A-ABFE-96B97163D78F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E6D2A6-CC39-485A-ABFE-96B97163D78F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E6D2A6-CC39-485A-ABFE-96B97163D78F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E6D2A6-CC39-485A-ABFE-96B97163D78F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B803545C-2A01-410E-BD18-ACBBA8A00ED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B803545C-2A01-410E-BD18-ACBBA8A00ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B803545C-2A01-410E-BD18-ACBBA8A00ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B803545C-2A01-410E-BD18-ACBBA8A00ED1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {136CB8C3-D7F8-4FFC-900C-09CF52948DF6}
+	EndGlobalSection
+EndGlobal
