@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TaxiPlus.DAL.Domain
+namespace TaxiPlus.DAL.ViewModels
 {
-    public class City:BaseEntity
+    public class CityViewModel
     {
+        public int Id { get; set; }
         public string CityName { get; set; }
-        public List<User> Users { get; set; }
-
     }
 }

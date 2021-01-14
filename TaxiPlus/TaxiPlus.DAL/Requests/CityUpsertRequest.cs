@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TaxiPlus.DAL.Domain
+namespace TaxiPlus.DAL.Requests
 {
-    public class City:BaseEntity
+    public class CityUpsertRequest
     {
         public string CityName { get; set; }
-        public List<User> Users { get; set; }
-
     }
 }

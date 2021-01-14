@@ -4,9 +4,8 @@ using System.Text;
 
 namespace TaxiPlus.DAL.Domain
 {
-    public class CarManufacturer
+    public class CarManufacturer: BaseEntity
     {
-        public int Id { get; set; }
         public string ManufacturerName { get; set; }
         public string Logo { get; set; }
         public List<Car> Cars { get; set; }

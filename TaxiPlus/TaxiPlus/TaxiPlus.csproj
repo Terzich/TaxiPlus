@@ -19,5 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TaxiPlus.DAL\TaxiPlus.DAL.csproj" />
+  </ItemGroup>
+
 
 </Project>

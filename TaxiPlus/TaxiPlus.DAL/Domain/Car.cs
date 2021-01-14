@@ -4,15 +4,16 @@ using System.Text;
 
 namespace TaxiPlus.DAL.Domain
 {
-    public class Car
+    public class Car:BaseEntity
     {
-        public int Id { get; set; }
         public string CarName { get; set; }
         public DateTime YearOfProduction { get; set; }
         public int NumberOfDoors { get; set; }
         public bool IsRentVehicle { get; set; }
         public bool IsTaxiVehicle { get; set; }
         public decimal PricePerDay { get; set; }
+
+        public List<RentedCar> RentedCars { get; set; }
 
         public int CarManufacturerId { get; set; }
         public CarManufacturer CarManufacturer { get; set; }

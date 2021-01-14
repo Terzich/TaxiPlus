@@ -4,9 +4,8 @@ using System.Text;
 
 namespace TaxiPlus.DAL.Domain
 {
-    public class Gender
+    public class Gender:BaseEntity
     {
-        public int Id { get; set; }
         public string _Gender { get; set; }
         public List<User> Users { get; set; }
 

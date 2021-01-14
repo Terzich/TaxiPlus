@@ -1,7 +1,9 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,6 +12,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TaxiPlus.DAL.Database;
+using TaxiPlus.DAL.Repositories;
+using TaxiPlus.DAL.Requests;
+using TaxiPlus.DAL.ViewModels;
 
 namespace TaxiPlus
 {
@@ -26,6 +32,13 @@ namespace TaxiPlus
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAutoMapper(typeof(TaxiPlus.DAL.Mapper.Mapper));
+
+            var connection = Configuration.GetConnectionString("TaxiPlusDatabase");
+            services.AddDbContext<TaxiPlusDbContext>(b => b.UseSqlServer(connection));
+
+            services.AddScoped<IBaseCRUDRepository<CityViewModel, CityUpsertRequest>, SqlServerCityRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

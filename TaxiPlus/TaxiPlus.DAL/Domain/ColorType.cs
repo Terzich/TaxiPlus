@@ -4,9 +4,8 @@ using System.Text;
 
 namespace TaxiPlus.DAL.Domain
 {
-    public class ColorType
+    public class ColorType:BaseEntity
     {
-        public int Id { get; set; }
         public string ColorTypeName { get; set; }
         public List<Color> Colors { get; set; }
     }
