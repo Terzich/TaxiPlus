@@ -9,6 +9,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule } from '@angular/forms';
 import { NewsListComponent } from './news-list/news-list.component';
 import { NewsDetailComponent } from './news-list/news-detail/news-detail.component';
+import { NewsService } from './news-list/news.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { NewsDetailComponent } from './news-list/news-detail/news-detail.compone
     FormsModule,
     AppRoutingModule
   ],
-  providers: [AppRoutingModule],
+  providers: [AppRoutingModule, NewsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
