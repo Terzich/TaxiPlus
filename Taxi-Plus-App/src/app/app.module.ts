@@ -7,13 +7,17 @@ import { HeaderComponent } from './header/header.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule } from '@angular/forms';
+import { NewsListComponent } from './news-list/news-list.component';
+import { NewsDetailComponent } from './news-list/news-detail/news-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     DropdownDirective,
-    HomepageComponent
+    HomepageComponent,
+    NewsListComponent,
+    NewsDetailComponent
   ],
   imports: [
     BrowserModule,
