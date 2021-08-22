@@ -1,0 +1,27 @@
+.hero {
+    font-size: 0;
+}
+
+.hero iframe, .hero .hero-item {
+    width: 100%;
+    height: 270px;
+}
+
+.cover {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.t-u {
+    text-transform: uppercase;
+}
+hr {
+    box-sizing: content-box;
+    height: 1;
+    overflow: visible;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}

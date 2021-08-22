@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { News } from '../news.model';
+import { NewsService } from '../news.service';
 
 @Component({
   selector: 'app-news-detail',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsDetailComponent implements OnInit {
 
-  constructor() { }
+  id: number;
+  news: News;
+  newsList:News[];
+
+  constructor(private newsService: NewsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+        this.news = this.newsService.getNewsById(this.id);
+      }
+
+    );
+    this.newsList = this.newsService.getNews();
   }
 
 }
