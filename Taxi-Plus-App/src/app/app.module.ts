@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { NewsListComponent } from './news-list/news-list.component';
 import { NewsDetailComponent } from './news-list/news-detail/news-detail.component';
 import { NewsService } from './news-list/news.service';
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NewsService } from './news-list/news.service';
     DropdownDirective,
     HomepageComponent,
     NewsListComponent,
-    NewsDetailComponent
+    NewsDetailComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,
