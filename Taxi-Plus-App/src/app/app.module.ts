@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { HomepageComponent } from './homepage/homepage.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewsListComponent } from './news-list/news-list.component';
 import { NewsDetailComponent } from './news-list/news-detail/news-detail.component';
 import { NewsService } from './news-list/news.service';
@@ -25,7 +25,8 @@ import { FaqComponent } from './faq/faq.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [AppRoutingModule, NewsService],
   bootstrap: [AppComponent]

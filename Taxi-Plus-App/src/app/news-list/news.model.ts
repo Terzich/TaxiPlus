@@ -1,5 +1,3 @@
-
-
 export class News {
 
     public id: number;
