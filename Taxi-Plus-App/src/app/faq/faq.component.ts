@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FAQ } from './faq.model';
+import { FaqService } from './faq.service';
 
 @Component({
   selector: 'app-faq',
@@ -9,18 +11,20 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class FaqComponent implements OnInit {
 
   faqForm: FormGroup
+  questions: FAQ[];
 
-  constructor() { }
+  constructor(private faqService: FaqService) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.questions = this.faqService.getFaqs();
   }
 
   private initForm() {
 
     this.faqForm = new FormGroup({
-      'question' : new FormControl(),
-      'email' : new FormControl()
+      'question' : new FormControl(null, Validators.required),
+      'email' : new FormControl(null, Validators.email)
     })
   }
 

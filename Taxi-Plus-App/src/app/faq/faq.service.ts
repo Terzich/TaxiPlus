@@ -7,8 +7,8 @@ import { FAQ } from './faq.model';
 export class FaqService {
   private faqs : FAQ[] = [
     new FAQ(1, "Koje je radno vrijem vaše poslovnice?", "test.user@hotmail.com", "Nase radno vrijeme je od 08:00h do 20:00h svakim radnim danom, vikendi su neradni!"),
-    new FAQ(1, "Koje je radno vrijem vaše poslovnice?", "test.user@hotmail.com", "Nase radno vrijeme je od 08:00h do 20:00h svakim radnim danom, vikendi su neradni!"),
-    new FAQ(1, "Koje je radno vrijem vaše poslovnice?", "test.user@hotmail.com", "Nase radno vrijeme je od 08:00h do 20:00h svakim radnim danom, vikendi su neradni!")
+    new FAQ(2, "Koje je radno vrijem vaše poslovnice?", "test.user@hotmail.com", "Nase radno vrijeme je od 08:00h do 20:00h svakim radnim danom, vikendi su neradni!"),
+    new FAQ(3, "Koje je radno vrijem vaše poslovnice?", "test.user@hotmail.com", "Nase radno vrijeme je od 08:00h do 20:00h svakim radnim danom, vikendi su neradni!")
   ];
 
   getFaqs() {

@@ -11,6 +11,8 @@ import { NewsListComponent } from './news-list/news-list.component';
 import { NewsDetailComponent } from './news-list/news-detail/news-detail.component';
 import { NewsService } from './news-list/news.service';
 import { FaqComponent } from './faq/faq.component';
+import { FaqService } from './faq/faq.service';
+import { CompanyOfferComponent } from './company-offer/company-offer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { FaqComponent } from './faq/faq.component';
     HomepageComponent,
     NewsListComponent,
     NewsDetailComponent,
-    FaqComponent
+    FaqComponent,
+    CompanyOfferComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,7 @@ import { FaqComponent } from './faq/faq.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [AppRoutingModule, NewsService],
+  providers: [AppRoutingModule, NewsService, FaqService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
