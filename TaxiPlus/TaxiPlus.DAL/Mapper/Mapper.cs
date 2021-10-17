@@ -14,9 +14,8 @@ namespace TaxiPlus.DAL.Mapper
         {
             CreateMap<City, CityViewModel>().ReverseMap();
             CreateMap<City, CityUpsertRequest>().ReverseMap();
-
-
-
+            CreateMap<Car, CarViewModel>().ReverseMap();
+            CreateMap<Car, CarUpsertRequest>().ReverseMap();
         }
     }
 }

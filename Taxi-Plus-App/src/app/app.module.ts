@@ -13,6 +13,10 @@ import { NewsService } from './news-list/news.service';
 import { FaqComponent } from './faq/faq.component';
 import { FaqService } from './faq/faq.service';
 import { CompanyOfferComponent } from './company-offer/company-offer.component';
+import { CarListComponent } from './car-list/car-list.component';
+import { CarDetailsComponent } from './car-list/car-details/car-details.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RentCarComponent } from './car-list/rent-car/rent-car.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +27,17 @@ import { CompanyOfferComponent } from './company-offer/company-offer.component';
     NewsListComponent,
     NewsDetailComponent,
     FaqComponent,
-    CompanyOfferComponent
+    CompanyOfferComponent,
+    CarListComponent,
+    CarDetailsComponent,
+    RentCarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [AppRoutingModule, NewsService, FaqService],
   bootstrap: [AppComponent]

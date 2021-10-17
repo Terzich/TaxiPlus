@@ -38,6 +38,8 @@ namespace TaxiPlus
             services.AddDbContext<TaxiPlusDbContext>(b => b.UseSqlServer(connection));
 
             services.AddScoped<IBaseCRUDRepository<CityViewModel, CityUpsertRequest>, SqlServerCityRepository>();
+            services.AddScoped<IBaseCRUDRepository<CarViewModel, CarUpsertRequest>, SqlServerCarRepository>();
+
 
         }
 

@@ -1,0 +1,51 @@
+<div class="container" *ngIf="Car">
+
+    <div class="row align-items-center bg-dark bg-gradient">
+        <div class="col-lg-4">
+            <img src="{{Car.imageUrl}}" class="img-fluid" alt="">
+        </div>
+        <div class="col-lg-8 p-5">
+            <h1 class="text-warning">{{Car.carName}} </h1>
+            <hr>
+            <p class="car-details"><span class="text-warning">Cijena po danu: {{Car.pricePerDay}} BAM</span> <br> <span>Boja: </span>{{Car.color}}
+                <br>
+                <span>Godina proizvodnje: </span> {{Car.yearOfProduction}}
+            </p>
+            <p class="text-primary">{{Car.details}}</p>
+        </div>
+        <div class="container">
+            <!-- <h3 style="text-align: center; color: green;">This car is available for booking!</h3> -->
+            <div class="row border-0 p-2">
+                <div class="col-lg-3 ml-auto">
+
+
+                    <!-- <button class="btn btn-success" (click)="drp.toggle()" [attr.aria-expanded]="drp.isOpen"
+                        type="button">Date Range Picker</button> -->
+
+                </div>
+                <div class="col-lg-6 text-center">
+                    <!-- <input class="form-control" #drp="bsDaterangepicker" bsDaterangepicker [(ngModel)]="bsRangeValue"
+                        style="width: 290px;" (ngModelChange)="calculatePrice()" > -->
+                    <p class="text-center text-warning">Odaberite vremenski period u kojem želite da iznajmite vozilo</p>
+                    <ngb-datepicker class="bg-dark  text-primary border-primary" #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
+                        outsideDays="hidden">
+                    </ngb-datepicker>
+
+                    <ng-template #t let-date let-focused="focused">
+                        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                            (mouseleave)="hoveredDate = null">
+                            {{ date.day }}
+                        </span>
+                    </ng-template>
+                </div>
+                <div class="col-lg-3 ml-auto">
+                </div>
+
+
+            </div>
+        </div>
+        <p class="alert alert-success" style="width: 80%; margin: auto;" *ngIf="message">{{message}}</p>
+    </div>
+
+</div>
