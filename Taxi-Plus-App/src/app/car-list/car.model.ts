@@ -9,6 +9,7 @@ export class Car{
     color: string;
 
     constructor(id:number, carName: string,  yearOfProduction: number,  numberOfDoors: number, pricePerDay: number, imageUrl: string, details: string, color: string) {
+        console.log(carName)
         this.id = id;
         this.carName = carName;        
         this.yearOfProduction = yearOfProduction;        

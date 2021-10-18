@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
 import { Car } from '../car.model';
 import { CarService } from '../car.service';
 
@@ -34,7 +35,7 @@ export class RentCarComponent implements OnInit {
     
     this.route.params.subscribe(
       (param: Params) => {
-        this.Car = this.carService.getCarById(+param['id']);
+         this.carService.getCarById(+param['id']).subscribe(carFromApi => this.Car = carFromApi);
       }
     );
   }

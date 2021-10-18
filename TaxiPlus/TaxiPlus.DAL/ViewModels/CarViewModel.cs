@@ -20,5 +20,7 @@ namespace TaxiPlus.DAL.ViewModels
         public string FuelType { get; set; }
         public int CarTypeId { get; set; }
         public string CarType { get; set; }
+        public string ImageUrl { get; set; }
+
     }
 }

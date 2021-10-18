@@ -17,6 +17,7 @@ import { CarListComponent } from './car-list/car-list.component';
 import { CarDetailsComponent } from './car-list/car-details/car-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RentCarComponent } from './car-list/rent-car/rent-car.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { RentCarComponent } from './car-list/rent-car/rent-car.component';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [AppRoutingModule, NewsService, FaqService],
   bootstrap: [AppComponent]

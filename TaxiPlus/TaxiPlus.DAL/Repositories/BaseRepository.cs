@@ -23,7 +23,7 @@ namespace TaxiPlus.DAL.Repositories
 
 
 
-        public async Task<List<TModel>> GetAll()
+        public virtual async Task<List<TModel>> GetAll()
         {
             var list = await _context.Set<TDatabase>().ToListAsync();
             return _mapper.Map<List<TModel>>(list);

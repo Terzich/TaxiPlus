@@ -1,6 +1,6 @@
 <div class="container" *ngIf="Car">
 
-    <div class="row align-items-center bg-dark bg-gradient">
+    <div id="wrapper" class="row align-items-center bg-gradient">
         <div class="col-lg-4">
             <img src="{{Car.imageUrl}}" class="img-fluid" alt="">
         </div>
@@ -27,7 +27,7 @@
                     <!-- <input class="form-control" #drp="bsDaterangepicker" bsDaterangepicker [(ngModel)]="bsRangeValue"
                         style="width: 290px;" (ngModelChange)="calculatePrice()" > -->
                     <p class="text-center text-warning">Odaberite vremenski period u kojem želite da iznajmite vozilo</p>
-                    <ngb-datepicker class="bg-dark  text-primary border-primary" #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
+                    <ngb-datepicker  class="bg-light text-dark border-primary" #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
                         outsideDays="hidden">
                     </ngb-datepicker>
 
