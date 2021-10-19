@@ -1,6 +1,6 @@
 <div class="container">
     <div class="hero">
-        <div class="hero-item cover" [ngStyle]="{ 'background-image': 'url(' + news.image + ')'}">
+        <div class="hero-item cover" [ngStyle]="{ 'background-image': 'url(' + news.imageUrl + ')'}">
 
         </div>
     </div>
@@ -12,7 +12,7 @@
                     <hr class="mt-3 mb-3">
                     <ul class="list-unstyled mb-0 ps-0">
                         <li *ngFor="let newsItem of newsList">
-                            <a href="" class="d-block mt-4 mb-4 l-1">{{newsItem.title}}</a>
+                            <a href="" class="d-block mt-4 mb-4 l-1">{{newsItem.newsTitle}}</a>
                         </li>
                     </ul>
                 </div>
@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col-12 col-sm-12">
                             <div class="mb-4">
-                                <h1 class="lead mb-0" style="color:darkred; font-weight: bold;">{{news.title}}</h1>
+                                <h1 class="lead mb-0" style="color:darkred; font-weight: bold;">{{news.newsTitle}}</h1>
                                 <small class="t-m d-block mt-1">
                                     Objavljeno - {{news.publishedAt}}
                                 </small>

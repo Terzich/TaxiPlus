@@ -25,6 +25,8 @@ namespace TaxiPlus.DAL.Database
         public DbSet<Question> questions { get; set; }
         public DbSet<RentedCar> rentedCars { get; set; }
         public DbSet<User> users { get; set; }
+        public DbSet<News> news{ get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

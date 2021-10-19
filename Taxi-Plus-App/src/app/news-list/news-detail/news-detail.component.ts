@@ -20,11 +20,11 @@ export class NewsDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.news = this.newsService.getNewsById(this.id);
+        this.newsService.getNewsById(this.id).subscribe(newsFromApi => this.news = newsFromApi);
       }
 
     );
-    this.newsList = this.newsService.getNews();
+    this.newsService.getNews().subscribe(newsFromApi => this.newsList = newsFromApi);
   }
 
 }
