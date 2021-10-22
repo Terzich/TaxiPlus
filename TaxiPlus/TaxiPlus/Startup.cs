@@ -40,6 +40,8 @@ namespace TaxiPlus
             services.AddScoped<IBaseCRUDRepository<CityViewModel, CityUpsertRequest>, SqlServerCityRepository>();
             services.AddScoped<IBaseCRUDRepository<CarViewModel, CarUpsertRequest>, SqlServerCarRepository>();
             services.AddScoped<IBaseCRUDRepository<NewsViewModel, NewsUpsertRequest>, SqlServerNewsRepository>();
+            services.AddScoped<IBaseCRUDRepository<UserViewModel, UserUpsertRequest>, SqlServerUserRepository>();
+
 
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>

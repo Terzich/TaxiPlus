@@ -29,7 +29,7 @@ namespace TaxiPlus.DAL.Repositories
             return _mapper.Map<List<TModel>>(list);
         }
 
-        public async Task<TModel> GetById(int id)
+        public virtual async Task<TModel> GetById(int id)
         {
             var domainObj = await _context.Set<TDatabase>().FindAsync(id);
             return _mapper.Map<TModel>(domainObj);

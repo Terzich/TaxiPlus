@@ -6,7 +6,7 @@
         </div>
         <div class="col-lg-8 p-5">
             <h1 class="text-warning">{{Car.carName}} </h1>
-            <hr>
+            <hr style="color: yellow;">
             <p class="car-details"><span class="text-warning">Cijena po danu: {{Car.pricePerDay}} BAM</span> <br>
                 <span>Boja: </span>{{Car.color}}
                 <br>
@@ -45,25 +45,49 @@
                 </div>
                 <div class="col-lg-3 ml-auto">
                 </div>
-                <button type="button" class="btn btn-primary w-25 btn-lg mt-2 bg-transparent border-3 border-white text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" (click)="generateDatePeriod()" class="btn btn-primary w-25 btn-lg mt-2 bg-transparent border-3 border-white text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Pošalji zahtjev
                 </button>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div class="modal fade w-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Potvrda zahtjeva za iznajmljivanje vozila</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                ...
+                                <!-- <app-rent-request [selectedCar]="Car" [fromDate] = "fromDate" [toDate] = "toDate"></app-rent-request> -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="{{Car.imageUrl}}" class="img-fluid" alt="">
+                                
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h1 class="text-danger">{{Car.carName}} </h1>
+                                            <hr>
+                                            <p class="car-details"><span class="text-danger">Cijena po danu: {{Car.pricePerDay}} BAM</span> <br>
+                                                <span>Boja: </span>{{Car.color}}
+                                                <br>
+                                                <span>Godina proizvodnje: </span>{{Car.yearOfProduction | date:"yyyy"}} <br>
+                                                <span>Tip goriva: </span>{{Car.fuelTypeId}}
+                                            </p>
+                                            <p class="text-primary">{{Car.details}}</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                <p class="fst-italic fw-bolder">" - Period iznajmljivanja vozila traje od od: <span class="text-primary">{{fromDateTransformed | date}}</span>, 
+                                    do: <span class="text-primary">{{toDateTransformed | date}}."</span> <br> 
+                                    " - Vozilo će biti iznajmljeno ukupno <span class="text-danger fw-bold">{{numberOfDays}}</span> dana." <br>
+                                " - Ukupna cijena iznajmljivanja vozila iznosi     <span class="fs-2 text-danger">{{totalPrice}}KM</span>." </p>
+                                </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Prekid</button>
+                                <button type="button" class="btn btn-primary">Potvrdi zahtjev</button>
                             </div>
                         </div>
                     </div>
@@ -71,7 +95,5 @@
 
             </div>
         </div>
-        <p class="alert alert-success" style="width: 80%; margin: auto;" *ngIf="message">{{message}}</p>
     </div>
-
 </div>
