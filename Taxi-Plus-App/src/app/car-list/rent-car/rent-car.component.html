@@ -45,7 +45,9 @@
                 </div>
                 <div class="col-lg-3 ml-auto">
                 </div>
-                <button type="button" (click)="generateDatePeriod()" class="btn btn-primary w-25 btn-lg mt-2 bg-transparent border-3 border-white text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" (click)="generateDatePeriod()"
+                    class="btn btn-primary w-25 btn-lg mt-2 bg-transparent border-3 border-white text-warning"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Pošalji zahtjev
                 </button>
 
@@ -54,7 +56,8 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Potvrda zahtjeva za iznajmljivanje vozila</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Potvrda zahtjeva za iznajmljivanje vozila
+                                </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -63,31 +66,111 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <img src="{{Car.imageUrl}}" class="img-fluid" alt="">
-                                
+
                                     </div>
                                     <div class="col-md-8">
                                         <h1 class="text-danger">{{Car.carName}} </h1>
-                                            <hr>
-                                            <p class="car-details"><span class="text-danger">Cijena po danu: {{Car.pricePerDay}} BAM</span> <br>
-                                                <span>Boja: </span>{{Car.color}}
-                                                <br>
-                                                <span>Godina proizvodnje: </span>{{Car.yearOfProduction | date:"yyyy"}} <br>
-                                                <span>Tip goriva: </span>{{Car.fuelTypeId}}
-                                            </p>
-                                            <p class="text-primary">{{Car.details}}</p>
+                                        <hr>
+                                        <p class="car-details"><span class="text-danger">Cijena po danu:
+                                                {{Car.pricePerDay}} BAM</span> <br>
+                                            <span>Boja: </span>{{Car.color}}
+                                            <br>
+                                            <span>Godina proizvodnje: </span>{{Car.yearOfProduction | date:"yyyy"}} <br>
+                                            <span>Tip goriva: </span>{{Car.fuelTypeId}}
+                                        </p>
+                                        <p class="text-primary">{{Car.details}}</p>
                                     </div>
                                 </div>
                                 <hr>
+                                <div class="row p-4">
+                                    <p class="text-center fw-bold fst-italic">Lični podaci</p>
+                                    <div class="form-group p-2">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span
+                                                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
+                                                    id="">Ime i prezime</span>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
+                                                readonly value="{{user.firstName}}">
+                                            <input type="text"
+                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
+                                                readonly value="{{user.lastName}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group p-2">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span
+                                                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
+                                                    id="">Grad i adresa</span>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
+                                                readonly value="{{user.cityName}}">
+                                            <input type="text"
+                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
+                                                readonly value="{{user.address}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group p-2">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span
+                                                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
+                                                    id="inputGroup-sizing-default">Datum
+                                                    rođenja</span>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
+                                                readonly value="{{user.birthDate | date}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group p-2">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span
+                                                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
+                                                    id="inputGroup-sizing-default">Broj
+                                                    telefona</span>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
+                                                readonly value="{{user.phoneNumber}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group p-2">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend text-center">
+                                                <span
+                                                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
+                                                    id="inputGroup-sizing-default">Spol</span>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
+                                                readonly value="{{user.gender}}">
+                                        </div>
+                                    </div>
+
+                                </div>
                                 <div class="row">
-                                <p class="fst-italic fw-bolder">" - Period iznajmljivanja vozila traje od od: <span class="text-primary">{{fromDateTransformed | date}}</span>, 
-                                    do: <span class="text-primary">{{toDateTransformed | date}}."</span> <br> 
-                                    " - Vozilo će biti iznajmljeno ukupno <span class="text-danger fw-bold">{{numberOfDays}}</span> dana." <br>
-                                " - Ukupna cijena iznajmljivanja vozila iznosi     <span class="fs-2 text-danger">{{totalPrice}}KM</span>." </p>
+                                    <p class="fst-italic fw-bolder">" - Period iznajmljivanja vozila traje od od: <span
+                                            class="text-primary">{{fromDateTransformed | date}}</span>,
+                                        do: <span class="text-primary">{{toDateTransformed | date}}."</span> <br>
+                                        " - Vozilo će biti iznajmljeno ukupno <span
+                                            class="text-danger fw-bold">{{numberOfDays}}</span> dana." <br>
+                                        " - Ukupna cijena iznajmljivanja vozila iznosi <span
+                                            class="fs-5 text-danger">{{totalPrice}}KM</span>."</p>
                                 </div>
                             </div>
+                            <p class="alert alert-success" style="width: 80%; margin: auto;" *ngIf="message">{{message}}
+                            </p>
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Prekid</button>
-                                <button type="button" class="btn btn-primary">Potvrdi zahtjev</button>
+                                <button type="button" class="btn btn-primary" (click)="sendRentRequest()">Potvrdi
+                                    zahtjev</button>
                             </div>
                         </div>
                     </div>

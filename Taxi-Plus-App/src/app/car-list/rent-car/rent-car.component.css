@@ -50,3 +50,6 @@ h1{
 #wrapper{
   background-color: rgb(63, 3, 3);
 }
+.input-group-prepend{
+  width: 30%;
+}
