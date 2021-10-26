@@ -1,3 +1,4 @@
+import { decimalDigest } from '@angular/compiler/src/i18n/digest';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
@@ -27,13 +28,15 @@ export class RentCarComponent implements OnInit {
   numberOfDays: number;
   totalPrice: number;
 
-  @Input() Car: Car;
+  Car: Car;
   user: User;
+  carRents: RentedCar[];
 
   bsValue = new Date();
   bsRangeValue: Date[];
   maxDate = new Date();
   message: string;
+  carAvailable: boolean = true;
 
   constructor(private route: ActivatedRoute, private carService: CarService, private router: Router, calendar: NgbCalendar,
     private userService: UserService, private rentService: RentService) {
@@ -42,13 +45,21 @@ export class RentCarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.route.params.subscribe(
       (param: Params) => {
         this.carService.getCarById(+param['id']).subscribe(carFromApi => this.Car = carFromApi);
       }
     );
     this.userService.getUserById(1).subscribe(userFromApi => this.user = userFromApi);
+
+    this.rentService.getRentForSingleCar(this.Car.id).subscribe(rentListFromApi => this.carRents = rentListFromApi);
+    this.carRents.forEach(element => {
+      console.log("Usloo");
+      if (element.rentedFrom.getTime() >= Date.now() && element.rentedTo.getTime() <= Date.now()) {
+        this.carAvailable = false;
+      }
+    });
+
   }
 
   calculatePrice(): void {
@@ -89,7 +100,6 @@ export class RentCarComponent implements OnInit {
         daysToAdd = 2;
 
     }
-    this.numberOfDays = Math.floor((this.toDateTransformed.getTime() - this.fromDateTransformed.getTime()) / 1000 / 60 / 60 / 24);
 
     var Time = this.toDateTransformed.getTime() - this.fromDateTransformed.getTime();
     this.numberOfDays = Time / (1000 * 3600 * 24) + daysToAdd;
@@ -110,27 +120,7 @@ export class RentCarComponent implements OnInit {
     this.rentService.addBookedCar(rentRequest).subscribe();
     this.message = "Uspješno ste poslali zahtjev za iznajmljivanje";
 
-    setTimeout(() => {this.message = ""}, 3000);
+    setTimeout(() => { this.message = "" }, 3000);
 
   }
-
-  // rentCar(){
-  //   let data:BookedCar={
-  //     userID:1,
-  //     carID:this.Car.id,
-  //     from:this.bsRangeValue[0],
-  //     to:this.bsRangeValue[1],
-  //     totalPrice:this.totalPrice,
-  //     rating:5,
-  //     comment:"Savrsen automobil",
-  //     commentCreated:this.bsRangeValue[1]
-  //   };
-  //   this.rentService.addBookedCar(data).subscribe();
-  //   this.message="Uspješno ste rentali vozilo!";
-  //   setTimeout( () => {
-  //    this.router.navigateByUrl("");
-  //   } ,3000);
-
-  // }
-
 }

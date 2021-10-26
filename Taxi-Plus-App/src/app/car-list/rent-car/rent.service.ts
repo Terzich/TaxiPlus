@@ -24,6 +24,10 @@ export class RentService {
     return this.http.get<RentedCar>(this.url + "/"+id, { 'headers': this.options });
   }
 
+  getRentForSingleCar(carId: number): Observable<RentedCar[]> {
+    return this.http.get<RentedCar[]>(this.url + "/getByCarId/" + carId, { 'headers': this.options });
+  }
+
   addBookedCar(rentRequest: RentedCar): Observable<number> {
     return this.http.post<number>(this.url, rentRequest, { "headers": this.options });
   }

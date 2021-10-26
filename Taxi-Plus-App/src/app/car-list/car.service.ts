@@ -20,13 +20,6 @@ export class CarService {
 
   constructor(private http: HttpClient) { }
   readonly url = environment.url + "car";
-  // getCars() {
-  //   return this.cars.slice();
-  // }
-
-  // getCarById(id: number) {
-  //   return this.cars[id];
-  // }
 
   getCarsFromServer(): Observable<Car[]> {
 
@@ -36,9 +29,7 @@ export class CarService {
 
   getCarById(id: number): Observable<Car> {
 
-    //const url = `${this.apiUrl}/${id}`;
     return this.http.get<Car>(this.url + "/"+id, { 'headers': this.options });
-
   }
 
 }
