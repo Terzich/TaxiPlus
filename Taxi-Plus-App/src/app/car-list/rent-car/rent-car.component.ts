@@ -1,5 +1,6 @@
 import { decimalDigest } from '@angular/compiler/src/i18n/digest';
 import { Component, Input, OnInit } from '@angular/core';
+import { waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
@@ -47,19 +48,27 @@ export class RentCarComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(
       (param: Params) => {
-        this.carService.getCarById(+param['id']).subscribe(carFromApi => this.Car = carFromApi);
+        this.carService.getCarById(+param['id']).subscribe(carFromApi => {
+          this.Car = carFromApi;
+        this.checkCarAvailability(this.Car.id);
+        });
       }
     );
     this.userService.getUserById(1).subscribe(userFromApi => this.user = userFromApi);
 
-    this.rentService.getRentForSingleCar(this.Car.id).subscribe(rentListFromApi => this.carRents = rentListFromApi);
-    this.carRents.forEach(element => {
-      console.log("Usloo");
-      if (element.rentedFrom.getTime() >= Date.now() && element.rentedTo.getTime() <= Date.now()) {
-        this.carAvailable = false;
-      }
-    });
+    
+  }
 
+  checkCarAvailability(id: number) {
+    this.rentService.getRentForSingleCar(id).subscribe(rentListFromApi => {
+      this.carRents = rentListFromApi
+      this.carRents.forEach(element => {
+        if (element.rentedFrom.getTime >= Date.now && element.rentedTo.getTime <= Date.now) {
+          this.carAvailable = false;
+        }
+      });
+    });
+    
   }
 
   calculatePrice(): void {
@@ -94,8 +103,11 @@ export class RentCarComponent implements OnInit {
   generateDatePeriod() {
     var daysToAdd = 1;
     this.fromDateTransformed = new Date(this.fromDate.year, this.fromDate.month, this.fromDate.day);
+    console.log(this.fromDateTransformed);
+
     if (this.toDate != null) {
       this.toDateTransformed = new Date(this.toDate.year, this.toDate.month, this.toDate.day);
+    console.log(this.toDateTransformed);
       if (this.toDate.month - this.fromDate.month == 1)
         daysToAdd = 2;
 
