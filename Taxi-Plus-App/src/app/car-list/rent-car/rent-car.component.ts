@@ -63,12 +63,13 @@ export class RentCarComponent implements OnInit {
     this.rentService.getRentForSingleCar(id).subscribe(rentListFromApi => {
       this.carRents = rentListFromApi
       this.carRents.forEach(element => {
-        if (element.rentedFrom.getTime >= Date.now && element.rentedTo.getTime <= Date.now) {
+        var rentedFrom_element = new Date(element.rentedFrom).getTime();
+        var rentedTo_element = new Date(element.rentedTo).getTime();
+        if (Date.now() >= rentedFrom_element && Date.now() <= rentedTo_element) {
           this.carAvailable = false;
         }
       });
     });
-    
   }
 
   calculatePrice(): void {
@@ -103,11 +104,11 @@ export class RentCarComponent implements OnInit {
   generateDatePeriod() {
     var daysToAdd = 1;
     this.fromDateTransformed = new Date(this.fromDate.year, this.fromDate.month, this.fromDate.day);
-    console.log(this.fromDateTransformed);
+    console.log(this.fromDate.month);
 
     if (this.toDate != null) {
       this.toDateTransformed = new Date(this.toDate.year, this.toDate.month, this.toDate.day);
-    console.log(this.toDateTransformed);
+    console.log(this.toDate.month);
       if (this.toDate.month - this.fromDate.month == 1)
         daysToAdd = 2;
 
