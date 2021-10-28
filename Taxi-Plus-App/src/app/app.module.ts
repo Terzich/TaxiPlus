@@ -18,6 +18,7 @@ import { CarDetailsComponent } from './car-list/car-details/car-details.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RentCarComponent } from './car-list/rent-car/rent-car.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     CompanyOfferComponent,
     CarListComponent,
     CarDetailsComponent,
-    RentCarComponent
+    RentCarComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,

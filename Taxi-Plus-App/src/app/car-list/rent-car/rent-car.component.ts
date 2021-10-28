@@ -63,9 +63,7 @@ export class RentCarComponent implements OnInit {
     this.rentService.getRentForSingleCar(id).subscribe(rentListFromApi => {
       this.carRents = rentListFromApi
       this.carRents.forEach(element => {
-        var rentedFrom_element = new Date(element.rentedFrom).getTime();
-        var rentedTo_element = new Date(element.rentedTo).getTime();
-        if (Date.now() >= rentedFrom_element && Date.now() <= rentedTo_element) {
+        if (Date.now() >= new Date(element.rentedFrom).getTime() && Date.now() <= new Date(element.rentedTo).getTime()) {
           this.carAvailable = false;
         }
       });
@@ -103,12 +101,16 @@ export class RentCarComponent implements OnInit {
 
   generateDatePeriod() {
     var daysToAdd = 1;
+    console.log("misec " + this.fromDate.month);
+    console.log(typeof this.fromDate.month);
     this.fromDateTransformed = new Date(this.fromDate.year, this.fromDate.month, this.fromDate.day);
-    console.log(this.fromDate.month);
+    
+    console.log(this.fromDateTransformed);
 
     if (this.toDate != null) {
+      console.log("opem misec " + this.toDate.month);
       this.toDateTransformed = new Date(this.toDate.year, this.toDate.month, this.toDate.day);
-    console.log(this.toDate.month);
+    console.log(this.toDateTransformed);
       if (this.toDate.month - this.fromDate.month == 1)
         daysToAdd = 2;
 
@@ -134,6 +136,5 @@ export class RentCarComponent implements OnInit {
     this.message = "Uspješno ste poslali zahtjev za iznajmljivanje";
 
     setTimeout(() => { this.message = "" }, 3000);
-
   }
 }
