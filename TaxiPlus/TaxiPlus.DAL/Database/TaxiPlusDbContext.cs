@@ -26,6 +26,8 @@ namespace TaxiPlus.DAL.Database
         public DbSet<RentedCar> rentedCars { get; set; }
         public DbSet<User> users { get; set; }
         public DbSet<News> news{ get; set; }
+        public DbSet<Role> roles{ get; set; }
+
 
 
 
@@ -33,11 +35,7 @@ namespace TaxiPlus.DAL.Database
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CarConfiguration).Assembly);
 
-
             base.OnModelCreating(modelBuilder);
-
         }
-
-
     }
 }

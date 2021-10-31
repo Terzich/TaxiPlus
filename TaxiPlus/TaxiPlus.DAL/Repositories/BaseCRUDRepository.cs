@@ -22,7 +22,7 @@ namespace TaxiPlus.DAL.Repositories
            await  _context.SaveChangesAsync(); 
         }
 
-        public async Task<int> Insert(TUpsertRequest request)
+        public virtual async Task<int> Insert(TUpsertRequest request)
         {
             var domainToInsert = _mapper.Map<TDatabase>(request);
             await _context.Set<TDatabase>().AddAsync(domainToInsert);

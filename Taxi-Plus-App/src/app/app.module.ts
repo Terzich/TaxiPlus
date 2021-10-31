@@ -17,8 +17,14 @@ import { CarListComponent } from './car-list/car-list.component';
 import { CarDetailsComponent } from './car-list/car-details/car-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RentCarComponent } from './car-list/rent-car/rent-car.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AuthComponent } from './auth/auth.component';
+import { AuthModule } from './auth/auth.module';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { DashboardComponent } from './admin-panel/dashboard/dashboard.component';
+import { CarMenuComponent } from './admin-panel/car-menu/car-menu.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +39,9 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     CarListComponent,
     CarDetailsComponent,
     RentCarComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    DashboardComponent,
+    CarMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +49,10 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     AppRoutingModule,
     ReactiveFormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule
   ],
-  providers: [AppRoutingModule, NewsService, FaqService],
+  providers: [AppRoutingModule, NewsService, FaqService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

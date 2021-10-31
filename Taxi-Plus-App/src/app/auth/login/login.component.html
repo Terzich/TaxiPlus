@@ -1,0 +1,19 @@
+<div class="wrapper fadeInDown">
+    
+      <div id="formContent">
+        <span class="material-icons"style="font-size: 50px">person</span>
+        <form #loginForm= "ngForm" (ngSubmit) = "onSubmit()" autocomplete="off">
+            
+          <input type="text" id="login" #username="ngModel" class="fadeIn second" name="username" placeholder="username" ngModel autocomplete="off">
+          <input type="password" id="password"  #password="ngModel"class="fadeIn third" name="password" placeholder="password" ngModel>
+          <span *ngIf="error" class="errorMessage" > {{error}}</span>
+          <input type="submit" class="fadeIn fourth" value="Log In">
+        
+        </form>
+      </div>
+    </div>
+    <div *ngIf="isLoading" class="loading-spinner" style=" transform: translate(50%);">
+        <div class="spinner-border" role="status" style=" transform: translate(50%);">
+            <span class="sr-only">Loading...</span>
+          </div>
+    </div>

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 using TaxiPlus.DAL.Database;
 using TaxiPlus.DAL.Repositories;
 using TaxiPlus.DAL.Requests;
+using TaxiPlus.DAL.Security;
 using TaxiPlus.DAL.ViewModels;
 
 namespace TaxiPlus
@@ -35,6 +37,9 @@ namespace TaxiPlus
             services.AddAutoMapper(typeof(TaxiPlus.DAL.Mapper.Mapper));
 
             var connection = Configuration.GetConnectionString("TaxiPlusDatabase");
+
+            services.AddAuthentication("BasicAuthentication").AddScheme
+              <AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
             services.AddDbContext<TaxiPlusDbContext>(b => b.UseSqlServer(connection));
 
             services.AddScoped<IBaseCRUDRepository<CityViewModel, CityUpsertRequest>, SqlServerCityRepository>();
@@ -61,16 +66,20 @@ namespace TaxiPlus
 
             app.UseCors("MyPolicy");
 
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "IFORM.WebApi v1"));
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+            //app.UseSwagger();
         }
     }
 }
