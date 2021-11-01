@@ -32,4 +32,13 @@ export class CarService {
     return this.http.get<Car>(this.url + "/"+id, { 'headers': this.options });
   }
 
+  addCar(val: any): Observable<number> {
+    return this.http.post<number>(this.url, val, { "headers": this.options });
+  }
+
+  updateCar(val:any, carId:number){
+    return this.http.put(this.url+'/'+carId,val);
+  }
+
+
 }

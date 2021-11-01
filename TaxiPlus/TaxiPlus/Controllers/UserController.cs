@@ -25,7 +25,7 @@ namespace TaxiPlus.Controllers
         {
             
             List<UserViewModel> list = await repositoryCustom.GetAllLogin(request);
-            return list;
+            return list; 
         }
     }
 }

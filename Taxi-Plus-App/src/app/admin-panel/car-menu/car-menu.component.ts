@@ -14,7 +14,7 @@ export class CarMenuComponent implements OnInit {
 
   ModalTitle:string;
   ActivateAddEditDepComp:boolean=false;
-  dep:any;
+  car:any;
 
   DepartmentIdFilter:string="";
   DepartmentNameFilter:string="";
@@ -25,7 +25,7 @@ export class CarMenuComponent implements OnInit {
   }
 
   addClick(){
-    this.dep={
+    this.car={
       DepartmentId:0,
       DepartmentName:""
     }
@@ -35,7 +35,7 @@ export class CarMenuComponent implements OnInit {
   }
 
   editClick(item: any){
-    this.dep=item;
+    this.car=item;
     this.ModalTitle="Edit Department";
     this.ActivateAddEditDepComp=true;
   }

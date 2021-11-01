@@ -24,6 +24,7 @@ import { AuthModule } from './auth/auth.module';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { DashboardComponent } from './admin-panel/dashboard/dashboard.component';
 import { CarMenuComponent } from './admin-panel/car-menu/car-menu.component';
+import { AddEditCarComponent } from './admin-panel/car-menu/add-edit-car/add-edit-car.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { CarMenuComponent } from './admin-panel/car-menu/car-menu.component';
     RentCarComponent,
     AdminPanelComponent,
     DashboardComponent,
-    CarMenuComponent
+    CarMenuComponent,
+    AddEditCarComponent
   ],
   imports: [
     BrowserModule,

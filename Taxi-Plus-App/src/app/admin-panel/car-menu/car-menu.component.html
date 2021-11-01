@@ -1,5 +1,5 @@
 <button type="button" class="btn btn-primary float-right m-2" 
-data-toggle="modal" data-target="#exampleModal"
+data-bs-toggle="modal" data-bs-target="#exampleModal"
 (click)="addClick()"
 data-backdrop="static" data-keyboard="false"
 >
@@ -14,20 +14,20 @@ data-backdrop="static" data-keyboard="false"
           <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
           <button type="button" class="close" 
           data-dismiss="modal" aria-label="Close"
-          (click)="closeClick()" >
+          (click)="closeClick()" > 
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <!-- <app-add-edit-dep [dep]="dep" *ngIf="ActivateAddEditDepComp">
-            </app-add-edit-dep> -->
+            <app-add-edit-car [car]="car" *ngIf="ActivateAddEditDepComp">
+            </app-add-edit-car>
         </div>
       </div>
     </div>
   </div>
 
 
-<table class="table table-hover table-dark text-danger">
+<table class="table table-hover table-dark text-warning">
     <thead>
         <tr>
             <th>
