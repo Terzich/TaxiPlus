@@ -10,7 +10,7 @@
             <p class="car-details"><span class="text-warning">Cijena po danu: {{Car.pricePerDay}} BAM</span> <br>
                 <span>Boja: </span>{{Car.color}}
                 <br>
-                <span>Godina proizvodnje: </span> {{Car.yearOfProduction}}
+                <span>Godina proizvodnje: </span> {{Car.yearOfManufacturing}}
             </p>
             <p class="text-primary">{{Car.details}}</p>
         </div>
@@ -77,7 +77,7 @@
                                                 {{Car.pricePerDay}} BAM</span> <br>
                                             <span>Boja: </span>{{Car.color}}
                                             <br>
-                                            <span>Godina proizvodnje: </span>{{Car.yearOfProduction | date:"yyyy"}} <br>
+                                            <span>Godina proizvodnje: </span>{{Car.yearOfManufacturing | date:"yyyy"}} <br>
                                             <span>Tip goriva: </span>{{Car.fuelTypeId}}
                                         </p>
                                         <p class="text-primary">{{Car.details}}</p>

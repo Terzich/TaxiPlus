@@ -13,13 +13,13 @@ export class AddEditCarComponent implements OnInit {
   @Input() car:any;
   carId:number;
   carName:string;
-  yearOfProduction: number;
+  yearOfManufacturing: number;
   numberOfDoors: number;
   pricePerDay: number;
-  fuelTypeId: string;
-  colorId: string;
-  carTypeId: string;
-  carManufacturerId: string;
+  fuelTypeId: number;
+  colorId: number;
+  carTypeId: number;
+  carManufacturerId: number;
 
   ngOnInit(): void {
     this.carId=this.car.id;
@@ -29,7 +29,7 @@ export class AddEditCarComponent implements OnInit {
   addDepartment(){
     var val = {
                 carName:this.carName,
-                yearOfProduction: this.yearOfProduction,
+                yearOfManufacturing: this.yearOfManufacturing,
                 numberOfDoors: this.numberOfDoors,
                 pricePerDay: this.pricePerDay,
                 carManufacturerId: this.carManufacturerId,
