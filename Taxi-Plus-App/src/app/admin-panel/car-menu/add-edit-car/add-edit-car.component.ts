@@ -13,6 +13,13 @@ export class AddEditCarComponent implements OnInit {
   @Input() car:any;
   carId:number;
   carName:string;
+  yearOfProduction: number;
+  numberOfDoors: number;
+  pricePerDay: number;
+  fuelTypeId: string;
+  colorId: string;
+  carTypeId: string;
+  carManufacturerId: string;
 
   ngOnInit(): void {
     this.carId=this.car.id;
@@ -20,8 +27,16 @@ export class AddEditCarComponent implements OnInit {
   }
 
   addDepartment(){
-    var val = {DepartmentId:this.carId,
-                DepartmentName:this.carName};
+    var val = {
+                carName:this.carName,
+                yearOfProduction: this.yearOfProduction,
+                numberOfDoors: this.numberOfDoors,
+                pricePerDay: this.pricePerDay,
+                carManufacturerId: this.carManufacturerId,
+                colorId: this.colorId,
+                fuelTypeId: this.fuelTypeId,
+                carTypeId: this.carTypeId,
+              };
     this.service.addCar(val).subscribe(res=>{
       alert(res.toString());
     });

@@ -9,9 +9,9 @@ namespace TaxiPlus.DAL.ViewModels
     {
         public int Id { get; set; }
         public string CarName { get; set; }
-        public DateTime YearOfProduction { get; set; }
         public int NumberOfDoors { get; set; }
-        public decimal PricePerDay { get; set; }
+        public int YearOfProduction { get; set; }
+        public int PricePerDay { get; set; }
         public int CarManufacturerId { get; set; }
         public string CarManufacturerName { get; set; }
         public int ColorId { get; set; }

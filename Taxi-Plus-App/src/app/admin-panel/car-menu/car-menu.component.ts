@@ -26,8 +26,7 @@ export class CarMenuComponent implements OnInit {
 
   addClick(){
     this.car={
-      DepartmentId:0,
-      DepartmentName:""
+      id:0
     }
     this.ModalTitle="Add Department";
     this.ActivateAddEditDepComp=true;

@@ -7,9 +7,9 @@ namespace TaxiPlus.DAL.Domain
     public class Car:BaseEntity
     {
         public string CarName { get; set; }
-        public DateTime YearOfProduction { get; set; }
+        public int YearOfManufacturing { get; set; }
         public int NumberOfDoors { get; set; }
-        public decimal PricePerDay { get; set; }
+        public int PricePerDay { get; set; }
 
         public List<RentedCar> RentedCars { get; set; }
 
