@@ -65,6 +65,10 @@
         placeholder="Godina proizvodnje">
     </div>
 </div>
+<div class="ml-3 bd-highlight" style="width: 40%;">
+    <img [src]=PhotoFilePath height="250px;" width="200px;">
+    <input type="file" (change)="uploadPhoto($event)" class="mt-2"/>
+    </div>
 
 <button (click)="addDepartment()" *ngIf="car.id==0" class="btn btn-primary">
     Add

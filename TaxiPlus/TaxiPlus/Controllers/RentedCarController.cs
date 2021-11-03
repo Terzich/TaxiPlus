@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace TaxiPlus.Controllers
     public class RentedCarController : BaseCRUDController<RentedCarViewModel, RentedCarUpsertRequest>
     {
         SqlServerRentedCarRepository repositoryCustom;
-        public RentedCarController(IBaseCRUDRepository<RentedCarViewModel, RentedCarUpsertRequest> repository, TaxiPlusDbContext context, IMapper mapper) : base(repository)
+        public RentedCarController(IBaseCRUDRepository<RentedCarViewModel, RentedCarUpsertRequest> repository, TaxiPlusDbContext context, IMapper mapper, IHostingEnvironment hostingEnvironment) : base(repository, hostingEnvironment)
         {
             repositoryCustom = new SqlServerRentedCarRepository(context, mapper);
         }

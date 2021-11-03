@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace TaxiPlus.Controllers
     public class UserController : BaseCRUDController<UserViewModel, UserUpsertRequest>
     {
         SqlServerUserRepository repositoryCustom;
-        public UserController(IBaseCRUDRepository<UserViewModel, UserUpsertRequest> repository, TaxiPlusDbContext context, IMapper mapper) : base(repository)
+        public UserController(IBaseCRUDRepository<UserViewModel, UserUpsertRequest> repository, TaxiPlusDbContext context, IMapper mapper, IHostingEnvironment hostingEnvironment) : base(repository, hostingEnvironment)
         {
             repositoryCustom = new SqlServerUserRepository(context, mapper);
         }

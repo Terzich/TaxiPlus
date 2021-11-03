@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.Extensions.Hosting.Internal;
+using System.IO;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using TaxiPlus.DAL.Repositories;
 
@@ -12,10 +13,12 @@ namespace TaxiPlus.Controllers
     public class BaseCRUDController<TModel,TUpsertRequest> : BaseController<TModel>
     {
         private readonly IBaseCRUDRepository<TModel,TUpsertRequest> _repository;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public BaseCRUDController(IBaseCRUDRepository<TModel, TUpsertRequest> repository):base(repository)
+        public BaseCRUDController(IBaseCRUDRepository<TModel, TUpsertRequest> repository, IHostingEnvironment hostingEnvironment):base(repository)
         {
             _repository = repository;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         [HttpPost]
@@ -31,6 +34,40 @@ namespace TaxiPlus.Controllers
             await _repository.Update(id,request);
             return Ok(id);
         }
+
+        [HttpPost("image-upload")]
+        public async Task<IActionResult> UploadImage()
+        {
+            try
+            {
+                var file = Request.Form.Files[0];
+                string folderName = "Upload";
+                string webRootPath = _hostingEnvironment.ContentRootPath;
+                string newPath = Path.Combine(webRootPath, folderName);
+                if (!Directory.Exists(newPath))
+                {
+                    Directory.CreateDirectory(newPath);
+                }
+
+                if (file.Length > 0)
+                {
+                    string fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    string fullPath = Path.Combine(newPath, fileName);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+                }
+                return Ok("Uploaded successfully");
+            }
+            catch (System.Exception ex)
+            {
+
+                return Ok("Upload Failed: " + ex.Message);
+            }
+
+        }
+
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace TaxiPlus.Controllers
 {
     public class NewsController : BaseCRUDController<NewsViewModel, NewsUpsertRequest>
     {
-        public NewsController(IBaseCRUDRepository<NewsViewModel, NewsUpsertRequest> repository) : base(repository)
+        public NewsController(IBaseCRUDRepository<NewsViewModel, NewsUpsertRequest> repository, IHostingEnvironment hostingEnvironment) : base(repository, hostingEnvironment)
         {
         }
     }

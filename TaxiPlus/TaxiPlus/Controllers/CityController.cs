@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace TaxiPlus.Controllers
 {
     public class CityController : BaseCRUDController<CityViewModel, CityUpsertRequest>
     {
-        public CityController(IBaseCRUDRepository<CityViewModel, CityUpsertRequest> repository) : base(repository)
+        public CityController(IBaseCRUDRepository<CityViewModel, CityUpsertRequest> repository, IHostingEnvironment hostingEnvironment) : base(repository, hostingEnvironment)
         {
         }
     }

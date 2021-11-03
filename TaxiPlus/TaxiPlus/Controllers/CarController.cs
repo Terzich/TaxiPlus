@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace TaxiPlus.Controllers
 {
     public class CarController : BaseCRUDController<CarViewModel, CarUpsertRequest>
     {
-        public CarController(IBaseCRUDRepository<CarViewModel, CarUpsertRequest> repository) : base(repository)
+        public CarController(IBaseCRUDRepository<CarViewModel, CarUpsertRequest> repository, IHostingEnvironment hostingEnvironment) : base(repository, hostingEnvironment)
         {
         }
     }
