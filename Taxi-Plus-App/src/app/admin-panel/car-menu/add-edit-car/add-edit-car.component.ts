@@ -27,6 +27,8 @@ export class AddEditCarComponent implements OnInit {
   ngOnInit(): void {
     this.carId=this.car.id;
     this.carName=this.car.carName;
+    this.PhotoFileName = this.car.imageUrl;
+    this.PhotoFilePath = this.service.url+'/image-upload'+this.PhotoFileName;
   }
 
   addDepartment(){
@@ -39,6 +41,7 @@ export class AddEditCarComponent implements OnInit {
                 colorId: this.colorId,
                 fuelTypeId: this.fuelTypeId,
                 carTypeId: this.carTypeId,
+                imageUrl: this.PhotoFileName
               };
     this.service.addCar(val).subscribe(res=>{
       alert(res.toString());
@@ -58,8 +61,8 @@ export class AddEditCarComponent implements OnInit {
     const formData:FormData=new FormData();
     formData.append('uploadedFile',file,file.name);
     this.service.uploadImage(formData).subscribe((data:any)=>{
-      // this.PhotoFileName=data.toString();
-      // this.PhotoFilePath=this.service.url+this.PhotoFileName;
+       this.PhotoFileName=data.toString();
+       this.PhotoFilePath=this.service.url+'/image-upload'+this.PhotoFileName;
       console.log(data);
     })
   }

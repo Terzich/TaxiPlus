@@ -36,7 +36,7 @@ namespace TaxiPlus.Controllers
         }
 
         [HttpPost("image-upload")]
-        public async Task<IActionResult> UploadImage()
+        public string UploadImage()
         {
             try
             {
@@ -57,14 +57,17 @@ namespace TaxiPlus.Controllers
                     {
                         file.CopyTo(stream);
                     }
+                    return fileName;
                 }
-                return Ok("Uploaded successfully");
+                
             }
             catch (System.Exception ex)
             {
 
-                return Ok("Upload Failed: " + ex.Message);
+                return "audi-png-45036.png";
             }
+            return "audi-png-45036.png";
+
 
         }
 
