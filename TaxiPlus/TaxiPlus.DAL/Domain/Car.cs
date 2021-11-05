@@ -25,6 +25,6 @@ namespace TaxiPlus.DAL.Domain
         public int CarTypeId { get; set; }
         public CarType CarType { get; set; }
 
-        public string ImageUrl { get; set; }
+        public byte[] Image { get; set; }
     }
 }

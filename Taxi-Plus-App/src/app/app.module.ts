@@ -25,6 +25,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { DashboardComponent } from './admin-panel/dashboard/dashboard.component';
 import { CarMenuComponent } from './admin-panel/car-menu/car-menu.component';
 import { AddEditCarComponent } from './admin-panel/car-menu/add-edit-car/add-edit-car.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { AddEditCarComponent } from './admin-panel/car-menu/add-edit-car/add-edi
   ],
   imports: [
     BrowserModule,
+    ImageCropperModule, 
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,

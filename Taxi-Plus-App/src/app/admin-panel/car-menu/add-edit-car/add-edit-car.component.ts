@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { CarService } from 'src/app/car-list/car.service';
 
 @Component({
@@ -27,8 +28,6 @@ export class AddEditCarComponent implements OnInit {
   ngOnInit(): void {
     this.carId=this.car.id;
     this.carName=this.car.carName;
-    this.PhotoFileName = this.car.imageUrl;
-    this.PhotoFilePath = this.service.url+'/image-upload'+this.PhotoFileName;
   }
 
   addDepartment(){
@@ -41,7 +40,7 @@ export class AddEditCarComponent implements OnInit {
                 colorId: this.colorId,
                 fuelTypeId: this.fuelTypeId,
                 carTypeId: this.carTypeId,
-                imageUrl: this.PhotoFileName
+                image: this.base64Slika
               };
     this.service.addCar(val).subscribe(res=>{
       alert(res.toString());
@@ -66,5 +65,31 @@ export class AddEditCarComponent implements OnInit {
       console.log(data);
     })
   }
+  imageChangedEvent: any = '';
+  public base64Slika: string;
+  croppedImage: any = '';
+
+  handleReaderLoaded(readerEvt : any) {
+    var binaryString = readerEvt.target.result;
+    this.base64Slika = btoa(binaryString);
+  }
+  fileChangeEvent($event: any) {
+
+    this.imageChangedEvent = event;
+    var image: any = new Image();
+    var file: File = $event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = this.handleReaderLoaded.bind(this);
+    reader.readAsBinaryString(file);
+    var myReader: FileReader = new FileReader();
+    myReader.onloadend = function (loadEvent: any) {
+      image.src = loadEvent.target.result;
+    };
+    myReader.readAsDataURL(file);
+  }
+  imageCropped(event: ImageCroppedEvent){
+    this.croppedImage = event.base64
+  }
+
 
 }

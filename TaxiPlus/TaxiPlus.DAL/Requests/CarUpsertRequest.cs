@@ -14,5 +14,6 @@ namespace TaxiPlus.DAL.Requests
         public int ColorId { get; set; }
         public int FuelTypeId { get; set; }
         public int CarTypeId { get; set; }
+        public byte[] Image { get; set; }
     }
 }

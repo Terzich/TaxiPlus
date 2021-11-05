@@ -1,7 +1,7 @@
 <div class="container" *ngIf="car">
     <div class="row align-items-center bg-dark text-warning">
         <div class="col-lg-4">
-            <img src="{{car.imageUrl}}" class="img-fluid" alt="">
+            <img src="data:image/png;base64,{{car.image}}" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 p-5">
             <h1 class="text-warning">{{car.carName}} <span class="btn-rent" routerLink="/rentcar/{{car.id}}">RENT</span></h1>

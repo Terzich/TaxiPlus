@@ -8,7 +8,7 @@
 
       <div class="row justify-content-around">
           <div class="card text-center" [class.selected]="car.carName === selectedcar" [class.details-select]="savedCar && car.carName == savedCar.carName" style="width: 19rem; border-radius:20px" *ngFor="let car of carList | slice:0:3;">
-              <img class="card-img-top img-fluid" src="{{car.imageUrl}}" alt="Card image cap">
+              <img class="card-img-top img-fluid" src="data:image/png;base64,{{car.image}}" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{car.carName}}</h5>
                 <h1>{{car.pricePerDay}}BAM <span style="font-size: 14px;">/ dan</span></h1>

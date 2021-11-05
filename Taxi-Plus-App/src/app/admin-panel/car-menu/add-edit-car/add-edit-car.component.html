@@ -65,10 +65,23 @@
         placeholder="Godina proizvodnje">
     </div>
 </div>
-<div class="ml-3 bd-highlight" style="width: 40%;">
-    <img [src]=PhotoFilePath height="250px;" width="200px;">
-    <input type="file" (change)="uploadPhoto($event)" class="mt-2"/>
-    </div>
+<div class="modal-body">
+    <form>
+        <h3>Unesite sliku</h3>
+        <div class="form-group m-form__group">
+            <br/>
+            <input type="file" (change)="fileChangeEvent($event)" />
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3" 
+                 (imageCropped)="imageCropped($event)" 
+                ></image-cropper>
+        </div>
+        <div style="text-align: center;">
+            <h3 *ngIf="croppedImage.length>10">Pohrana: </h3>
+        <img src="{{croppedImage}}" style="width:200px;" />
+        </div>  
+
+    </form>
+</div>
 
 <button (click)="addDepartment()" *ngIf="car.id==0" class="btn btn-primary">
     Add

@@ -2,7 +2,7 @@
 
     <div id="wrapper" class="row align-items-center bg-gradient">
         <div class="col-lg-4">
-            <img src="{{Car.imageUrl}}" class="img-fluid" alt="">
+            <img src="data:image/png;base64,{{Car.image}}" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 p-5">
             <h1 class="text-warning">{{Car.carName}} </h1>
@@ -68,7 +68,7 @@
                                 <!-- <app-rent-request [selectedCar]="Car" [fromDate] = "fromDate" [toDate] = "toDate"></app-rent-request> -->
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="{{Car.imageUrl}}" class="img-fluid" alt="">
+                                        <img src="data:image/png;base64,{{Car.image}}" class="img-fluid" alt="">
                                     </div>
                                     <div class="col-md-8">
                                         <h1 class="text-danger">{{Car.carName}} </h1>

@@ -4,7 +4,7 @@ export class Car{
     yearOfManufacturing: number;
     numberOfDoors: number;
     pricePerDay: number;
-    imageUrl: string;
+    image: string;
     details: string;
     color: string;
     fuelTypeId: string;
@@ -15,7 +15,7 @@ export class Car{
         this.yearOfManufacturing = yearOfProduction;        
         this.numberOfDoors = numberOfDoors;    
         this.pricePerDay = pricePerDay;        
-        this.imageUrl = imageUrl;
+        this.image = imageUrl;
         this.details = details;
         this.color = color;
         this.fuelTypeId = fuelType;
