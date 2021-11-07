@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CarService } from 'src/app/car-list/car.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { CarService } from 'src/app/car-list/car.service';
 })
 export class CarMenuComponent implements OnInit {
 
-  constructor(private service:CarService) { }
+  constructor(private service:CarService, private router: Router) { }
 
   carList:any=[];
 
@@ -21,40 +22,43 @@ export class CarMenuComponent implements OnInit {
   DepartmentListWithoutFilter:any=[];
 
   ngOnInit(): void {
-    this.refreshDepList();
+    if(localStorage.getItem('roleId') === '2'){
+      console.log("car-menu")
+
+      this.router.navigate(['/not-found'])
+   }
+    this.refreshCarList();
   }
 
   addClick(){
     this.car={
       id:0
     }
-    this.ModalTitle="Add Department";
+    this.ModalTitle="Dodaj vozilo";
     this.ActivateAddEditDepComp=true;
 
   }
 
   editClick(item: any){
     this.car=item;
-    this.ModalTitle="Edit Department";
+    this.ModalTitle="Izmjeni podatke vozila";
     this.ActivateAddEditDepComp=true;
   }
 
   deleteClick(item: any){
-    // if(confirm('Are you sure??')){
-    //   this.service.deleteDepartment(item.DepartmentId).subscribe(data=>{
-    //     alert(data.toString());
-    //     this.refreshDepList();
-    //   })
-    // }
+    if(confirm('Da li ste sigurni??')){
+      this.service.deleteCar(item.id).subscribe();
+      this.refreshCarList();
+    }
   }
 
   closeClick(){
     this.ActivateAddEditDepComp=false;
-    this.refreshDepList();
+    this.refreshCarList();
   }
 
 
-  refreshDepList(){
+  refreshCarList(){
     this.service.getCarsFromServer().subscribe(data=>{
       this.carList=data;
       this.DepartmentListWithoutFilter=data;

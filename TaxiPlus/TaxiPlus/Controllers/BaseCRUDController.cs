@@ -35,10 +35,19 @@ namespace TaxiPlus.Controllers
             return Ok(id);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _repository.Delete(id);
+            return Ok();
+        }
+
+
+
         [HttpPost("image-upload")]
         public string UploadImage()
         {
-            try
+            try  
             {
                 var file = Request.Form.Files[0];
                 string folderName = "Upload";

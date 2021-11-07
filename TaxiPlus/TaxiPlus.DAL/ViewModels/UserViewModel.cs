@@ -12,7 +12,6 @@ namespace TaxiPlus.DAL.ViewModels
         public DateTime BirthDate { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
-        public string ImageUrl { get; set; }
         public int CityId { get; set; }
         public string CityName { get; set; }
         public int GenderId { get; set; }
@@ -22,6 +21,7 @@ namespace TaxiPlus.DAL.ViewModels
         public string Password { get; set; }
 
         public string Email { get; set; }
+        public int RoleId { get; set; }
 
     }
 }

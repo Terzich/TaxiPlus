@@ -1,0 +1,29 @@
+<div class="wrapper fadeInDown">
+    
+    <div id="formContent">
+      <span class="material-icons"style="font-size: 50px">person_add</span>
+      <form #registrationForm= "ngForm" (ngSubmit) = "onSubmit()" autocomplete="off">
+          
+        <input type="text" id="firstName"  #firstName="ngModel"class="fadeIn third" name="firstName" placeholder="ime" ngModel>
+        <input type="text" id="lastName"  #lastName="ngModel"class="fadeIn third" name="lastName" placeholder="prezime" ngModel>
+        <input type="date" id="birthDate"  #birthDate="ngModel"class="fadeIn third" name="birthDate" placeholder="datum rodjenja" ngModel>
+        <input type="text" id="phoneNumber"  #phoneNumber="ngModel"class="fadeIn third" name="phoneNumber" placeholder="broj telefona" ngModel>
+        <input type="text" id="address"  #address="ngModel"class="fadeIn third" name="address" placeholder="adresa" ngModel>
+        <input type="text" id="firstName"  #firstName="ngModel"class="fadeIn third" name="firstName" placeholder="cityId (dodati)" ngModel>
+        <input type="text" id="firstName"  #firstName="ngModel"class="fadeIn third" name="firstName" placeholder="gender id (option dodati)" ngModel>
+        <input type="text" id="email"  #email="ngModel"class="fadeIn third" name="email" placeholder="email" ngModel>
+        
+        <input type="text" id="login" #username="ngModel" class="fadeIn second" name="username" placeholder="username" ngModel autocomplete="off">
+        <input type="password" id="password"  #password="ngModel"class="fadeIn third" name="password" placeholder="password" ngModel>
+
+
+        <input type="submit" class="fadeIn fourth" value="Registruj se">
+      
+      </form>
+    </div>
+  </div>
+  <div *ngIf="isLoading" class="loading-spinner" style=" transform: translate(50%);">
+      <div class="spinner-border" role="status" style=" transform: translate(50%);">
+          <span class="sr-only">Loading...</span>
+        </div>
+  </div>

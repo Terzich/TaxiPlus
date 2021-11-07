@@ -40,6 +40,10 @@ export class CarService {
     return this.http.put(this.url+'/'+carId,val);
   }
 
+  deleteCar(val:any){
+    return this.http.delete(this.url+'/'+val);
+  }
+
   
   uploadImage(val:any){
     return this.http.post(this.url+'/image-upload', val);

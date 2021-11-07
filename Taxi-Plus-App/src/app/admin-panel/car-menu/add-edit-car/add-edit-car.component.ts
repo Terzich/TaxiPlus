@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { CarManufacturer } from 'src/app/car-list/car-manufacturer.model';
+import { CarManufacturerService } from 'src/app/car-list/car-manufacturer.service';
 import { CarService } from 'src/app/car-list/car.service';
 
 @Component({
@@ -8,8 +11,10 @@ import { CarService } from 'src/app/car-list/car.service';
   styleUrls: ['./add-edit-car.component.css']
 })
 export class AddEditCarComponent implements OnInit {
+  checkedNumber: number;
 
-  constructor(private service:CarService) { }
+  constructor(private service:CarService, private carManufacturerService: CarManufacturerService, 
+    private router: Router) { }
 
   @Input() car:any;
   carId:number;
@@ -22,24 +27,60 @@ export class AddEditCarComponent implements OnInit {
   carTypeId: number;
   carManufacturerId: number;
 
+  carManufacturerList: CarManufacturer[];
+  fuelTypeList: any[];
+  colorList: any[];
+  carTypeList: any[];
+
+
   PhotoFileName:string;
   PhotoFilePath:string;
-
+  role = localStorage.getItem('roleId')?.toString(); 
   ngOnInit(): void {
+    if(localStorage.getItem('roleId') === '2'){
+      console.log("add-car")
+       this.router.navigate(['/not-found'])
+    }
     this.carId=this.car.id;
     this.carName=this.car.carName;
+    this.yearOfManufacturing = this.car.yearOfManufacturing;
+    this.colorId = this.car.colorId;
+    this.fuelTypeId = this.car.fuelTypeId;
+    this.carTypeId = this.car.carTypeId;
+    this.carManufacturerId = this.car.carManufacturerId;
+    this.numberOfDoors = this.car.numberOfDoors;
+    this.croppedImage = this.croppedImage !== undefined ?  "data:image/png;base64," + this.car.image : '';
+    this.carManufacturerService.getCarManufacturersFromServer().subscribe(cmFromServer => {
+      this.carManufacturerList = cmFromServer;
+    });
+
+    this.carManufacturerService.getFuelTypesFromServer().subscribe(ftFromServer => {
+      this.fuelTypeList = ftFromServer;
+    });
+    
+    this.carManufacturerService.getColorsFromServer().subscribe(cFromServer => {
+      this.colorList = cFromServer;
+    });
+
+    this.carManufacturerService.getCarTypesFromServer().subscribe(ctFromServer => {
+      this.carTypeList = ctFromServer;
+    });
+  }
+  onItemChange(event: any){
+    console.log(event.target.value)
+    this.checkedNumber;
   }
 
   addDepartment(){
     var val = {
                 carName:this.carName,
                 yearOfManufacturing: this.yearOfManufacturing,
-                numberOfDoors: this.numberOfDoors,
-                pricePerDay: this.pricePerDay,
-                carManufacturerId: this.carManufacturerId,
-                colorId: this.colorId,
-                fuelTypeId: this.fuelTypeId,
-                carTypeId: this.carTypeId,
+                numberOfDoors: Number(this.numberOfDoors),
+                pricePerDay: 50,
+                carManufacturerId:  Number(this.carManufacturerId),
+                colorId: Number(this.colorId),
+                fuelTypeId: Number(this.fuelTypeId),
+                carTypeId: Number(this.carTypeId),
                 image: this.base64Slika
               };
     this.service.addCar(val).subscribe(res=>{
@@ -48,9 +89,18 @@ export class AddEditCarComponent implements OnInit {
   }
 
   updateDepartment(){
-    var val = {DepartmentId:this.carId,
-      DepartmentName:this.carName};
-    this.service.updateCar(val, this.carId).subscribe(res=>{
+    
+    var val = {carName: this.carName,
+      numberOfDoors:this.numberOfDoors,
+      yearOfManufacturing:this.yearOfManufacturing,
+      pricePerDay:this.pricePerDay,
+      carManufacturerId: Number(this.carManufacturerId),
+      colorId:this.colorId,
+      fuelTypeId:this.fuelTypeId,
+      carTypeId:this.carTypeId,
+      image : String(this.croppedImage).replace('data:image/png;base64,', '')
+    };
+    this.service.updateCar(val, this.car.id).subscribe(res=>{
     alert(res.toString());
     });
   }

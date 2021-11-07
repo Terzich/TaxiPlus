@@ -13,7 +13,6 @@ using TaxiPlus.DAL.ViewModels;
 
 namespace TaxiPlus.Controllers
 {
-    [Authorize]
     public class UserController : BaseCRUDController<UserViewModel, UserUpsertRequest>
     {
         SqlServerUserRepository repositoryCustom;
@@ -21,6 +20,7 @@ namespace TaxiPlus.Controllers
         {
             repositoryCustom = new SqlServerUserRepository(context, mapper);
         }
+        [Authorize]
         [HttpGet("login")]
         public async Task<List<UserViewModel>> Get([FromQuery] UserSearchRequest request)
         {

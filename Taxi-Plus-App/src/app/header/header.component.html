@@ -26,7 +26,7 @@
     </div>
 </nav> -->
 
-<header class="header navigacija">
+<header class="header navigacija" *ngIf="!adminLogged">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -60,9 +60,12 @@
                 <a class="nav-link" href="/faq">Često postavljena pitanja</a>
               </li>
             </ul>
-            <ul class="navbar-nav ms-auto">
-                  <button class="btn btn-primary">Prijavi se</button>
-                  <button class="btn btn-success" style="background-color: darkgreen;">Registruj se</button>  
+            <ul class="navbar-nav ms-auto" *ngIf="!isLogged">
+                  <button class="btn btn-primary" routerLink = "account/login">Prijavi se</button>
+                  <button class="btn btn-success" style="background-color: darkgreen;" routerLink = "account/registration">Registruj se</button>  
+            </ul>
+            <ul class="navbar-nav ms-auto" *ngIf="isLogged">
+              <button class="btn btn-primary" (click)="logOut()">Odjavi se</button>
             </ul>
             <!-- <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

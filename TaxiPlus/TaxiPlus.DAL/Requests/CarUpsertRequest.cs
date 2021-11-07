@@ -7,7 +7,7 @@ namespace TaxiPlus.DAL.Requests
     public class CarUpsertRequest
     {
         public string CarName { get; set; }
-        public DateTime YearOfProduction { get; set; }
+        public int YearOfManufacturing { get; set; }
         public int NumberOfDoors { get; set; }
         public decimal PricePerDay { get; set; }
         public int CarManufacturerId { get; set; }
