@@ -27,6 +27,8 @@ import { CarMenuComponent } from './admin-panel/car-menu/car-menu.component';
 import { AddEditCarComponent } from './admin-panel/car-menu/add-edit-car/add-edit-car.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NewsMenuComponent } from './admin-panel/news-menu/news-menu.component';
+import { AddEditNewsComponent } from './admin-panel/news-menu/add-edit-news/add-edit-news.component';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     DashboardComponent,
     CarMenuComponent,
     AddEditCarComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NewsMenuComponent,
+    AddEditNewsComponent
   ],
   imports: [
     BrowserModule,

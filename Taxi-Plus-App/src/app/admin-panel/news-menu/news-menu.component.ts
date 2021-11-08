@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CarService } from 'src/app/car-list/car.service';
+import { NewsService } from 'src/app/news-list/news.service';
+
 
 @Component({
-  selector: 'app-car-menu',
-  templateUrl: './car-menu.component.html',
-  styleUrls: ['./car-menu.component.css']
+  selector: 'app-news-menu',
+  templateUrl: './news-menu.component.html',
+  styleUrls: ['./news-menu.component.css']
 })
-export class CarMenuComponent implements OnInit {
+export class NewsMenuComponent implements OnInit {
 
-  constructor(private service:CarService, private router: Router) { }
+  constructor(private service: NewsService, private router: Router) { }
 
-  carList:any=[];
+  newsList:any=[];
 
   ModalTitle:string;
   ActivateAddEditDepComp:boolean=false;
-  car:any;
+  news:any;
 
   DepartmentIdFilter:string="";
   DepartmentNameFilter:string="";
@@ -23,44 +24,42 @@ export class CarMenuComponent implements OnInit {
 
   ngOnInit(): void {
     if(localStorage.getItem('roleId') === '2'){
-      console.log("car-menu")
-
       this.router.navigate(['/not-found'])
    }
-    this.refreshCarList();
+    this.refreshNewsList();
   }
 
   addClick(){
-    this.car={
+    this.news={
       id:0
     }
-    this.ModalTitle="Dodaj vozilo";
+    this.ModalTitle="Dodaj novost";
     this.ActivateAddEditDepComp=true;
 
   }
 
   editClick(item: any){
-    this.car=item;
-    this.ModalTitle="Izmjeni podatke vozila";
+    this.news=item;
+    this.ModalTitle="Izmijeni informacije o novosti";
     this.ActivateAddEditDepComp=true;
   }
 
   deleteClick(item: any){
     if(confirm('Da li ste sigurni??')){
-      this.service.deleteCar(item.id).subscribe();
-      this.refreshCarList();
+      this.service.deleteNews(item.id).subscribe();
+      this.refreshNewsList();
     }
   }
 
   closeClick(){
     this.ActivateAddEditDepComp=false;
-    this.refreshCarList();
+    this.refreshNewsList();
   }
 
 
-  refreshCarList(){
-    this.service.getCarsFromServer().subscribe(data=>{
-      this.carList=data;
+  refreshNewsList(){
+    this.service.getNews().subscribe(data=>{
+      this.newsList=data;
       this.DepartmentListWithoutFilter=data;
     });
   }
@@ -69,7 +68,7 @@ export class CarMenuComponent implements OnInit {
     var DepartmentIdFilter = this.DepartmentIdFilter;
     var DepartmentNameFilter = this.DepartmentNameFilter;
 
-    this.carList = this.DepartmentListWithoutFilter.filter(function (el: any){
+    this.newsList = this.DepartmentListWithoutFilter.filter(function (el: any){
         return el.DepartmentId.toString().toLowerCase().includes(
           DepartmentIdFilter.toString().trim().toLowerCase()
         )&&
@@ -80,7 +79,7 @@ export class CarMenuComponent implements OnInit {
   }
 
   sortResult(prop: any, asc: any){
-    this.carList = this.DepartmentListWithoutFilter.sort(function(a: any, b: any){
+    this.newsList = this.DepartmentListWithoutFilter.sort(function(a: any, b: any){
       if(asc){
           return (a[prop]>b[prop])?1 : ((a[prop]<b[prop]) ?-1 :0);
       }else{
@@ -88,4 +87,5 @@ export class CarMenuComponent implements OnInit {
       }
     })
   }
+
 }

@@ -1,0 +1,108 @@
+<div class="row" *ngIf="role === '1'">
+
+    <div class="col-lg-8">
+
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="form-froup row">
+                <label class="col-sm-2 col-form-label" for="newsTitle">Naslov vijesti</label>
+                <div class="col-sm-10 text-center">
+                    <input type="text" id="newsTitle" class="form-control" [(ngModel)]="newsTitle" placeholder="Unesite naslov vijesti" name="newsTitle">
+                </div>
+            </div>
+           <button type="submit">Dodaj novost</button>
+        </form>
+        <!-- <div class="form-froup row">
+
+            <label class="col-sm-2 col-form-label">Godina proizvodnje</label>
+            <div class="col-sm-10 text-center">
+                <input type="number" class="form-control" [(ngModel)]="yearOfManufacturing"
+                    placeholder="Godina proizvodnje">
+            </div>
+        </div>
+
+        <div class="form-froup row">
+
+            <label class="col-sm-2 col-form-label">Broj vrata</label>
+            <div class="col-sm-10 text-center">
+                <div class="form-check form-check-inline" *ngFor= "let index of [2,3,4,5];">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="checkedNumber" (change)="onItemChange($event.target)" >
+                    <label class="form-check-label" for="inlineRadio1">{{index}}</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="3" [(ngModel)]="numberOfDoors">
+                    <label class="form-check-label" for="inlineRadio2">3</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="4" [(ngModel)]="numberOfDoors">
+                    <label class="form-check-label" for="inlineRadio3">4</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="5" [(ngModel)]="numberOfDoors">
+                    <label class="form-check-label" for="inlineRadio4">5</label>
+                  </div>
+            </div>
+        </div>
+       
+        <div class="form-froup row">
+            <label class="col-sm-2 col-form-label">Tip goriva </label>
+            <div class="col-sm-10 text-center">
+                <select class="form-control" [(ngModel)] = "fuelTypeId">
+                    <option [ngValue]="undefined">Izaberite tip goriva</option>
+                    <option *ngFor="let ft of fuelTypeList" value="{{ft.id}}">{{ft.fuelTypeName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-froup row">
+            <label class="col-sm-2 col-form-label">Boja </label>
+            <div class="col-sm-10 text-center">
+                <select class="form-control" [(ngModel)] = "colorId">
+                    <option [ngValue]="undefined">Izaberite boju</option>
+                    <option *ngFor="let c of colorList" value="{{c.id}}">{{c.colorName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-froup row">
+            <label class="col-sm-2 col-form-label">Tip automobila
+            </label>
+            <div class="col-sm-10 text-center">
+                <select class="form-control" [(ngModel)] = "carTypeId">
+                    <option [ngValue]="undefined">Izaberite tip automobila</option>
+                    <option *ngFor="let ct of carTypeList" value="{{ct.id}}">{{ct.typeName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-froup row">
+
+            <label class="col-sm-2 col-form-label">Proizvođač
+            </label>
+            <div class="col-sm-10 text-center">
+                <select class="form-control" [(ngModel)] = "carManufacturerId">
+                    <option [ngValue]="undefined">Izaberite proizvođača</option>
+                    <option *ngFor="let cm of carManufacturerList" value="{{cm.id}}">{{cm.manufacturerName}}</option>
+                </select>
+            </div>
+        </div>
+    </div> -->
+        <!-- <div class="col-lg-4">
+        <div class="modal-body">
+            <form>
+                <h3>Unesite sliku</h3>
+                <div class="form-group m-form__group">
+                    <br />
+                    <input type="file" (change)="fileChangeEvent($event)" />
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" 
+                        [aspectRatio]="4 / 3" (imageCropped)="imageCropped($event)"></image-cropper>
+                </div>
+            </form>
+        </div>
+     
+    </div> -->
+    </div>
+
+    <!-- <button (click)="addDepartment()" *ngIf="car.id==0" class="btn btn-primary">
+        Add
+    </button>
+
+    <button (click)="updateDepartment()" *ngIf="car.id!=0" class="btn btn-primary">
+        Update
+    </button> -->
