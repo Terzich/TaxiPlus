@@ -21,6 +21,7 @@ export class NewsService {
         .set('Access-Control-Allow-Origin', '*');
 
     constructor(private http: HttpClient) { }
+
     readonly url = environment.url + "news";
 
 
@@ -32,4 +33,8 @@ export class NewsService {
         return this.http.get<News>(this.url + "/" + id, { 'headers': this.options });
 
     }
+
+    deleteNews(val:any){
+        return this.http.delete(this.url+'/'+val);
+      }
 }

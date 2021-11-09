@@ -1,16 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { CarManufacturer } from 'src/app/car-list/car-manufacturer.model';
 import { CarManufacturerService } from 'src/app/car-list/car-manufacturer.service';
 import { CarService } from 'src/app/car-list/car.service';
+import { News } from 'src/app/news-list/news.model';
 
 @Component({
-  selector: 'app-add-edit-car',
-  templateUrl: './add-edit-car.component.html',
-  styleUrls: ['./add-edit-car.component.css']
+  selector: 'app-add-edit-news',
+  templateUrl: './add-edit-news.component.html',
+  styleUrls: ['./add-edit-news.component.css']
 })
-export class AddEditCarComponent implements OnInit {
+export class AddEditNewsComponent implements OnInit {
+
   checkedNumber: number;
 
   constructor(private service:CarService, private carManufacturerService: CarManufacturerService, 
@@ -27,6 +30,9 @@ export class AddEditCarComponent implements OnInit {
   carTypeId: number;
   carManufacturerId: number;
 
+  newsTitle: string;
+  @Input() news: News;
+
   carManufacturerList: CarManufacturer[];
   fuelTypeList: any[];
   colorList: any[];
@@ -37,30 +43,35 @@ export class AddEditCarComponent implements OnInit {
   PhotoFilePath:string;
   role = localStorage.getItem('roleId')?.toString(); 
   ngOnInit(): void {
-    this.carId=this.car.id;
-    this.carName=this.car.carName;
-    this.yearOfManufacturing = this.car.yearOfManufacturing;
-    this.colorId = this.car.colorId;
-    this.fuelTypeId = this.car.fuelTypeId;
-    this.carTypeId = this.car.carTypeId;
-    this.carManufacturerId = this.car.carManufacturerId;
-    this.numberOfDoors = this.car.numberOfDoors;
-    this.croppedImage = this.croppedImage !== undefined ?  "data:image/png;base64," + this.car.image : '';
-    this.carManufacturerService.getCarManufacturersFromServer().subscribe(cmFromServer => {
-      this.carManufacturerList = cmFromServer;
-    });
+    if(localStorage.getItem('roleId') === '2'){
+      console.log("add-car")
+       this.router.navigate(['/not-found'])
+    }
+    this.newsTitle = this.news.newsTitle;
+    // this.carId=this.car.id;
+    // this.carName=this.car.carName;
+    // this.yearOfManufacturing = this.car.yearOfManufacturing;
+    // this.colorId = this.car.colorId;
+    // this.fuelTypeId = this.car.fuelTypeId;
+    // this.carTypeId = this.car.carTypeId;
+    // this.carManufacturerId = this.car.carManufacturerId;
+    // this.numberOfDoors = this.car.numberOfDoors;
+    // this.croppedImage = this.croppedImage !== undefined ?  "data:image/png;base64," + this.car.image : '';
+    // this.carManufacturerService.getCarManufacturersFromServer().subscribe(cmFromServer => {
+    //   this.carManufacturerList = cmFromServer;
+    // });
 
-    this.carManufacturerService.getFuelTypesFromServer().subscribe(ftFromServer => {
-      this.fuelTypeList = ftFromServer;
-    });
+    // this.carManufacturerService.getFuelTypesFromServer().subscribe(ftFromServer => {
+    //   this.fuelTypeList = ftFromServer;
+    // });
     
-    this.carManufacturerService.getColorsFromServer().subscribe(cFromServer => {
-      this.colorList = cFromServer;
-    });
+    // this.carManufacturerService.getColorsFromServer().subscribe(cFromServer => {
+    //   this.colorList = cFromServer;
+    // });
 
-    this.carManufacturerService.getCarTypesFromServer().subscribe(ctFromServer => {
-      this.carTypeList = ctFromServer;
-    });
+    // this.carManufacturerService.getCarTypesFromServer().subscribe(ctFromServer => {
+    //   this.carTypeList = ctFromServer;
+    // });
   }
   onItemChange(event: any){
     console.log(event.target.value)
@@ -136,4 +147,9 @@ export class AddEditCarComponent implements OnInit {
   imageCropped(event: ImageCroppedEvent){
     this.croppedImage = event.base64
   }
+
+  onSubmit(form: NgForm) {
+    console.log(form);
+  }
+
 }
