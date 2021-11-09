@@ -22,11 +22,6 @@ export class CarMenuComponent implements OnInit {
   DepartmentListWithoutFilter:any=[];
 
   ngOnInit(): void {
-    if(localStorage.getItem('roleId') === '2'){
-      console.log("car-menu")
-
-      this.router.navigate(['/not-found'])
-   }
     this.refreshCarList();
   }
 

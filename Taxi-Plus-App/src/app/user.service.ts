@@ -25,4 +25,7 @@ export class UserService {
 
     return this.http.get<User>(this.url + "/" + id, { 'headers': this.options });
   }
+  getUserRoleId(){
+    return  Number(localStorage.getItem('roleId')) === 2 ? true : false
+  }
 }

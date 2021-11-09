@@ -1,4 +1,9 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { windowWhen } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-header',
@@ -8,22 +13,28 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   collapsed = true;
-  isLogged : boolean
+  isLogged = localStorage.getItem('token') !== null ? false : true ;
   adminLogged = false;
-  constructor() { }
+  constructor(private loginService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.checkToken()
-    if(localStorage.getItem('roleId') ==='1'){
-      this.adminLogged = true;  
-    }
+    this.loginService.loginStatusChange().subscribe(loggedIn => {
+        this.checkToken()   
+  });
   }
   checkToken(){
-      this.isLogged = localStorage.getItem('token') !== undefined ? false : true ;
+      this.isLogged = localStorage.getItem('token') !== null ? false : true ;
   }
   logOut(){
     localStorage.removeItem('token');
+    if(localStorage.getItem('roleId') === '1'){
+        localStorage.removeItem('roleId');
+        window.location.reload();
+    }
     localStorage.removeItem('roleId');
-    window.location.reload();
+/// malo ovo bolje optimizuj, ovo sam samo da radi
+    this.ngOnInit()
+    
   }
 }

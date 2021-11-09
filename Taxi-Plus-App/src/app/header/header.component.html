@@ -60,12 +60,12 @@
                 <a class="nav-link" href="/faq">Često postavljena pitanja</a>
               </li>
             </ul>
-            <ul class="navbar-nav ms-auto" *ngIf="!isLogged">
-                  <button class="btn btn-primary" routerLink = "account/login">Prijavi se</button>
-                  <button class="btn btn-success" style="background-color: darkgreen;" routerLink = "account/registration">Registruj se</button>  
-            </ul>
             <ul class="navbar-nav ms-auto" *ngIf="isLogged">
-              <button class="btn btn-primary" (click)="logOut()">Odjavi se</button>
+                  <button class="btn btn-primary" style= "border-radius: 5px; border: none; font-weight: bold; background-color: rgb(9, 19, 156);"routerLink = "account/login">Prijavi se</button>
+                  <button class="btn btn-success" style="background-color: rgb(0, 131, 0); border-radius: 5px; font-weight: bold;" routerLink = "account/registration">Registruj se</button>  
+            </ul>
+            <ul class="navbar-nav ms-auto" *ngIf="!isLogged">
+              <button class="btn btn-primary" style= "border-radius: 5px; border: none; font-weight: bold; background-color: rgb(9, 19, 156);" (click)="logOut()">Odjavi se</button>
             </ul>
             <!-- <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

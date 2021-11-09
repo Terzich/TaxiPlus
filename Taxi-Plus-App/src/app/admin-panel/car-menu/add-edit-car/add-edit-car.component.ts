@@ -37,10 +37,6 @@ export class AddEditCarComponent implements OnInit {
   PhotoFilePath:string;
   role = localStorage.getItem('roleId')?.toString(); 
   ngOnInit(): void {
-    if(localStorage.getItem('roleId') === '2'){
-      console.log("add-car")
-       this.router.navigate(['/not-found'])
-    }
     this.carId=this.car.id;
     this.carName=this.car.carName;
     this.yearOfManufacturing = this.car.yearOfManufacturing;

@@ -40,8 +40,7 @@ html {
     justify-content: center;
     width: 100%;
     min-height: 100%;
-    padding: 10px;
-    margin-top: 5%;
+    padding: 50px;
   }
   
   #formContent {
@@ -84,7 +83,7 @@ html {
   /* FORM TYPOGRAPHY*/
   
   input[type=button], input[type=submit], input[type=reset]  {
-    background-color: #56baed;
+    background-color: rgb(9, 19, 156);
     border: none;
     color: white;
     padding: 15px 80px;

@@ -11,9 +11,6 @@ export class DashboardComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('roleId') === '2'){
-      this.router.navigate(['/not-found'])
-   }
   }
 
 }

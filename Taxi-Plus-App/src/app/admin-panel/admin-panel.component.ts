@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -8,12 +9,14 @@ import { Router } from '@angular/router';
 })
 export class AdminPanelComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private service: UserService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('roleId') === '2'){
-      this.router.navigate(['/not-found'])
-   }
+    if (this.service.getUserRoleId()) {
+      this.router.navigate([
+        '/not-found'
+      ])
+    }
   }
 
 }

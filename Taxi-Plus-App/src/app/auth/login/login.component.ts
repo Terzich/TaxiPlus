@@ -32,18 +32,12 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('roleId', String(s[0].roleId))
       if(s[0].roleId ==admin){
         this.router.navigate(['/adminpanel']);
-      window.location.reload();
-
       }
       else if(s[0].roleId == user){
-        this.router.navigate(['/news']) //homePage
-        window.location.reload()
-        
+        this.router.navigate(['/home'])
       }
+      //ovaj if i else if probaj na fazon s[0].roleId == admin ? this.router.navigate(['/adminpanel']) ..... ako ti se da
       this.isLoading = false;
-
-
-
     }, 
     error => {
       this.error = "Korisničko ime ili lozinka su neispravni. "
