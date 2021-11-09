@@ -9,7 +9,7 @@ namespace TaxiPlus.DAL.Domain
         public string NewsTitle { get; set; }
         public string Content { get; set; }
         public DateTime PublishedAt { get; set; }
-        public string ImageUrl { get; set; }
+        public byte[] Image { get; set; }
 
     }
 }

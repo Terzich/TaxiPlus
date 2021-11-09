@@ -1,6 +1,6 @@
 
   
-  input[type=password], input[type=text], input[type=number], select {
+  input[type=password], input[type=text], input[type=number], select, textarea {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;

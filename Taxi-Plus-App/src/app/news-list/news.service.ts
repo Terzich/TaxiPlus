@@ -34,6 +34,10 @@ export class NewsService {
 
     }
 
+    addNews(val: any): Observable<number> {
+        return this.http.post<number>(this.url, val, { "headers": this.options });
+      }
+
     deleteNews(val:any){
         return this.http.delete(this.url+'/'+val);
       }

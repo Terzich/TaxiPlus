@@ -10,7 +10,7 @@ data-backdrop="static" data-keyboard="false"
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header fst-italic fw-bold">
           <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
           <button type="button" class="close" 
           data-bs-dismiss="modal" aria-label="Close"
@@ -20,7 +20,6 @@ data-backdrop="static" data-keyboard="false"
         </div>
         <div class="modal-body">
             <app-add-edit-news *ngIf="ActivateAddEditDepComp" [news]="news" ></app-add-edit-news>
-
         </div>
       </div>
     </div>
