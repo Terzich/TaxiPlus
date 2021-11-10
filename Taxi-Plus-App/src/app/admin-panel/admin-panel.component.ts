@@ -18,5 +18,10 @@ export class AdminPanelComponent implements OnInit {
       ])
     }
   }
+  LogOut(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('roleId');
+    this.router.navigate([''])
+  }
 
 }

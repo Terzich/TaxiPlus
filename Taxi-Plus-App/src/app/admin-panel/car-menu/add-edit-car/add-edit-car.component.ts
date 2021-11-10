@@ -45,7 +45,7 @@ export class AddEditCarComponent implements OnInit {
     this.carTypeId = this.car.carTypeId;
     this.carManufacturerId = this.car.carManufacturerId;
     this.numberOfDoors = this.car.numberOfDoors;
-    this.croppedImage = this.croppedImage !== undefined ?  "data:image/png;base64," + this.car.image : '';
+    this.base64Slika = this.car.image !== undefined ?  this.car.image : '';
     this.carManufacturerService.getCarManufacturersFromServer().subscribe(cmFromServer => {
       this.carManufacturerList = cmFromServer;
     });
@@ -64,14 +64,14 @@ export class AddEditCarComponent implements OnInit {
   }
   onItemChange(event: any){
     console.log(event.target.value)
-    this.checkedNumber;
+    this.checkedNumber = event.target.value; // TODO: undefined
   }
 
   addDepartment(){
     var val = {
                 carName:this.carName,
                 yearOfManufacturing: this.yearOfManufacturing,
-                numberOfDoors: Number(this.numberOfDoors),
+                numberOfDoors: 2,
                 pricePerDay: 50,
                 carManufacturerId:  Number(this.carManufacturerId),
                 colorId: Number(this.colorId),
@@ -94,7 +94,7 @@ export class AddEditCarComponent implements OnInit {
       colorId:this.colorId,
       fuelTypeId:this.fuelTypeId,
       carTypeId:this.carTypeId,
-      image : String(this.croppedImage).replace('data:image/png;base64,', '')
+      image : String(this.base64Slika).replace('data:image/png;base64,', '')
     };
     this.service.updateCar(val, this.car.id).subscribe(res=>{
     alert(res.toString());
@@ -118,7 +118,7 @@ export class AddEditCarComponent implements OnInit {
   handleReaderLoaded(readerEvt : any) {
     var binaryString = readerEvt.target.result;
     this.base64Slika = btoa(binaryString);
-  }
+    }
   fileChangeEvent($event: any) {
 
     this.imageChangedEvent = event;
@@ -133,7 +133,5 @@ export class AddEditCarComponent implements OnInit {
     };
     myReader.readAsDataURL(file);
   }
-  imageCropped(event: ImageCroppedEvent){
-    this.croppedImage = event.base64
-  }
+
 }

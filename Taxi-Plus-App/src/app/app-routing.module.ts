@@ -21,7 +21,7 @@ const routes: Routes = [
     { path: 'not-found', component: NotFoundComponent},
     {
         path: 'adminpanel', component: AdminPanelComponent, canActivate: [AuthGuard] ,children: [
-            { path: 'dash', component: DashboardComponent },
+            { path: 'dashboard', component: DashboardComponent },
             { path: 'car-menu', component: CarMenuComponent },
             { path: 'news-menu', component: NewsMenuComponent }
 
@@ -31,7 +31,7 @@ const routes: Routes = [
     },
     {
         path: '', component: UserPanelComponent, children: [
-            { path: 'home', component: HomepageComponent },
+            { path: '', component: HomepageComponent },
             { path: 'car-menu', component: CarMenuComponent },
             { path: 'news-menu', component: NewsMenuComponent },
             { path: 'news', component: NewsListComponent },

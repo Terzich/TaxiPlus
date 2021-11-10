@@ -53,7 +53,6 @@ export class AddEditNewsComponent implements OnInit {
   role = localStorage.getItem('roleId')?.toString(); 
 
   ngOnInit(): void {
-    console.log(this.news.id);
     if(localStorage.getItem('roleId') === '2'){
        this.router.navigate(['/not-found'])
     }
@@ -121,6 +120,9 @@ export class AddEditNewsComponent implements OnInit {
   }
 
   onSubmit() {
+  if(!this.form.valid){
+      return;
+  }
    if(this.news.id == 0){
     var val = {
       newsTitle: this.form.value.newsTitle,

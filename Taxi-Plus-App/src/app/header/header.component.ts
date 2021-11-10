@@ -32,9 +32,11 @@ export class HeaderComponent implements OnInit {
         localStorage.removeItem('roleId');
         window.location.reload();
     }
-    localStorage.removeItem('roleId');
+        localStorage.removeItem('roleId');
+        this.ngOnInit()
+
 /// malo ovo bolje optimizuj, ovo sam samo da radi
-    this.ngOnInit()
+//https://www.npmjs.com/package/ngx-toastr kad se odjavi dodaj neku poruku da je uspjesno odjavljen
     
   }
 }

@@ -88,13 +88,11 @@
                 <div class="form-group m-form__group">
                     <br />
                     <input type="file" (change)="fileChangeEvent($event)" />
-                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" 
-                        [aspectRatio]="4 / 3" (imageCropped)="imageCropped($event)"></image-cropper>
                 </div>
-                <!-- <div style="text-align: center;">
-                    <h3 *ngIf="croppedImage.length>10">Pohrana: </h3>
-                    <img  src="{{croppedImage}}"  style="width:200px;" />
-                </div> -->
+                <div style="text-align: center;" *ngIf="base64Slika.length !== 0">
+                    <h3 >Pohrana: </h3>
+                    <img src="data:image/png;base64,{{base64Slika}}"  style="width:200px;" />
+                </div>
 
             </form>
         </div>

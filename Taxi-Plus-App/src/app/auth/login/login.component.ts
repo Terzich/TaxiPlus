@@ -31,10 +31,10 @@ export class LoginComponent implements OnInit {
     this.authService.login(username).subscribe(s=> {
       localStorage.setItem('roleId', String(s[0].roleId))
       if(s[0].roleId ==admin){
-        this.router.navigate(['/adminpanel']);
+        this.router.navigate(['/adminpanel/dashboard']);
       }
       else if(s[0].roleId == user){
-        this.router.navigate(['/home'])
+        this.router.navigate([''])
       }
       //ovaj if i else if probaj na fazon s[0].roleId == admin ? this.router.navigate(['/adminpanel']) ..... ako ti se da
       this.isLoading = false;
