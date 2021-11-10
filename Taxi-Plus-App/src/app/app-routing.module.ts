@@ -14,15 +14,10 @@ import { HomepageComponent } from "./homepage/homepage.component";
 import { NewsDetailComponent } from "./news-list/news-detail/news-detail.component";
 import { NewsListComponent } from "./news-list/news-list.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
+import { UserPanelComponent } from "./user-panel/user-panel.component";
 
 const routes: Routes = [
-    { path: 'home', component: HomepageComponent },
-    { path: 'news', component: NewsListComponent },
-    { path: 'news/:id', component: NewsDetailComponent },
-    { path: 'faq', component: FaqComponent },
-    { path: 'company-offer', component: CompanyOfferComponent },
-    { path: 'car-list', component: CarListComponent },
-    { path: 'rentcar/:id', component: RentCarComponent },
+   
     { path: 'not-found', component: NotFoundComponent},
     {
         path: 'adminpanel', component: AdminPanelComponent, canActivate: [AuthGuard] ,children: [
@@ -32,6 +27,19 @@ const routes: Routes = [
 
 
 
+        ]
+    },
+    {
+        path: '', component: UserPanelComponent, children: [
+            { path: 'home', component: HomepageComponent },
+            { path: 'car-menu', component: CarMenuComponent },
+            { path: 'news-menu', component: NewsMenuComponent },
+            { path: 'news', component: NewsListComponent },
+            { path: 'news/:id', component: NewsDetailComponent },
+            { path: 'faq', component: FaqComponent },
+            { path: 'company-offer', component: CompanyOfferComponent },
+            { path: 'car-list', component: CarListComponent },
+            { path: 'rentcar/:id', component: RentCarComponent }
         ]
     }
 
