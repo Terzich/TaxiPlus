@@ -7,15 +7,14 @@
                     <li class="media mb-3 bg-white">
                         <div class="row">
                             <div class="col-md-4">
-                                <img [src]="news.imageUrl" alt="" style="max-width: 100%;">
-    
+                                <img src="data:image/png;base64,{{news.image}}" alt="" width="300" height="400" class="img-thumbnail">
                             </div>
                             <div class="col-md-8">
                                 <div class="media-body px-3 py-1">
                                     <p class="m-0 lead">
                                         <a [routerLink] = "[news.id]">{{news.newsTitle}}</a>
                                     </p>
-                                    <small style="font-weight:500;">Datum objave: {{news.publishedAt}}</small>
+                                    <small style="font-weight:500;">Datum objave: {{news.publishedAt | date}}</small>
                                 </div>
                             </div>
                         </div>

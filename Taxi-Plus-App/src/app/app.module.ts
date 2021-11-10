@@ -29,6 +29,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NewsMenuComponent } from './admin-panel/news-menu/news-menu.component';
 import { AddEditNewsComponent } from './admin-panel/news-menu/add-edit-news/add-edit-news.component';
+import { UserPanelComponent } from './user-panel/user-panel.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { AddEditNewsComponent } from './admin-panel/news-menu/add-edit-news/add-
     AddEditCarComponent,
     NotFoundComponent,
     NewsMenuComponent,
-    AddEditNewsComponent
+    AddEditNewsComponent,
+    UserPanelComponent
   ],
   imports: [
     BrowserModule,

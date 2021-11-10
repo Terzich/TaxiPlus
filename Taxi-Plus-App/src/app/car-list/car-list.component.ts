@@ -19,10 +19,6 @@ export class CarListComponent implements OnInit {
 
   ngOnInit(): void {
     this.carService.getCarsFromServer().subscribe(carsFromAPI =>{
-      // carsFromAPI.forEach(el => {
-          // el.image = atob(el.image)
-          // this.carList.push(el)
-      // });
       this.carList = carsFromAPI
     } );
   }

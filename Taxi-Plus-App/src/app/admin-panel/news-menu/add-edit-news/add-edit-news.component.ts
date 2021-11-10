@@ -1,5 +1,5 @@
 import { ThrowStmt } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
@@ -34,7 +34,9 @@ export class AddEditNewsComponent implements OnInit {
 
   newsTitle: string;
   content: string;
+
   @Input() news: News;
+  @ViewChild('f') form:NgForm
 
   imageChangedEvent: any = '';
   public base64Slika: string;
@@ -49,9 +51,10 @@ export class AddEditNewsComponent implements OnInit {
   PhotoFileName:string;
   PhotoFilePath:string;
   role = localStorage.getItem('roleId')?.toString(); 
+
   ngOnInit(): void {
+    console.log(this.news.id);
     if(localStorage.getItem('roleId') === '2'){
-      console.log("add-car")
        this.router.navigate(['/not-found'])
     }
     this.newsTitle = this.news.newsTitle;
@@ -117,16 +120,29 @@ export class AddEditNewsComponent implements OnInit {
     this.croppedImage = event.base64
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit() {
+   if(this.news.id == 0){
     var val = {
-      newsTitle: form.value.newsTitle,
-      content: form.value.content,
+      newsTitle: this.form.value.newsTitle,
+      content: this.form.value.content,
       image: this.base64Slika
 
     };
     this.service.addNews(val).subscribe(res => {
-      alert(res.toString());
+      alert("Vijest uspješno dodana. Id vijesti -" + res.toString());
     })
+   }
+   else{
+    var val = {
+      newsTitle: this.form.value.newsTitle,
+      content: this.form.value.content,
+      image: this.base64Slika
+
+    };
+    this.service.updateNews(val, this.news.id).subscribe(res => {
+      alert("Vijest uspješno izmjenjena. Id vijesti -" + res.toString());
+    })
+   }
 
   }
 

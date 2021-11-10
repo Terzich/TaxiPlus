@@ -8,6 +8,4 @@ export class Car{
     details: string;
     color: string;
     fuelTypeId: string;
-
-   
 }
