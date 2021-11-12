@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import {AuthService} from 'src/app/auth/auth.service'
 import { UserService } from 'src/app/user.service';
+import { LoginService } from '../login.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,9 +13,13 @@ import { UserService } from 'src/app/user.service';
 export class LoginComponent implements OnInit {
   isLoading = false;
   error : string;
-  constructor(private authService: AuthService, private router : Router, private userService: UserService) { }
+  routeRedirection: string;
+  constructor(private authService: AuthService, private router : Router, private userService: UserService, private loginService: LoginService) {
+      loginService.redirectWhereCalled.subscribe(eventData => this.routeRedirection = eventData);
+   }
   @ViewChild('loginForm') public loginForm: NgForm;
   ngOnInit(): void {
+    console.log(this.routeRedirection)
     if (localStorage.getItem('token') != null) {
       this.router.navigate(['/adminpanel']);
     }
@@ -30,6 +35,7 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('token', window.btoa(username + ':' + password));
     this.authService.login(username).subscribe(s=> {
       localStorage.setItem('roleId', String(s[0].roleId))
+      localStorage.setItem('userId', String(s[0].id))
       if(s[0].roleId ==admin){
         this.router.navigate(['/adminpanel/dashboard']);
       }

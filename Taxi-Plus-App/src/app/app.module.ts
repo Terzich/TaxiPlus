@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -30,6 +31,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NewsMenuComponent } from './admin-panel/news-menu/news-menu.component';
 import { AddEditNewsComponent } from './admin-panel/news-menu/add-edit-news/add-edit-news.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
     ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
-    AuthModule
+    AuthModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [AppRoutingModule, NewsService, FaqService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

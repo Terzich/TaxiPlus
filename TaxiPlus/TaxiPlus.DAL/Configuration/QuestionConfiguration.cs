@@ -12,10 +12,8 @@ namespace TaxiPlus.DAL.Configuration
         {
             base.Configure(builder);
             builder.Property(b => b.Text).IsRequired();
+            builder.Property(b => b.UserId).IsRequired(false);
             builder.HasOne(b => b.User).WithMany(b => b.Questions).HasForeignKey(b => b.UserId);
-
-
         }
-
     }
 }

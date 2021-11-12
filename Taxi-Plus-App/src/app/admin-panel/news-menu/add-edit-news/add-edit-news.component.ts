@@ -60,42 +60,6 @@ export class AddEditNewsComponent implements OnInit {
     this.content = this.news.content;
   
   }
- 
-
-  // addNews(){
-  //   var val = {
-  //               carName:this.carName,
-  //               yearOfManufacturing: this.yearOfManufacturing,
-  //               numberOfDoors: Number(this.numberOfDoors),
-  //               pricePerDay: 50,
-  //               carManufacturerId:  Number(this.carManufacturerId),
-  //               colorId: Number(this.colorId),
-  //               fuelTypeId: Number(this.fuelTypeId),
-  //               carTypeId: Number(this.carTypeId),
-  //               image: this.base64Slika
-  //             };
-  //   this.service.addCar(val).subscribe(res=>{
-  //     alert(res.toString());
-  //   });
-  // }
-
-  // updateNews(){
-    
-  //   var val = {carName: this.carName,
-  //     numberOfDoors:this.numberOfDoors,
-  //     yearOfManufacturing:this.yearOfManufacturing,
-  //     pricePerDay:this.pricePerDay,
-  //     carManufacturerId: Number(this.carManufacturerId),
-  //     colorId:this.colorId,
-  //     fuelTypeId:this.fuelTypeId,
-  //     carTypeId:this.carTypeId,
-  //     image : String(this.croppedImage).replace('data:image/png;base64,', '')
-  //   };
-  //   this.service.updateCar(val, this.car.id).subscribe(res=>{
-  //   alert(res.toString());
-  //   });
-  // }
-
 
   handleReaderLoaded(readerEvt : any) {
     var binaryString = readerEvt.target.result;

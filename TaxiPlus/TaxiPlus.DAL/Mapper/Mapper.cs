@@ -22,6 +22,8 @@ namespace TaxiPlus.DAL.Mapper
             CreateMap<User, UserUpsertRequest>().ReverseMap();
             CreateMap<RentedCar, RentedCarViewModel>().ReverseMap();
             CreateMap<RentedCar, RentedCarUpsertRequest>().ReverseMap();
+            CreateMap<Question, QuestionViewModel>().ReverseMap();
+            CreateMap<Question, QuestionUpsertRequest>().ReverseMap();
             CreateMap<User, RentedCarViewModel>().ReverseMap();
             CreateMap<Car, RentedCarViewModel>().ReverseMap();
             CreateMap<CarManufacturer, CarManufacturerViewModel>().ReverseMap();

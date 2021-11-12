@@ -1,6 +1,7 @@
-import { ThisReceiver } from '@angular/compiler';
+import { ThisReceiver, ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { windowWhen } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { UserService } from '../user.service';
@@ -13,30 +14,30 @@ import { UserService } from '../user.service';
 export class HeaderComponent implements OnInit {
 
   collapsed = true;
-  isLogged = localStorage.getItem('token') !== null ? false : true ;
+  isLogged = localStorage.getItem('token') !== null ? false : true;
   adminLogged = false;
-  constructor(private loginService: AuthService, private router: Router) { }
+  constructor(private loginService: AuthService, private router: Router, private toastr: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.checkToken()
     this.loginService.loginStatusChange().subscribe(loggedIn => {
-        this.checkToken()   
-  });
+      this.checkToken()
+    });
   }
-  checkToken(){
-      this.isLogged = localStorage.getItem('token') !== null ? false : true ;
+  checkToken() {
+    this.isLogged = localStorage.getItem('token') !== null ? false : true;
   }
-  logOut(){
+  logOut() {
     localStorage.removeItem('token');
-    if(localStorage.getItem('roleId') === '1'){
-        localStorage.removeItem('roleId');
-        window.location.reload();
+    if (localStorage.getItem('roleId') === '1') {
+      localStorage.removeItem('roleId');
+      window.location.reload();
     }
-        localStorage.removeItem('roleId');
-        this.ngOnInit()
+    localStorage.removeItem('roleId');
+    localStorage.removeItem('userId');
+    this.ngOnInit()
 
-/// malo ovo bolje optimizuj, ovo sam samo da radi
-//https://www.npmjs.com/package/ngx-toastr kad se odjavi dodaj neku poruku da je uspjesno odjavljen
-    
+    this.toastr.success('Uspješno ste se odjavili sa aplikacije!', 'Odjava uspješna!');
+    this.router.navigate(['']);
   }
 }
