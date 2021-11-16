@@ -47,20 +47,21 @@
       </div>
     </div>
     <div class="col-md-6 p-5 text-center">
-      <form [formGroup]="faqForm" (ngSubmit)="onSubmit()">
+      <form #f="ngForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-xs-12">
             <div class="form-group">
               <label for="name" class="fst-italic fw-bold">Unesite vaše pitanje:</label>
-              <input type="text" id="question" class="form-control" formControlName="question">
+              <input type="text" id="question" name="question" class="form-control"  ngModel #q="ngModel" required>
+              <span class="help-block fst-italic fw-light text-danger" *ngIf="q.invalid && q.touched">Niste unijeli pitanje!</span>
             </div>
           </div>
         </div>
         <br>
-        <button type="submit" class="btn btn-success" *ngIf="isUserLoggedIn" [disabled]="faqForm.invalid">Postavi pitanje</button>
+        <button type="submit" class="btn btn-success" *ngIf="isUserLoggedIn" [disabled]="f.invalid">Postavi pitanje</button>
         <button type="submit" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
           title="Ukoliko želite da postavite pitanje na koje ćete dobiti odgovor, potrebno je da se prijavite na aplikaciju"
-          *ngIf="!isUserLoggedIn"  [disabled]="faqForm.invalid">Postavi anonimno pitanje</button>
+          *ngIf="!isUserLoggedIn"  [disabled]="f.invalid">Postavi anonimno pitanje</button>
       </form>
     </div>
   </div>

@@ -32,6 +32,8 @@ import { NewsMenuComponent } from './admin-panel/news-menu/news-menu.component';
 import { AddEditNewsComponent } from './admin-panel/news-menu/add-edit-news/add-edit-news.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { ToastrModule } from 'ngx-toastr';
+import { QuestionMenuComponent } from './admin-panel/question-menu/question-menu.component';
+import { AnswerQuestionComponent } from './admin-panel/question-menu/answer-question/answer-question.component';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { ToastrModule } from 'ngx-toastr';
     NotFoundComponent,
     NewsMenuComponent,
     AddEditNewsComponent,
-    UserPanelComponent
+    UserPanelComponent,
+    QuestionMenuComponent,
+    AnswerQuestionComponent
   ],
   imports: [
     BrowserModule,

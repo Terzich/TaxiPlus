@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../auth/login.service';
 import { FAQ } from './faq.model';
 import { FaqService } from './faq.service';
@@ -11,35 +12,40 @@ import { FaqService } from './faq.service';
 })
 export class FaqComponent implements OnInit {
 
-  faqForm: FormGroup
+
+  @ViewChild('f') form: NgForm;
   questions: FAQ[];
   isUserLoggedIn = false;
 
-  constructor(private faqService: FaqService, private loginService: LoginService) { }
+
+  constructor(private faqService: FaqService, private loginService: LoginService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.initForm();
     this.questions = this.faqService.getFaqsDummy();
-    if (localStorage.getItem("token") !== null)
+    if (localStorage.getItem("token") !== null) {
       this.isUserLoggedIn = true;
-  }
-
-  private initForm() {
-
-    this.faqForm = new FormGroup({
-      'question': new FormControl(null, Validators.required)
-    })
+    }
   }
 
   onSubmit() {
-    console.log(this.faqForm.value)
-    // if(this.faqForm.invalid){
-    //   return;
-    // }
-    // var val = {
-    //   userId: localStorage.getItem("userId"),
-    //   text = this.faqForm.value
-    // }
- 
+    if (this.form.invalid) {
+      return;
+    }
+    console.log(localStorage.getItem('userId'))
+    var val = {
+      text: this.form.value.question,
+      userId: localStorage.getItem('userId') == null ? null : Number(localStorage.getItem('userId'))
+    };
+
+    this.faqService.addQuestion(val).subscribe(qId => {
+      console.log("uslo")
+      if (qId !== 0) {
+        if (!this.isUserLoggedIn)
+          this.toastr.success('Uspješno ste postavili "anonimno pitanje"!', 'Pitanje postavljeno!');
+        if (this.isUserLoggedIn)
+          this.toastr.success('Uspješno ste postavili anonimno pitanje. Odgovor ćete dobiti u što skorijem roku!', 'Pitanje postavljeno!');
+      }
+    })
+
   }
 }

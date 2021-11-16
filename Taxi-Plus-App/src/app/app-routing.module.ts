@@ -4,6 +4,7 @@ import { AdminPanelComponent } from "./admin-panel/admin-panel.component";
 import { CarMenuComponent } from "./admin-panel/car-menu/car-menu.component";
 import { DashboardComponent } from "./admin-panel/dashboard/dashboard.component";
 import { NewsMenuComponent } from "./admin-panel/news-menu/news-menu.component";
+import { QuestionMenuComponent } from "./admin-panel/question-menu/question-menu.component";
 import { AuthGuard } from "./auth/auth.guard";
 import { RegistrationComponent } from "./auth/registration/registration.component";
 import { CarListComponent } from "./car-list/car-list.component";
@@ -23,9 +24,8 @@ const routes: Routes = [
         path: 'adminpanel', component: AdminPanelComponent, canActivate: [AuthGuard] ,children: [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'car-menu', component: CarMenuComponent },
-            { path: 'news-menu', component: NewsMenuComponent }
-
-
+            { path: 'news-menu', component: NewsMenuComponent },
+            { path: 'question-menu', component: QuestionMenuComponent }
 
         ]
     },
