@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TaxiPlus.DAL.Database;
 using TaxiPlus.DAL.Repositories;
@@ -33,7 +34,8 @@ namespace TaxiPlus
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             services.AddAutoMapper(typeof(TaxiPlus.DAL.Mapper.Mapper));
 
             var connection = Configuration.GetConnectionString("TaxiPlusDatabase");

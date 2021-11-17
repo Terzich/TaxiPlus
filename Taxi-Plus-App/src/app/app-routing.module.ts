@@ -22,7 +22,7 @@ const routes: Routes = [
     { path: 'not-found', component: NotFoundComponent},
     {
         path: 'adminpanel', component: AdminPanelComponent, canActivate: [AuthGuard] ,children: [
-            { path: 'dashboard', component: DashboardComponent },
+            { path: '', component: DashboardComponent },
             { path: 'car-menu', component: CarMenuComponent },
             { path: 'news-menu', component: NewsMenuComponent },
             { path: 'question-menu', component: QuestionMenuComponent }
