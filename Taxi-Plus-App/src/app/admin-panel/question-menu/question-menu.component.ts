@@ -14,6 +14,7 @@ export class QuestionMenuComponent implements OnInit {
   ModalTitle: string;
   ActivateEditQuestionComp: boolean = false;
   car: any;
+  filterType = "";
 
   constructor(private faqService: FaqService) { }
 
@@ -23,8 +24,8 @@ export class QuestionMenuComponent implements OnInit {
 
   refreshQuestionList() {
     this.faqService.getAllQuestionsFromServer().subscribe(data => {
-      //this.questionList = data;
-    console.log("data")
+      this.questionList = data;
+      console.log("data")
 
     });
 
@@ -39,22 +40,29 @@ export class QuestionMenuComponent implements OnInit {
 
   // }
 
-  editClick(item: any){
+  editClick(item: any) {
     // this.car=item;
     // this.ModalTitle="Izmjeni podatke vozila";
     // this.ActivateAddEditDepComp=true;
   }
 
-  deleteClick(item: any){
+  deleteClick(item: any) {
     // if(confirm('Da li ste sigurni??')){
     //   this.service.deleteCar(item.id).subscribe();
     //   this.refreshCarList();
     // }
   }
 
-  closeClick(){
+  closeClick() {
     // this.ActivateAddEditDepComp=false;
     // this.refreshCarList();
+  }
+
+  changeFilterType(checkbox: any) {
+    if (this.filterType === '')
+      this.filterType = checkbox;
+    else
+      this.filterType = '';
   }
 
 }
