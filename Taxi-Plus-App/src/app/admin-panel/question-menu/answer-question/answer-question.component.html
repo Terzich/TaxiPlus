@@ -1,1 +1,30 @@
-<p>answer-question works!</p>
+<div class="row" *ngIf="role === '1'">
+
+    <div class="">
+
+        <form #f="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-froup row">
+                <label class="col-sm-2 col-form-label" for="text">Pitanje</label>
+                <div class="col-sm-10 text-center">
+                    <p id="text" class="form-control" id="text" name="text">{{text}}</p>
+                </div>
+            </div>
+            <div class="form-froup row">
+                <label class="col-sm-2 col-form-label" for="userId">Korisnik</label>
+                <div class="col-sm-10 text-center">
+                    <p id="userId" class="form-control" id="userId" name="userId">{{userId}}</p>
+                </div>
+            </div>
+            <div class="form-froup row">
+                <label class="col-sm-2 col-form-label" for="answer">Odgovor</label>
+                <div class="col-sm-10 text-center">
+                        <textarea name="answer" id="answer" cols="30" rows="10" placeholder="Unesite odgovor na pitanje" [ngModel]="answer" class="form-control" required #nc="ngModel"></textarea>
+                        <br><span class="help-block fst-italic fw-light text-danger" *ngIf="nc.invalid && nc.touched">Niste unijeli odgovor na pitanje!</span>
+                    </div>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Odgovori</button>
+        </form>
+      
+    </div>
+  
+</div>

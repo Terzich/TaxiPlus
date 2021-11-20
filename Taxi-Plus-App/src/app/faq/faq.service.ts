@@ -33,4 +33,8 @@ readonly url = environment.url + "question";
   addQuestion(val: any): Observable<number> {
     return this.http.post<number>(this.url, val, { "headers": this.options });
   }
+
+  deleteQuestion(val:any){
+    return this.http.delete(this.url+'/'+val);
+  }
 }

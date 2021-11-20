@@ -12,6 +12,10 @@ namespace TaxiPlus.DAL.ViewModels
         public int? UserId { get; set; }
         public User User { get; set; }
         public string Answer { get; set; }
+        public string NameAndSurname { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+
 
     }
 }
