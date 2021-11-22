@@ -10,7 +10,9 @@ export class UserNotificationsComponent implements OnInit {
 
   allNotifications: any = [];
   newNotifications: any = [];
-  numberOfNotifications: any;
+  numberOfOldNotifications: any = 0;
+  numberOfNewNotifications: any = 0;
+
   userId = Number(localStorage.getItem("userId"));
 
   constructor(private service: NotificationService) { }
@@ -18,12 +20,17 @@ export class UserNotificationsComponent implements OnInit {
   ngOnInit(): void {
     this.service.getAllNotificationsForUser(this.userId).subscribe(data => {
       data.forEach(element => {
-        if(element.viewed){
+        console.log(element.viewed)
+        if (!element.viewed){
           this.newNotifications.push(element);
+          this.numberOfNewNotifications++;
+        }
+        else{
+          this.allNotifications.push(element)
+          this.numberOfOldNotifications++;
         }
       });
-      this.allNotifications = data;
-      this.numberOfNotifications = data.length;
+      
     });
   }
 

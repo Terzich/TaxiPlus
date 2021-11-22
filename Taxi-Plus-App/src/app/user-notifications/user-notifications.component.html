@@ -6,20 +6,65 @@
         <ul class="navbar-nav m-auto">
             <li class="nav-item col-lg-5">
                 <button routerLink="new-notifications" class="m-1 btn btn-light btn-outline-primary">Nove
-                    obavijesti</button>
+                    obavijesti  ({{numberOfNewNotifications}})</button>
             </li>
             <div class="col-lg-2"></div>
             <li class="nav-item col-lg-5">
                 <button routerLink="old-notifications" class="m-1 btn btn-light btn-outline-primary">Stare
-                    obavijesti ({{numberOfNotifications}})</button>
+                    obavijesti ({{numberOfOldNotifications}})</button>
             </li>
         </ul>
     </nav>
-    <div class="pt-3">
+    <div class="pt-3" *ngIf="numberOfNewNotifications === 0; else sec">
         <h5 class="text-center text-danger fst-italic fw-bolder">Nemate novih obavijesti!</h5>
         <div class="d-flex justify-content-center">
             <img class="img-fluid w-50 d-none d-sm-block" src="../../assets/Images/empty-inbox.png" alt="" />
         </div>
     </div>
+    <ng-template #sec>
+        <table class="table table-hover table-light mt-4 text-center table-responsive">
+            <thead class="text-primary border-0 bg-dark">
+                <tr>
+                    <th>Naslov obavijesti</th>
+                <th>Datum obavijesti</th>
+                <th>Sadrzaj</th>
+
+                <th>Detaljan pregled</th>
+                </tr>
+            </thead>
+            <tbody class="fw-bold">
+                <tr class="h-75">
+                    <td>{{newNotifications[0].title}}</td>
+                    <td>22.12.2021</td>
+                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde excepturi debitis voluptatem magnam repellendus eius, tempora natus quam. Ipsa nesciunt qui unde explicabo similique dolores alias sequi magni quo accusamus.</td>
+                    <td><button type="button" class="btn btn-light mr-1"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+        
+        data-backdrop="static" data-keyboard="false"
+                        >
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
+                        </button></td>
+                </tr>
+                <tr class="h-75">
+                    <td>{{newNotifications[1].title}}</td>
+                    <td>22.12.2021</td>
+                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde excepturi debitis voluptatem magnam repellendus eius, tempora natus quam. Ipsa nesciunt qui unde explicabo similique dolores alias sequi magni quo accusamus.</td>
+                    <td><button type="button" class="btn btn-light mr-1"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+        
+        data-backdrop="static" data-keyboard="false"
+                        >
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
+                        </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-template>
 
 </div>
