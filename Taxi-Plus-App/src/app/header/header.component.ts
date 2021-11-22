@@ -1,5 +1,5 @@
 import { ThisReceiver, ThrowStmt } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { windowWhen } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   isLogged = localStorage.getItem('token') !== null ? false : true;
   adminLogged = false;
   ActivateNotificationComp: boolean = false;
-
+  @Output() toggleMenuEvent = new EventEmitter()
   constructor(private loginService: AuthService, private router: Router, private toastr: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -26,6 +26,11 @@ export class HeaderComponent implements OnInit {
       this.checkToken()
     });
   }
+
+  toggleMenu(){
+    this.toggleMenuEvent.emit()
+  }
+
   checkToken() {
     this.isLogged = localStorage.getItem('token') !== null ? false : true;
   }

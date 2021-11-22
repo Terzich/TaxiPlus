@@ -7,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPanelComponent implements OnInit {
 
+  moveDown = false
+
   constructor() { }
   ngOnInit(): void {
+  }
+
+  setContentPosition(){
+    this.moveDown = !this.moveDown
   }
 
 }

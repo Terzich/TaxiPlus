@@ -8,13 +8,20 @@ import { NotificationService } from './notification.service';
 })
 export class UserNotificationsComponent implements OnInit {
 
-  allNotifications : any =[];
+  allNotifications: any = [];
+  newNotifications: any = [];
   numberOfNotifications: any;
   userId = Number(localStorage.getItem("userId"));
+
   constructor(private service: NotificationService) { }
 
   ngOnInit(): void {
     this.service.getAllNotificationsForUser(this.userId).subscribe(data => {
+      data.forEach(element => {
+        if(element.viewed){
+          this.newNotifications.push(element);
+        }
+      });
       this.allNotifications = data;
       this.numberOfNotifications = data.length;
     });

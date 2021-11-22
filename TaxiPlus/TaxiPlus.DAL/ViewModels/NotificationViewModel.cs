@@ -10,5 +10,7 @@ namespace TaxiPlus.DAL.ViewModels
         public string Title { get; set; }
         public string Text { get; set; }
         public int UserId { get; set; }
+        public bool Viewed { get; set; }
+
     }
 }

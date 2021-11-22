@@ -3,7 +3,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">TAXI PLUS</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+          (click)="toggleMenu()"
+          >
             <span></span>
             <span></span>
             <span></span>
@@ -37,17 +39,19 @@
                   <button class="btn btn-success" style="background-color: rgb(0, 131, 0); border-radius: 5px; font-weight: bold;" routerLink = "account/registration">Registruj se</button>  
             </ul>
 
-            <li class="nav-item dropdown m-auto" *ngIf="!isLogged">
+          <ul class="navbar-nav ms-auto me-5 ">
+            <li class="nav-item dropdown me-5" *ngIf="!isLogged">
               <a class="nav-link dropdown-toggle text-danger fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Test User
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="/news">Pregled zahtjeva za iznajmljivanje</a></li>
-                <li><a class="btn dropdown-item" href="/user-notifications">Obavijesti</a></li>
+                <li><a class=" dropdown-item" href="/user-notifications">Obavijesti</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" (click)="logOut()">Odjavi se</a></li>
               </ul>
             </li>
+          </ul>
             <!-- <ul class="navbar-nav ms-auto" *ngIf="!isLogged">
               <button class="btn btn-primary" style= "border-radius: 5px; border: none; font-weight: bold; background-color: rgb(9, 19, 156);" (click)="logOut()">Odjavi se</button>
             </ul> -->
