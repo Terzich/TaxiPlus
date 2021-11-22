@@ -34,7 +34,7 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
 import { ToastrModule } from 'ngx-toastr';
 import { QuestionMenuComponent } from './admin-panel/question-menu/question-menu.component';
 import { AnswerQuestionComponent } from './admin-panel/question-menu/answer-question/answer-question.component';
-
+import { UserNotificationsComponent } from './user-notifications/user-notifications.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,8 @@ import { AnswerQuestionComponent } from './admin-panel/question-menu/answer-ques
     AddEditNewsComponent,
     UserPanelComponent,
     QuestionMenuComponent,
-    AnswerQuestionComponent
+    AnswerQuestionComponent,
+    UserNotificationsComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,7 @@ namespace TaxiPlus.DAL.Domain
         public Gender Gender { get; set; }
         public List<Question> Questions { get; set; }
         public List<RentedCar> RentedCars { get; set; }
+        public List<Notification> Notifications { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
         public string Username { get; set; }

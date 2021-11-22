@@ -15,11 +15,6 @@ namespace TaxiPlus.DAL.Configuration
             builder.Property(b => b.RentedTo).IsRequired();
             builder.HasOne(b => b.Car).WithMany(b => b.RentedCars).HasForeignKey(b => b.CarId);
             builder.HasOne(b => b.User).WithMany(b => b.RentedCars).HasForeignKey(b => b.UserId);
-
-
-
-
-
         }
     }
 }

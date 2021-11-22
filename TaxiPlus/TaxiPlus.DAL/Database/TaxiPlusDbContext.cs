@@ -27,6 +27,8 @@ namespace TaxiPlus.DAL.Database
         public DbSet<User> users { get; set; }
         public DbSet<News> news{ get; set; }
         public DbSet<Role> roles{ get; set; }
+        public DbSet<Notification> notifications{ get; set; }
+
 
 
 

@@ -4,6 +4,10 @@ export class FAQ {
     public text: string;
     public userId: number;
     public answer: string;
+    public nameAndSurname: string;
+    public username: string;
+    public email: string;
+
 
     constructor(id: number, question: string, userId: number, answer: string) {
         this.id = id;

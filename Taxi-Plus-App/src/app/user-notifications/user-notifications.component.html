@@ -1,0 +1,25 @@
+<div class="container ms-auto p-5">
+    <h3 class="d-flex justify-content-center fst-italic">Vaša obavještenja</h3>
+    <h5 class="d-flex justify-content-center fw-light">Pregled novih i starih obavijesti</h5>
+
+    <nav class="navbar navbar-expand-sm bg-transparent navbar-dark">
+        <ul class="navbar-nav m-auto">
+            <li class="nav-item col-lg-5">
+                <button routerLink="new-notifications" class="m-1 btn btn-light btn-outline-primary">Nove
+                    obavijesti</button>
+            </li>
+            <div class="col-lg-2"></div>
+            <li class="nav-item col-lg-5">
+                <button routerLink="old-notifications" class="m-1 btn btn-light btn-outline-primary">Stare
+                    obavijesti ({{numberOfNotifications}})</button>
+            </li>
+        </ul>
+    </nav>
+    <div class="pt-3">
+        <h5 class="text-center text-danger fst-italic fw-bolder">Nemate novih obavijesti!</h5>
+        <div class="d-flex justify-content-center">
+            <img class="img-fluid w-50 d-none d-sm-block" src="../../assets/Images/empty-inbox.png" alt="" />
+        </div>
+    </div>
+
+</div>

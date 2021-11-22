@@ -14,7 +14,7 @@ namespace TaxiPlus.Controllers
 {
     public class RentedCarController : BaseCRUDController<RentedCarViewModel, RentedCarUpsertRequest>
     {
-        SqlServerRentedCarRepository repositoryCustom;
+        private SqlServerRentedCarRepository repositoryCustom;
         public RentedCarController(IBaseCRUDRepository<RentedCarViewModel, RentedCarUpsertRequest> repository, TaxiPlusDbContext context, IMapper mapper, IHostingEnvironment hostingEnvironment) : base(repository, hostingEnvironment)
         {
             repositoryCustom = new SqlServerRentedCarRepository(context, mapper);

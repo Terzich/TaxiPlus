@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
   collapsed = true;
   isLogged = localStorage.getItem('token') !== null ? false : true;
   adminLogged = false;
+  ActivateNotificationComp: boolean = false;
+
   constructor(private loginService: AuthService, private router: Router, private toastr: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -39,5 +41,14 @@ export class HeaderComponent implements OnInit {
 
     this.toastr.success('Uspješno ste se odjavili sa aplikacije!', 'Odjava uspješna!');
     this.router.navigate(['']);
+  }
+
+  openNotification(){
+    this.ActivateNotificationComp = true;
+    console.log("uslo")
+  }
+
+  closeClick() {
+    this.ActivateNotificationComp = false;
   }
 }

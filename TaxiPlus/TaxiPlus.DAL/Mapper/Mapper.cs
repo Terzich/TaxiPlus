@@ -31,6 +31,9 @@ namespace TaxiPlus.DAL.Mapper
             CreateMap<FuelType, FuelTypeViewModel>().ReverseMap();
             CreateMap<Color, ColorViewModel>().ReverseMap();
             CreateMap<CarType, CarTypeViewModel>().ReverseMap();
+            CreateMap<Notification, NotificationViewModel>().ReverseMap();
+            CreateMap<Notification, NotificationUpsertRequest>().ReverseMap();
+            
         }
     }
 }

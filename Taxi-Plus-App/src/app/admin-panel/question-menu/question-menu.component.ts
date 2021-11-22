@@ -15,6 +15,7 @@ export class QuestionMenuComponent implements OnInit {
   ActivateEditQuestionComp: boolean = false;
   question: any;
   filterType = "";
+  questionFiltered = false;
 
   constructor(private faqService: FaqService) { }
 
@@ -32,20 +33,20 @@ export class QuestionMenuComponent implements OnInit {
   }
 
   editClick(item: any) {
-    this.question=item;
-    this.ModalTitle="Odgovori na pitanje";
-    this.ActivateEditQuestionComp=true;
+    this.question = item;
+    this.ModalTitle = "Odgovori na pitanje";
+    this.ActivateEditQuestionComp = true;
   }
 
   deleteClick(item: any) {
-    if(confirm('Da li ste sigurni??')){
+    if (confirm('Da li ste sigurni??')) {
       this.faqService.deleteQuestion(item.id).subscribe();
       this.refreshQuestionList();
     }
   }
 
   closeClick() {
-    this.ActivateEditQuestionComp=false;
+    this.ActivateEditQuestionComp = false;
     this.refreshQuestionList();
   }
 
@@ -54,6 +55,17 @@ export class QuestionMenuComponent implements OnInit {
       this.filterType = checkbox;
     else
       this.filterType = '';
+  }
+
+  filterQuestions() {
+    this.faqService.getAllQuestionsFromServerWithFilter(this.filterType).subscribe(data => {
+      console.log(data);
+      this.questionList = data;
+    });
+    if (this.filterType === '')
+      this.questionFiltered = false;
+    else
+      this.questionFiltered = true;
   }
 
 }

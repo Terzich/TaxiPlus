@@ -30,8 +30,16 @@ readonly url = environment.url + "question";
     return this.http.get<FAQ[]>(this.url, { "headers": this.options });
   }
 
+  getAllQuestionsFromServerWithFilter(filter: string): Observable<FAQ[]> {
+    return this.http.get<FAQ[]>(this.url + "/getByFilter?filter=" + filter, { "headers": this.options });
+  }
+
   addQuestion(val: any): Observable<number> {
     return this.http.post<number>(this.url, val, { "headers": this.options });
+  }
+
+  answerQuestion(val:any, questionId:number){
+    return this.http.put(this.url+'/'+questionId,val);
   }
 
   deleteQuestion(val:any){

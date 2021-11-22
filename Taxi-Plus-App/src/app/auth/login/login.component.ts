@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('roleId', String(s[0].roleId))
       localStorage.setItem('userId', String(s[0].id))
       if(s[0].roleId ==admin){
-        this.router.navigate(['/adminpanel/dashboard']);
+        this.router.navigate(['/adminpanel']);
       }
       else if(s[0].roleId == user){
         this.router.navigate([''])

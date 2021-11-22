@@ -15,7 +15,5 @@ namespace TaxiPlus.DAL.ViewModels
         public string NameAndSurname { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
-
-
     }
 }

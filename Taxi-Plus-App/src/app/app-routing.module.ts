@@ -15,6 +15,7 @@ import { HomepageComponent } from "./homepage/homepage.component";
 import { NewsDetailComponent } from "./news-list/news-detail/news-detail.component";
 import { NewsListComponent } from "./news-list/news-list.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
+import { UserNotificationsComponent } from "./user-notifications/user-notifications.component";
 import { UserPanelComponent } from "./user-panel/user-panel.component";
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
             { path: 'faq', component: FaqComponent },
             { path: 'company-offer', component: CompanyOfferComponent },
             { path: 'car-list', component: CarListComponent },
+            { path: 'user-notifications', component: UserNotificationsComponent},
             { path: 'rentcar/:id', component: RentCarComponent }
         ]
     }
