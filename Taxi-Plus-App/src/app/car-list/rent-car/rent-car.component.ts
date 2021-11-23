@@ -33,11 +33,10 @@ export class RentCarComponent implements OnInit {
   user: User;
   carRents: RentedCar[];
 
-  bsValue = new Date();
-  bsRangeValue: Date[];
-  maxDate = new Date();
   message: string;
   carAvailable: boolean = true;
+
+ 
 
   constructor(private route: ActivatedRoute, private carService: CarService, private router: Router, calendar: NgbCalendar,
     private userService: UserService, private rentService: RentService) {
@@ -69,13 +68,15 @@ export class RentCarComponent implements OnInit {
       });
     });
   }
-
-  calculatePrice(): void {
-    const diffInMs = Math.abs(this.bsRangeValue[1].valueOf() - this.bsRangeValue[0].valueOf());
-    var r = diffInMs / (1000 * 60 * 60 * 24);
-    this.totalPrice = this.Car.pricePerDay * r;
+  test(){
+    console.log("ddaaa");
   }
 
+  // calculatePrice(): void {
+  //   const diffInMs = Math.abs(this.bsRangeValue[1].valueOf() - this.bsRangeValue[0].valueOf());
+  //   var r = diffInMs / (1000 * 60 * 60 * 24);
+  //   this.totalPrice = this.Car.pricePerDay * r;
+  // }
   onDateSelection(date: NgbDate) {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;
@@ -119,6 +120,7 @@ export class RentCarComponent implements OnInit {
     var Time = this.toDateTransformed.getTime() - this.fromDateTransformed.getTime();
     this.numberOfDays = Time / (1000 * 3600 * 24) + daysToAdd;
     this.totalPrice = 50 * this.numberOfDays;
+    console.log(this.totalPrice)
   }
 
   sendRentRequest() {

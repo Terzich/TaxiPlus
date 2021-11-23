@@ -1,60 +1,54 @@
 <div class="container" *ngIf="Car">
 
-    <div id="wrapper" class="row align-items-center bg-gradient">
+    <div id="wrapper" class="row align-items-center">
         <div class="col-lg-4">
             <img src="data:image/png;base64,{{Car.image}}" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 p-5">
-            <h1 class="text-warning">{{Car.carName}} </h1>
-            <hr style="color: yellow;">
-            <p class="car-details"><span class="text-warning">Cijena po danu: {{Car.pricePerDay}} BAM</span> <br>
+            <h1 class="text-light">{{Car.carName}} </h1>
+            <hr style="color: whitesmoke;">
+            <p class="car-details text-light"><span class="fw-bold fst-italic">Cijena po danu: {{Car.pricePerDay}}
+                    BAM</span> <br>
                 <span>Boja: </span>{{Car.color}}
                 <br>
                 <span>Godina proizvodnje: </span> {{Car.yearOfManufacturing}}
             </p>
             <p class="text-primary">{{Car.details}}</p>
         </div>
-        <div class="container">
-            <!-- <h3 style="text-align: center; color: green;">This car is available for booking!</h3> -->
+        <div>
             <div class="row border-0 p-2 d-flex justify-content-center">
                 <div class="col-lg-3 ml-auto">
 
-
-                    <!-- <button class="btn btn-success" (click)="drp.toggle()" [attr.aria-expanded]="drp.isOpen"
-                        type="button">Date Range Picker</button> -->
-
                 </div>
                 <div class="col-lg-6 text-center">
-                    <!-- <input class="form-control" #drp="bsDaterangepicker" bsDaterangepicker [(ngModel)]="bsRangeValue"
-                        style="width: 290px;" (ngModelChange)="calculatePrice()" > -->
-                    <p class="text-center text-warning">Odaberite vremenski period u kojem želite da iznajmite vozilo
-                    </p>
-                    <ngb-datepicker id="kalendar" class="bg-light text-dark border-primary" #dp
-                        (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
-                        outsideDays="hidden">
+                    <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" class="bg-white">
                     </ngb-datepicker>
-
+                    
                     <ng-template #t let-date let-focused="focused">
-                        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-                            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                      <span class="custom-day"
+                            [class.focused]="focused"
+                            [class.range]="isRange(date)"
+                            [class.faded]="isHovered(date) || isInside(date)"
+                            (mouseenter)="hoveredDate = date"
                             (mouseleave)="hoveredDate = null">
-                            {{ date.day }}
-                        </span>
+                        {{ date.day }}
+                      </span>
                     </ng-template>
 
                 </div>
                 <div class="col-lg-3 ml-auto">
+                    <p *ngIf="carAvailable" class="text-danger">Auto je dostupno</p>
+                    <p *ngIf="!carAvailable" class="text-danger">Auto je trenutno zauzeto</p>
                 </div>
-                <p *ngIf="carAvailable" class="text-danger">Auto je dostupno</p>
-                <p *ngIf="!carAvailable" class="text-danger">Auto je trenutno zauzeto</p>
+
 
                 <button type="button" (click)="generateDatePeriod()"
-                    class="btn btn-primary w-25 btn-lg mt-2 bg-transparent border-3 border-white text-warning"
-                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    class="btn btn-primary w-25  mt-2 bg-dark border-3 border-white text-light" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
                     Pošalji zahtjev
                 </button>
 
-                <div class="modal fade w-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <!-- <div class="modal fade w-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -65,7 +59,6 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <!-- <app-rent-request [selectedCar]="Car" [fromDate] = "fromDate" [toDate] = "toDate"></app-rent-request> -->
                                 <div class="row">
                                     <div class="col-md-4">
                                         <img src="data:image/png;base64,{{Car.image}}" class="img-fluid" alt="">
@@ -77,7 +70,8 @@
                                                 {{Car.pricePerDay}} BAM</span> <br>
                                             <span>Boja: </span>{{Car.color}}
                                             <br>
-                                            <span>Godina proizvodnje: </span>{{Car.yearOfManufacturing | date:"yyyy"}} <br>
+                                            <span>Godina proizvodnje: </span>{{Car.yearOfManufacturing | date:"yyyy"}}
+                                            <br>
                                             <span>Tip goriva: </span>{{Car.fuelTypeId}}
                                         </p>
                                         <p class="text-primary">{{Car.details}}</p>
@@ -176,7 +170,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>

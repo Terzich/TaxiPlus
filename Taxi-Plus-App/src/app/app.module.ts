@@ -16,7 +16,6 @@ import { FaqService } from './faq/faq.service';
 import { CompanyOfferComponent } from './company-offer/company-offer.component';
 import { CarListComponent } from './car-list/car-list.component';
 import { CarDetailsComponent } from './car-list/car-details/car-details.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RentCarComponent } from './car-list/rent-car/rent-car.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
@@ -35,6 +34,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { QuestionMenuComponent } from './admin-panel/question-menu/question-menu.component';
 import { AnswerQuestionComponent } from './admin-panel/question-menu/answer-question/answer-question.component';
 import { UserNotificationsComponent } from './user-notifications/user-notifications.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -67,10 +68,11 @@ import { UserNotificationsComponent } from './user-notifications/user-notificati
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbModule,
     HttpClientModule,
     AuthModule,
+    NgbModule,
     BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
     ToastrModule.forRoot()
   ],
   providers: [AppRoutingModule, NewsService, FaqService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
