@@ -48,10 +48,10 @@
                     Pošalji zahtjev
                 </button>
 
-                <!-- <div class="modal fade w-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div class="modal fade w-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
+                        <!-- <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Potvrda zahtjeva za iznajmljivanje vozila
                                 </h5>
@@ -168,9 +168,21 @@
                                 <button type="button" class="btn btn-primary" (click)="sendRentRequest()">Potvrdi
                                     zahtjev</button>
                             </div>
+                        </div> -->
+                        <div class="modal-content bg-secondary fs-4" *ngIf="userId === null">
+                            <div class="modal-header text-center d-flex justify-content-center text-warning fw-bold ">
+                                NISTE LOGIRANI
+                            </div>
+                            <div class="modal-body text-center fw-bold fst-italic fs-5">
+                                Da biste napravili zahtjev za iznajmljivanje potrebno je da se <span class="text-warning">prijavite na aplikaciju</span> ili <span class="text-warning">kreirate račun!</span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Logiraj se</button>
+                                <button type="button" class="btn btn-secondary" (click)="sendRentRequest()">Napravi račun</button>
+                            </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
             </div>
         </div>

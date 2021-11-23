@@ -32,11 +32,12 @@ export class RentCarComponent implements OnInit {
   Car: Car;
   user: User;
   carRents: RentedCar[];
+  userId = localStorage.getItem("userId");
 
   message: string;
   carAvailable: boolean = true;
 
- 
+
 
   constructor(private route: ActivatedRoute, private carService: CarService, private router: Router, calendar: NgbCalendar,
     private userService: UserService, private rentService: RentService) {
@@ -49,13 +50,13 @@ export class RentCarComponent implements OnInit {
       (param: Params) => {
         this.carService.getCarById(+param['id']).subscribe(carFromApi => {
           this.Car = carFromApi;
-        this.checkCarAvailability(this.Car.id);
+          this.checkCarAvailability(this.Car.id);
         });
       }
     );
     this.userService.getUserById(1).subscribe(userFromApi => this.user = userFromApi);
+    console.log(this.userId)
 
-    
   }
 
   checkCarAvailability(id: number) {
@@ -68,7 +69,7 @@ export class RentCarComponent implements OnInit {
       });
     });
   }
-  test(){
+  test() {
     console.log("ddaaa");
   }
 
@@ -102,25 +103,27 @@ export class RentCarComponent implements OnInit {
 
   generateDatePeriod() {
     var daysToAdd = 1;
-    console.log("misec " + this.fromDate.month);
-    console.log(typeof this.fromDate.month);
-    this.fromDateTransformed = new Date(this.fromDate.year, this.fromDate.month, this.fromDate.day);
-    
-    console.log(this.fromDateTransformed);
+
 
     if (this.toDate != null) {
-      console.log("opem misec " + this.toDate.month);
-      this.toDateTransformed = new Date(this.toDate.year, this.toDate.month, this.toDate.day);
-    console.log(this.toDateTransformed);
-      if (this.toDate.month - this.fromDate.month == 1)
-        daysToAdd = 2;
-
+      if (this.toDate.month - this.fromDate.month == 1) {
+      this.toDateTransformed = new Date(this.toDate.year, this.toDate.month-1, this.toDate.day);
+        this.fromDateTransformed = new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day);
+        daysToAdd = 0;
+      }
+      else{
+        this.toDateTransformed = new Date(this.toDate.year, this.toDate.month-1, this.toDate.day);
+        this.fromDateTransformed = new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day);
+      }
     }
 
     var Time = this.toDateTransformed.getTime() - this.fromDateTransformed.getTime();
     this.numberOfDays = Time / (1000 * 3600 * 24) + daysToAdd;
     this.totalPrice = 50 * this.numberOfDays;
-    console.log(this.totalPrice)
+    console.log(this.numberOfDays)
+    console.log(this.fromDateTransformed)
+    console.log(this.toDateTransformed)
+
   }
 
   sendRentRequest() {
