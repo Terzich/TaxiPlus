@@ -5,6 +5,7 @@ import { CarMenuComponent } from "./admin-panel/car-menu/car-menu.component";
 import { DashboardComponent } from "./admin-panel/dashboard/dashboard.component";
 import { NewsMenuComponent } from "./admin-panel/news-menu/news-menu.component";
 import { QuestionMenuComponent } from "./admin-panel/question-menu/question-menu.component";
+import { RentMenuComponent } from "./admin-panel/rent-menu/rent-menu.component";
 import { AuthGuard } from "./auth/auth.guard";
 import { RegistrationComponent } from "./auth/registration/registration.component";
 import { CarListComponent } from "./car-list/car-list.component";
@@ -26,8 +27,8 @@ const routes: Routes = [
             { path: '', component: DashboardComponent },
             { path: 'car-menu', component: CarMenuComponent },
             { path: 'news-menu', component: NewsMenuComponent },
-            { path: 'question-menu', component: QuestionMenuComponent }
-
+            { path: 'question-menu', component: QuestionMenuComponent },
+            { path: 'rent-menu', component: RentMenuComponent }
         ]
     },
     {

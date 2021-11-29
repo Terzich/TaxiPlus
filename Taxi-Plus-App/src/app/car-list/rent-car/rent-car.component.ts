@@ -3,9 +3,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/user.model';
 import { UserService } from 'src/app/user.service';
+import { createBigIntLiteral } from 'typescript';
+import { CarManufacturerService } from '../car-manufacturer.service';
 import { Car } from '../car.model';
 import { CarService } from '../car.service';
 import { RentService } from './rent.service';
@@ -20,27 +23,28 @@ import { RentedCar } from './rented-car.model';
 export class RentCarComponent implements OnInit {
 
   hoveredDate: NgbDate | null = null;
-
   fromDate: NgbDate;
   toDate: NgbDate | null = null;
-
   fromDateTransformed: Date;
   toDateTransformed: Date;
+
   numberOfDays: number;
   totalPrice: number;
-
-  Car: Car;
-  user: User;
-  carRents: RentedCar[];
-  userId = localStorage.getItem("userId");
-
   message: string;
   carAvailable: boolean = true;
 
+  Car: Car;
+  carRents: RentedCar[];
+  color: string;
+  carManufacturer: string;
+  carType: string;
+  fuelType: string;
 
+  user: User;
+  userId = localStorage.getItem("userId");
 
   constructor(private route: ActivatedRoute, private carService: CarService, private router: Router, calendar: NgbCalendar,
-    private userService: UserService, private rentService: RentService) {
+    private userService: UserService, private rentService: RentService, private multiService: CarManufacturerService, private toastrService: ToastrService) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
@@ -51,11 +55,12 @@ export class RentCarComponent implements OnInit {
         this.carService.getCarById(+param['id']).subscribe(carFromApi => {
           this.Car = carFromApi;
           this.checkCarAvailability(this.Car.id);
+          this.loadAdditionalCarData(this.Car);
         });
       }
     );
-    this.userService.getUserById(1).subscribe(userFromApi => this.user = userFromApi);
-    console.log(this.userId)
+    if (this.userId !== null)
+      this.userService.getUserById(Number(this.userId)).subscribe(userFromApi => this.user = userFromApi);
 
   }
 
@@ -69,15 +74,22 @@ export class RentCarComponent implements OnInit {
       });
     });
   }
-  test() {
-    console.log("ddaaa");
+
+  loadAdditionalCarData(car: Car) {
+    this.multiService.getColorById(car.colorId).subscribe(data => {
+      this.color = data.colorName;
+    });
+    this.multiService.getFuelTypeById(car.fuelTypeId).subscribe(data => {
+      this.fuelType = data.fuelTypeName;
+    });
+    this.multiService.getCarTypeById(car.carTypeId).subscribe(data => {
+      this.carType = data.typeName;
+    });
+    this.multiService.getCarManufacturerById(car.carManufacturerId).subscribe(data => {
+      this.carManufacturer = data.manufacturerName;
+    });
   }
 
-  // calculatePrice(): void {
-  //   const diffInMs = Math.abs(this.bsRangeValue[1].valueOf() - this.bsRangeValue[0].valueOf());
-  //   var r = diffInMs / (1000 * 60 * 60 * 24);
-  //   this.totalPrice = this.Car.pricePerDay * r;
-  // }
   onDateSelection(date: NgbDate) {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;
@@ -104,16 +116,15 @@ export class RentCarComponent implements OnInit {
   generateDatePeriod() {
     var daysToAdd = 1;
 
-
     if (this.toDate != null) {
       if (this.toDate.month - this.fromDate.month == 1) {
-      this.toDateTransformed = new Date(this.toDate.year, this.toDate.month-1, this.toDate.day);
-        this.fromDateTransformed = new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day);
+        this.toDateTransformed = new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day);
+        this.fromDateTransformed = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);
         daysToAdd = 0;
       }
-      else{
-        this.toDateTransformed = new Date(this.toDate.year, this.toDate.month-1, this.toDate.day);
-        this.fromDateTransformed = new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day);
+      else {
+        this.toDateTransformed = new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day);
+        this.fromDateTransformed = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);
       }
     }
 
@@ -123,23 +134,44 @@ export class RentCarComponent implements OnInit {
     console.log(this.numberOfDays)
     console.log(this.fromDateTransformed)
     console.log(this.toDateTransformed)
-
   }
 
   sendRentRequest() {
+
     let rentRequest: RentedCar = {
       rentedFrom: this.fromDateTransformed,
       rentedTo: this.toDateTransformed,
       totalPrice: this.totalPrice,
       rentApproved: false,
       requestCanceled: false,
-      userId: 2,
+      userId: Number(this.userId),
       carId: this.Car.id
     };
 
-    this.rentService.addBookedCar(rentRequest).subscribe();
-    this.message = "Uspješno ste poslali zahtjev za iznajmljivanje";
+    if(this.validateRentRequest(rentRequest) == true){
+      this.rentService.addBookedCar(rentRequest).subscribe();
+      this.message = "Uspješno ste poslali zahtjev za iznajmljivanje";
+  
+      setTimeout(() => { this.message = "" }, 3000);
+    }
+    else{
+      this.toastrService.error('Automobil je u želejenom vremenskom periodu već izdat drugom korisniku!', 'Automobil zauzet!');
+    }
 
-    setTimeout(() => { this.message = "" }, 3000);
+
+  }
+
+  validateRentRequest(rentRequest: RentedCar): boolean {
+    this.rentService.getRentForSingleCar(this.Car.id).subscribe(data => {
+      data.forEach(element => {
+        if (!element.rentApproved) {
+          if (rentRequest.rentedFrom >= element.rentedFrom && rentRequest.rentedTo <= element.rentedTo)
+            return false;
+          if (rentRequest.rentedFrom <= element.rentedFrom && rentRequest.rentedTo >= element.rentedTo)
+            return false;
+        }
+      });
+    });
+    return true;
   }
 }

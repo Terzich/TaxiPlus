@@ -36,6 +36,8 @@ import { AnswerQuestionComponent } from './admin-panel/question-menu/answer-ques
 import { UserNotificationsComponent } from './user-notifications/user-notifications.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { RentMenuComponent } from './admin-panel/rent-menu/rent-menu.component';
+import { ApproveRentComponent } from './admin-panel/rent-menu/approve-rent/approve-rent.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     UserPanelComponent,
     QuestionMenuComponent,
     AnswerQuestionComponent,
-    UserNotificationsComponent
+    UserNotificationsComponent,
+    RentMenuComponent,
+    ApproveRentComponent
   ],
   imports: [
     BrowserModule,

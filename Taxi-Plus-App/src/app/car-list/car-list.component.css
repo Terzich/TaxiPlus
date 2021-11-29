@@ -12,6 +12,9 @@
     transition:all 0.2s;
     margin-top:20px;
 }
+.card img{
+    max-height: 200px;
+}
 
 .card img:hover{
     transition: 0.3s;

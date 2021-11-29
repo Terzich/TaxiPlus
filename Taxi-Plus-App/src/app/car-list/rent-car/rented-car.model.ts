@@ -7,7 +7,9 @@ export class RentedCar {
     public rentApproved: boolean;
     public requestCanceled: boolean;
     public userId: number;
+    public userName?: string;
     public carId: number;
+    public carName?: string;
 
     constructor(id: number, rentedFrom: Date, rentedTo: Date, totalPrice: number, rentApproved: boolean, requestCanceled: boolean,
         userId: number, carId: number) {

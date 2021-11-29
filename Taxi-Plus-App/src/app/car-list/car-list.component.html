@@ -1,28 +1,28 @@
 <div class="container" style="padding:20px; box-sizing:border-box; margin-top:20px">
-    <!-- <ul>
+  <!-- <ul>
       <li *ngFor="let message of messageService.messages">{{message}}</li>
     </ul>
       <h1>Featured cars</h1>
        -->
-      <h1 class="text-center">Vozila iz naše ponude</h1>
+  <h2 class="text-center fst-italic">Vozila iz naše ponude</h2>
 
-      <div class="row justify-content-around">
-          <div class="card text-center" [class.selected]="car.carName === selectedcar" [class.details-select]="savedCar && car.carName == savedCar.carName" style="width: 19rem; border-radius:20px" *ngFor="let car of carList | slice:0:3;">
-              <img class="card-img-top img-fluid" src="data:image/png;base64,{{car.image}}" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">{{car.carName}}</h5>
-                <h1>{{car.pricePerDay}}BAM <span style="font-size: 14px;">/ dan</span></h1>
-                <p class="card-text">{{car.details | slice:0:120}}...</p>
-                <div *ngIf="">
-                  <!-- <p *ngIf="car.id==bookedCar.carID && bookedCar.to>dateNow">Automobil zauzet od: <span style="color:darkred;">{{bookedCar.from}},</span> do: <span style="color: darkred;">{{bookedCar.to}}</span></p>
-                  <p *ngIf="car.id==bookedCar.carID && bookedCar.to>dateNow" style="color: green;">Automobil je dostupan! </p>   -->
-                  radi
-                </div>
-              </div>
-              <div class="card-footer">
-                <button class="btn btn-outline-dark" [class.btn-popular]="car.carName === selectedcar" (click)="openDetails(car)">Details</button>
-              </div>
-            </div>   
+  <div class="row justify-content-around">
+    <div class="card text-center" [class.selected]="car.carName === selectedcar"
+      [class.details-select]="savedCar && car.carName == savedCar.carName" style="width: 19rem; border-radius:20px"
+      *ngFor="let car of carList | slice:0:3;">
+      <img class="card-img-top img-fluid" src="data:image/png;base64,{{car.image}}" alt="Card image cap">
+
+      <div class="card-body">
+        <h5 class="card-title">{{car.carName}}</h5>
+        <h1>{{car.pricePerDay}}BAM <span style="font-size: 14px;">/ dan</span></h1>
+        <p class="card-text">{{car.details | slice:0:120}}...</p>
+
       </div>
-      <app-car-details [car] = "savedCar"></app-car-details>
+      <div class="card-footer">
+        <button class="btn btn-outline-dark" [class.btn-popular]="car.carName === selectedcar"
+          (click)="openDetails(car)">Detalji</button>
+      </div>
+    </div>
   </div>
+  <app-car-details [car]="savedCar" *ngIf="savedCar !== undefined"></app-car-details>
+</div>

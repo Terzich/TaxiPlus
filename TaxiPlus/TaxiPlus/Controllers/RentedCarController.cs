@@ -26,5 +26,12 @@ namespace TaxiPlus.Controllers
             var list = await repositoryCustom.getAllForSingleCar(id);
             return Ok(list);
         }
+
+        [HttpGet("getByFilter")]
+        public async Task<IActionResult> FilterRequests([FromQuery] string filter)
+        {
+            var dobainObj = await repositoryCustom.GetAllByFilter(filter);
+            return Ok(dobainObj);
+        }
     }
 }

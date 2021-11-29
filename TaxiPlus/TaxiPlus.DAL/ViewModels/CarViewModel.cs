@@ -17,7 +17,8 @@ namespace TaxiPlus.DAL.ViewModels
         public int ColorId { get; set; }
         public string ColorName { get; set; }
         public int FuelTypeId { get; set; }
-        public string FuelType { get; set; }
+        public string FuelTypeName { get; set; }
+        public FuelType FuelType { get; set; }
         public int CarTypeId { get; set; }
         public string CarType { get; set; }
         public byte[] Image { get; set; }

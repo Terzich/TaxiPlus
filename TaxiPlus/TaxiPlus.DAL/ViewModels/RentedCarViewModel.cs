@@ -14,8 +14,8 @@ namespace TaxiPlus.DAL.ViewModels
         public bool RentApproved { get; set; }
         public bool RequestCanceled { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
+        public string UserName { get; set; }
         public int CarId { get; set; }
-        public Car Car { get; set; }
+        public string CarName { get; set; }
     }
 }

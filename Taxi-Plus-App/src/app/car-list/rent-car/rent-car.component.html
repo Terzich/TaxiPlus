@@ -6,14 +6,26 @@
         </div>
         <div class="col-lg-8 p-5">
             <h1 class="text-light">{{Car.carName}} </h1>
+            <p *ngIf="carAvailable" class="text-success">Vozilo je trenutno dostupno za iznajmljivanje</p>
+            <p *ngIf="!carAvailable" class="text-danger">Vozilo je trenutno iznajmljeno drugom korisniku</p>
             <hr style="color: whitesmoke;">
-            <p class="car-details text-light"><span class="fw-bold fst-italic">Cijena po danu: {{Car.pricePerDay}}
-                    BAM</span> <br>
-                <span>Boja: </span>{{Car.color}}
-                <br>
-                <span>Godina proizvodnje: </span> {{Car.yearOfManufacturing}}
-            </p>
-            <p class="text-primary">{{Car.details}}</p>
+            <div id="dw" class="d-flex justify-content-start fw-bold fst-italic">
+                <div id="dw1">
+                    <p class="car-details text-light">Cijena po danu: <span class="text-warning">{{Car.pricePerDay}} BAM</span> <br>
+                            Boja: {{color}}
+                            <br>
+                            Godina proizvodnje: {{Car.yearOfManufacturing}}
+                    </p>
+                </div>
+                <div id="dw2" class="ms-5">
+                    <p class="car-details text-light">Tip goriva: {{fuelType}}
+                            <br>
+                            Proizvođač: {{carManufacturer}}
+                            <br>
+                            Tip vozila: {{carType}}
+                    </p>
+                </div>
+            </div>
         </div>
         <div>
             <div class="row border-0 p-2 d-flex justify-content-center">
@@ -21,24 +33,21 @@
 
                 </div>
                 <div class="col-lg-6 text-center">
-                    <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" class="bg-white">
+                    <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
+                        outsideDays="hidden" class="bg-white" [minDate]="{year: 2021, month: 11, day: 1}">
                     </ngb-datepicker>
-                    
+
                     <ng-template #t let-date let-focused="focused">
-                      <span class="custom-day"
-                            [class.focused]="focused"
-                            [class.range]="isRange(date)"
-                            [class.faded]="isHovered(date) || isInside(date)"
-                            (mouseenter)="hoveredDate = date"
+                        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
                             (mouseleave)="hoveredDate = null">
-                        {{ date.day }}
-                      </span>
+                            {{ date.day }}
+                        </span>
                     </ng-template>
 
                 </div>
                 <div class="col-lg-3 ml-auto">
-                    <p *ngIf="carAvailable" class="text-danger">Auto je dostupno</p>
-                    <p *ngIf="!carAvailable" class="text-danger">Auto je trenutno zauzeto</p>
+
                 </div>
 
 
@@ -51,7 +60,7 @@
                 <div class="modal fade w-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
-                        <!-- <div class="modal-content">
+                        <div class="modal-content" *ngIf="userId !== null">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Potvrda zahtjeva za iznajmljivanje vozila
                                 </h5>
@@ -66,13 +75,17 @@
                                     <div class="col-md-8">
                                         <h1 class="text-danger">{{Car.carName}} </h1>
                                         <hr>
-                                        <p class="car-details"><span class="text-danger">Cijena po danu:
+                                        <p class="car-details fst-italic"><span class="text-danger">Cijena po danu:
                                                 {{Car.pricePerDay}} BAM</span> <br>
-                                            <span>Boja: </span>{{Car.color}}
+                                            <span>Boja: </span>{{color}}
                                             <br>
                                             <span>Godina proizvodnje: </span>{{Car.yearOfManufacturing | date:"yyyy"}}
                                             <br>
-                                            <span>Tip goriva: </span>{{Car.fuelTypeId}}
+                                            <span>Tip goriva: </span>{{fuelType}}
+                                            <br>
+                                            <span>Proizvođač: </span>{{carManufacturer}}
+                                            <br>
+                                            <span>Tip vozila: </span>{{carType}}
                                         </p>
                                         <p class="text-primary">{{Car.details}}</p>
                                     </div>
@@ -139,8 +152,7 @@
                                     <div class="form-group p-2">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend text-center">
-                                                <span
-                                                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
+                                                <span class="input-group-text bg-dark bg-gradient text-warning fw-bold "
                                                     id="inputGroup-sizing-default">Spol</span>
                                             </div>
                                             <input type="text"
@@ -168,17 +180,22 @@
                                 <button type="button" class="btn btn-primary" (click)="sendRentRequest()">Potvrdi
                                     zahtjev</button>
                             </div>
-                        </div> -->
-                        <div class="modal-content bg-secondary fs-4" *ngIf="userId === null">
-                            <div class="modal-header text-center d-flex justify-content-center text-warning fw-bold ">
+                        </div>
+                        <div class="modal-content bg-dark" *ngIf="userId === null">
+                            <div
+                                class="modal-header text-center fs-4 d-flex justify-content-center text-danger fw-bold ">
                                 NISTE LOGIRANI
                             </div>
-                            <div class="modal-body text-center fw-bold fst-italic fs-5">
-                                Da biste napravili zahtjev za iznajmljivanje potrebno je da se <span class="text-warning">prijavite na aplikaciju</span> ili <span class="text-warning">kreirate račun!</span>
+                            <div class="modal-body text-center fw-bold fst-italic text-light">
+                                Da biste napravili zahtjev za iznajmljivanje potrebno je da se <span
+                                    class="text-warning">prijavite na aplikaciju</span> ili <span
+                                    class="text-warning">kreirate račun!</span>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Logiraj se</button>
-                                <button type="button" class="btn btn-secondary" (click)="sendRentRequest()">Napravi račun</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Logiraj
+                                    se</button>
+                                <button type="button" class="btn btn-secondary" (click)="sendRentRequest()">Napravi
+                                    račun</button>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,6 @@
-export class Car{
+import { NumericLiteral } from "typescript";
+
+export class Car {
     id: number;
     carName: string;
     yearOfManufacturing: number;
@@ -6,6 +8,12 @@ export class Car{
     pricePerDay: number;
     image: string;
     details: string;
+    colorId: number;
+    fuelTypeId: number;
+    carManufacturerId: number;
+    carTypeId: number;
     color: string;
-    fuelTypeId: string;
+    fuelType: string;
+    carManufacturer: string;
+    carType: string;
 }

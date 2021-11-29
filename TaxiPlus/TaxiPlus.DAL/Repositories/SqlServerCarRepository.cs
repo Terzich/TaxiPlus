@@ -26,7 +26,7 @@ namespace TaxiPlus.DAL.Repositories
                 item.CarManufacturerName = _context.carManufacturers.Find(item.CarManufacturerId).ManufacturerName;
                 item.CarType = _context.carTypes.Find(item.CarTypeId).TypeName;
                 item.ColorName = _context.colors.Find(item.ColorId).ColorName;
-                item.FuelType = _context.fuelTypes.Find(item.FuelTypeId).FuelTypeName;
+                item.FuelTypeName = _context.fuelTypes.Find(item.FuelTypeId).FuelTypeName;
             }
             return result;
         }

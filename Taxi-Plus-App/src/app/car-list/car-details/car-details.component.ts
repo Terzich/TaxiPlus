@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CarManufacturerService } from '../car-manufacturer.service';
 import { Car } from '../car.model';
 
 @Component({
@@ -14,5 +15,4 @@ export class CarDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

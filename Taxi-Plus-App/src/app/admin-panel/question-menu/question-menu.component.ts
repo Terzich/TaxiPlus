@@ -8,7 +8,6 @@ import { FaqService } from 'src/app/faq/faq.service';
 })
 export class QuestionMenuComponent implements OnInit {
 
-
   questionList: any = [];
 
   ModalTitle: string;

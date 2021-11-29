@@ -22,16 +22,30 @@ export class CarManufacturerService {
 
   }
 
+  getCarManufacturerById(id: number): Observable<CarManufacturer> {
+
+    return this.http.get<CarManufacturer>(this.url + "carmanufacturer/"+id, { 'headers': this.options });
+  }
+
   getFuelTypesFromServer(): Observable<any[]> {
 
     return this.http.get<CarManufacturer[]>(this.url + "fueltype", { 'headers': this.options });
-
   }
+
+  getFuelTypeById(id: number): Observable<any> {
+
+    return this.http.get<any>(this.url + "fueltype/"+id, { 'headers': this.options });
+  }
+
 
   getColorsFromServer(): Observable<any[]> {
 
     return this.http.get<CarManufacturer[]>(this.url + "color", { 'headers': this.options });
+  }
 
+  getColorById(id: number): Observable<any> {
+
+    return this.http.get<any>(this.url + "color/"+id, { 'headers': this.options });
   }
 
   getCarTypesFromServer(): Observable<any[]> {
@@ -39,4 +53,10 @@ export class CarManufacturerService {
     return this.http.get<CarManufacturer[]>(this.url + "cartype", { 'headers': this.options });
 
   }
+
+  getCarTypeById(id: number): Observable<any> {
+
+    return this.http.get<any>(this.url + "cartype/"+id, { 'headers': this.options });
+  }
+
 }
