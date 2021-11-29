@@ -162,16 +162,18 @@ export class RentCarComponent implements OnInit {
   }
 
   validateRentRequest(rentRequest: RentedCar): boolean {
+    var rentValid = true;
     this.rentService.getRentForSingleCar(this.Car.id).subscribe(data => {
+      console.log(data)
       data.forEach(element => {
         if (!element.rentApproved) {
-          if (rentRequest.rentedFrom >= element.rentedFrom && rentRequest.rentedTo <= element.rentedTo)
-            return false;
-          if (rentRequest.rentedFrom <= element.rentedFrom && rentRequest.rentedTo >= element.rentedTo)
-            return false;
+          if (new Date(rentRequest.rentedFrom).getTime() >= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() <= new Date(element.rentedTo).getTime())
+            rentValid = false;
+          if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedTo).getTime())
+            rentValid = false;
         }
       });
     });
-    return true;
+    return rentValid;
   }
 }
