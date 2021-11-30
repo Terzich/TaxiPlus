@@ -40,6 +40,8 @@ export class RentCarComponent implements OnInit {
   carType: string;
   fuelType: string;
 
+  canSendRent = true;
+
   user: User;
   userId = localStorage.getItem("userId");
 
@@ -72,6 +74,12 @@ export class RentCarComponent implements OnInit {
           this.carAvailable = false;
         }
       });
+    });
+  }
+
+  refreshRentList() {
+    this.rentService.getRentForSingleCar(this.Car.id).subscribe(data => {
+      this.carRents = data;
     });
   }
 
@@ -131,9 +139,6 @@ export class RentCarComponent implements OnInit {
     var Time = this.toDateTransformed.getTime() - this.fromDateTransformed.getTime();
     this.numberOfDays = Time / (1000 * 3600 * 24) + daysToAdd;
     this.totalPrice = 50 * this.numberOfDays;
-    console.log(this.numberOfDays)
-    console.log(this.fromDateTransformed)
-    console.log(this.toDateTransformed)
   }
 
   sendRentRequest() {
@@ -148,14 +153,21 @@ export class RentCarComponent implements OnInit {
       carId: this.Car.id
     };
 
-    if(this.validateRentRequest(rentRequest) == true){
-      this.rentService.addBookedCar(rentRequest).subscribe();
+    var isRequestPossible = this.validateRentRequest(rentRequest);
+    if (isRequestPossible) {
+      this.rentService.addBookedCar(rentRequest).subscribe(data => this.refreshRentList());
+      
       this.message = "Uspješno ste poslali zahtjev za iznajmljivanje";
-  
+      this.canSendRent = false;
+
       setTimeout(() => { this.message = "" }, 3000);
+      setTimeout(() => {
+        this.canSendRent = true;
+      }, 5000);
+     
     }
-    else{
-      this.toastrService.error('Automobil je u želejenom vremenskom periodu već izdat drugom korisniku!', 'Automobil zauzet!');
+    else {
+      this.toastrService.error('Automobil je u željenom vremenskom periodu već izdat drugom korisniku!', 'Automobil zauzet!');
     }
 
 
@@ -163,24 +175,24 @@ export class RentCarComponent implements OnInit {
 
   validateRentRequest(rentRequest: RentedCar): boolean {
     var rentValid = true;
-    console.log(rentRequest);
-    this.rentService.getRentForSingleCar(this.Car.id).subscribe(data => {
-      data.forEach(element => {
-        if (!element.requestCanceled) {
-          if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedTo).getTime()){
-            console.log("uslo u if")
-            rentValid = false;
-          }
-          if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && (new Date(rentRequest.rentedTo).getTime() <= new Date(element.rentedTo).getTime() && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedFrom).getTime())){
-            console.log("uslo u if")
-            rentValid = false;
-          }
-          if (new Date(rentRequest.rentedFrom).getTime() >= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() <= new Date(element.rentedTo).getTime()){
-            console.log("uslo u if")
-            rentValid = false;
-          }
+    this.carRents.forEach(element => {
+      if (!element.requestCanceled) {
+        if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedTo).getTime()) {
+          rentValid = false;
         }
-      });
+        if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && (new Date(rentRequest.rentedTo).getTime() <= new Date(element.rentedTo).getTime() && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedFrom).getTime())) {
+          rentValid = false;
+        }
+        if (new Date(rentRequest.rentedFrom).getTime() >= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() <= new Date(element.rentedTo).getTime()) {
+          rentValid = false;
+        }
+        if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getDate() == new Date(element.rentedFrom).getDate()) {
+          rentValid = false;
+        }
+        if (new Date(rentRequest.rentedFrom).getDate() == new Date(element.rentedTo).getDate()) {
+          rentValid = false;
+        }
+      }
     });
     return rentValid;
   }

@@ -11,18 +11,14 @@
             <hr style="color: whitesmoke;">
             <div id="dw" class="d-flex justify-content-start fw-bold fst-italic">
                 <div id="dw1">
-                    <p class="car-details text-light">Cijena po danu: <span class="text-warning">{{Car.pricePerDay}} BAM</span> <br>
-                            Boja: {{color}}
-                            <br>
-                            Godina proizvodnje: {{Car.yearOfManufacturing}}
+                    <p class="car-details text-light">Cijena po danu: <span class="text-warning">{{Car.pricePerDay}} BAM</span> <br> Boja: {{color}}
+                        <br> Godina proizvodnje: {{Car.yearOfManufacturing}}
                     </p>
                 </div>
                 <div id="dw2" class="ms-5">
                     <p class="car-details text-light">Tip goriva: {{fuelType}}
-                            <br>
-                            Proizvođač: {{carManufacturer}}
-                            <br>
-                            Tip vozila: {{carType}}
+                        <br> Proizvođač: {{carManufacturer}}
+                        <br> Tip vozila: {{carType}}
                     </p>
                 </div>
             </div>
@@ -33,14 +29,11 @@
 
                 </div>
                 <div class="col-lg-6 text-center">
-                    <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
-                        outsideDays="hidden" class="bg-white" [minDate]="{year: 2021, month: 11, day: 1}">
+                    <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" class="bg-white" [minDate]="{year: 2021, month: 11, day: 1}">
                     </ngb-datepicker>
 
                     <ng-template #t let-date let-focused="focused">
-                        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-                            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
-                            (mouseleave)="hoveredDate = null">
+                        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)" [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
                             {{ date.day }}
                         </span>
                     </ng-template>
@@ -51,21 +44,17 @@
                 </div>
 
 
-                <button type="button" (click)="generateDatePeriod()"
-                    class="btn btn-primary w-25  mt-2 bg-dark border-3 border-white text-light" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
+                <button type="button" (click)="generateDatePeriod()" class="btn btn-primary w-25  mt-2 bg-dark border-3 border-white text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Pošalji zahtjev
                 </button>
 
-                <div class="modal fade w-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade w-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content" *ngIf="userId !== null">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Potvrda zahtjeva za iznajmljivanje vozila
                                 </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
@@ -96,80 +85,52 @@
                                     <div class="form-group p-2">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <span
-                                                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
-                                                    id="">Ime i prezime</span>
+                                                <span class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center" id="">Ime i prezime</span>
                                             </div>
-                                            <input type="text"
-                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
-                                                readonly value="{{user.firstName}}">
-                                            <input type="text"
-                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
-                                                readonly value="{{user.lastName}}">
+                                            <input type="text" class="form-control border-0 border-bottom border-success bg-transparent text-center" readonly value="{{user.firstName}}">
+                                            <input type="text" class="form-control border-0 border-bottom border-success bg-transparent text-center" readonly value="{{user.lastName}}">
                                         </div>
                                     </div>
                                     <div class="form-group p-2">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <span
-                                                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
-                                                    id="">Grad i adresa</span>
+                                                <span class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center" id="">Grad i adresa</span>
                                             </div>
-                                            <input type="text"
-                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
-                                                readonly value="{{user.cityName}}">
-                                            <input type="text"
-                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
-                                                readonly value="{{user.address}}">
+                                            <input type="text" class="form-control border-0 border-bottom border-success bg-transparent text-center" readonly value="{{user.cityName}}">
+                                            <input type="text" class="form-control border-0 border-bottom border-success bg-transparent text-center" readonly value="{{user.address}}">
                                         </div>
                                     </div>
                                     <div class="form-group p-2">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <span
-                                                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
-                                                    id="inputGroup-sizing-default">Datum
+                                                <span class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center" id="inputGroup-sizing-default">Datum
                                                     rođenja</span>
                                             </div>
-                                            <input type="text"
-                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
-                                                readonly value="{{user.birthDate | date}}">
+                                            <input type="text" class="form-control border-0 border-bottom border-success bg-transparent text-center" readonly value="{{user.birthDate | date}}">
                                         </div>
                                     </div>
                                     <div class="form-group p-2">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <span
-                                                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
-                                                    id="inputGroup-sizing-default">Broj
+                                                <span class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center" id="inputGroup-sizing-default">Broj
                                                     telefona</span>
                                             </div>
-                                            <input type="text"
-                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
-                                                readonly value="{{user.phoneNumber}}">
+                                            <input type="text" class="form-control border-0 border-bottom border-success bg-transparent text-center" readonly value="{{user.phoneNumber}}">
                                         </div>
                                     </div>
                                     <div class="form-group p-2">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend text-center">
-                                                <span class="input-group-text bg-dark bg-gradient text-warning fw-bold "
-                                                    id="inputGroup-sizing-default">Spol</span>
+                                                <span class="input-group-text bg-dark bg-gradient text-warning fw-bold " id="inputGroup-sizing-default">Spol</span>
                                             </div>
-                                            <input type="text"
-                                                class="form-control border-0 border-bottom border-success bg-transparent text-center"
-                                                readonly value="{{user.gender}}">
+                                            <input type="text" class="form-control border-0 border-bottom border-success bg-transparent text-center" readonly value="{{user.gender}}">
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="row">
-                                    <p class="fst-italic fw-bolder">" - Period iznajmljivanja vozila traje od od: <span
-                                            class="text-primary">{{fromDateTransformed | date}}</span>,
-                                        do: <span class="text-primary">{{toDateTransformed | date}}."</span> <br>
-                                        " - Vozilo će biti iznajmljeno ukupno <span
-                                            class="text-danger fw-bold">{{numberOfDays}}</span> dana." <br>
-                                        " - Ukupna cijena iznajmljivanja vozila iznosi <span
-                                            class="fs-5 text-danger">{{totalPrice}}KM</span>."</p>
+                                    <p class="fst-italic fw-bolder">" - Period iznajmljivanja vozila traje od od: <span class="text-primary">{{fromDateTransformed | date}}</span>, do: <span class="text-primary">{{toDateTransformed | date}}."</span> <br> " - Vozilo će biti iznajmljeno
+                                        ukupno <span class="text-danger fw-bold">{{numberOfDays}}</span> dana." <br> " - Ukupna cijena iznajmljivanja vozila iznosi <span class="fs-5 text-danger">{{totalPrice}}KM</span>."</p>
                                 </div>
                             </div>
                             <p class="alert alert-success" style="width: 80%; margin: auto;" *ngIf="message">{{message}}
@@ -177,19 +138,16 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Prekid</button>
-                                <button type="button" class="btn btn-primary" (click)="sendRentRequest()">Potvrdi
+                                <button type="button" class="btn btn-primary" (click)="sendRentRequest()" [disabled]="!canSendRent">Potvrdi
                                     zahtjev</button>
                             </div>
                         </div>
                         <div class="modal-content bg-dark" *ngIf="userId === null">
-                            <div
-                                class="modal-header text-center fs-4 d-flex justify-content-center text-danger fw-bold ">
+                            <div class="modal-header text-center fs-4 d-flex justify-content-center text-danger fw-bold ">
                                 NISTE LOGIRANI
                             </div>
                             <div class="modal-body text-center fw-bold fst-italic text-light">
-                                Da biste napravili zahtjev za iznajmljivanje potrebno je da se <span
-                                    class="text-warning">prijavite na aplikaciju</span> ili <span
-                                    class="text-warning">kreirate račun!</span>
+                                Da biste napravili zahtjev za iznajmljivanje potrebno je da se <span class="text-warning">prijavite na aplikaciju</span> ili <span class="text-warning">kreirate račun!</span>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Logiraj

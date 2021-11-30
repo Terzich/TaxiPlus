@@ -23,18 +23,13 @@ export class NotificationService {
     return this.http.get<Notification[]>(this.url, { 'headers': this.options });
   }
 
-  // getCarById(id: number): Observable<Car> {
+  addNotification(val: any): Observable<number> {
+    return this.http.post<number>(this.url, val, { "headers": this.options });
+  }
 
-  //   return this.http.get<Car>(this.url + "/"+id, { 'headers': this.options });
-  // }
-
-  // addCar(val: any): Observable<number> {
-  //   return this.http.post<number>(this.url, val, { "headers": this.options });
-  // }
-
-  // updateCar(val:any, carId:number){
-  //   return this.http.put(this.url+'/'+carId,val);
-  // }
+  updateNotification(val: any, notificationId: number) {
+    return this.http.put(this.url + '/' + notificationId, val);
+  }
 
   // deleteCar(val:any){
   //   return this.http.delete(this.url+'/'+val);

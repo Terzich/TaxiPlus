@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from './notification.service';
+import { Notification } from './notification.model';
 
 @Component({
   selector: 'app-user-notifications',
@@ -9,8 +10,6 @@ import { NotificationService } from './notification.service';
 export class UserNotificationsComponent implements OnInit {
 
   allNotifications: any = [];
-  newNotifications: any = [];
-  numberOfOldNotifications: any = 0;
   numberOfNewNotifications: any = 0;
 
   userId = Number(localStorage.getItem("userId"));
@@ -20,18 +19,24 @@ export class UserNotificationsComponent implements OnInit {
   ngOnInit(): void {
     this.service.getAllNotificationsForUser(this.userId).subscribe(data => {
       data.forEach(element => {
-        console.log(element.viewed)
-        if (!element.viewed){
-          this.newNotifications.push(element);
+        this.allNotifications = data;
+        if (!element.viewed)
           this.numberOfNewNotifications++;
-        }
-        else{
-          this.allNotifications.push(element)
-          this.numberOfOldNotifications++;
-        }
       });
       
     });
+  }
+
+  viewNotification(notification: Notification) {
+    if(!notification.viewed){
+      var req = {
+        title: notification.title,
+        text: notification.text,
+        userId: notification.userId,
+        viewed: true
+      }
+      this.service.updateNotification(req, notification.id).subscribe();
+    }
   }
 
 }
