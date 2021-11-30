@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/user.model';
 import { UserService } from 'src/app/user.service';
-import { createBigIntLiteral } from 'typescript';
+import { couldStartTrivia, createBigIntLiteral } from 'typescript';
 import { CarManufacturerService } from '../car-manufacturer.service';
 import { Car } from '../car.model';
 import { CarService } from '../car.service';
@@ -163,14 +163,22 @@ export class RentCarComponent implements OnInit {
 
   validateRentRequest(rentRequest: RentedCar): boolean {
     var rentValid = true;
+    console.log(rentRequest);
     this.rentService.getRentForSingleCar(this.Car.id).subscribe(data => {
-      console.log(data)
       data.forEach(element => {
-        if (!element.rentApproved) {
-          if (new Date(rentRequest.rentedFrom).getTime() >= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() <= new Date(element.rentedTo).getTime())
+        if (!element.requestCanceled) {
+          if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedTo).getTime()){
+            console.log("uslo u if")
             rentValid = false;
-          if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedTo).getTime())
+          }
+          if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && (new Date(rentRequest.rentedTo).getTime() <= new Date(element.rentedTo).getTime() && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedFrom).getTime())){
+            console.log("uslo u if")
             rentValid = false;
+          }
+          if (new Date(rentRequest.rentedFrom).getTime() >= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() <= new Date(element.rentedTo).getTime()){
+            console.log("uslo u if")
+            rentValid = false;
+          }
         }
       });
     });
