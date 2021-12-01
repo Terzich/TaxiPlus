@@ -18,8 +18,9 @@ export class UserNotificationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getAllNotificationsForUser(this.userId).subscribe(data => {
+      this.allNotifications = data;
+      this.allNotifications.reverse()
       data.forEach(element => {
-        this.allNotifications = data;
         if (!element.viewed)
           this.numberOfNewNotifications++;
       });
@@ -35,7 +36,8 @@ export class UserNotificationsComponent implements OnInit {
         userId: notification.userId,
         viewed: true
       }
-      this.service.updateNotification(req, notification.id).subscribe();
+      this.service.updateNotification(req, Number(notification.id)).subscribe();
+      window.location.reload();
     }
   }
 

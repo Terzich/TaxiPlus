@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { decimalDigest } from '@angular/compiler/src/i18n/digest';
 import { Component, Input, OnInit } from '@angular/core';
 import { waitForAsync } from '@angular/core/testing';
@@ -5,6 +6,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { Notification } from 'src/app/user-notifications/notification.model';
+import { NotificationService } from 'src/app/user-notifications/notification.service';
 import { User } from 'src/app/user.model';
 import { UserService } from 'src/app/user.service';
 import { couldStartTrivia, createBigIntLiteral } from 'typescript';
@@ -46,7 +49,7 @@ export class RentCarComponent implements OnInit {
   userId = localStorage.getItem("userId");
 
   constructor(private route: ActivatedRoute, private carService: CarService, private router: Router, calendar: NgbCalendar,
-    private userService: UserService, private rentService: RentService, private multiService: CarManufacturerService, private toastrService: ToastrService) {
+    private userService: UserService, private rentService: RentService, private multiService: CarManufacturerService, private toastrService: ToastrService, private notificationService: NotificationService) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
@@ -158,6 +161,13 @@ export class RentCarComponent implements OnInit {
       this.rentService.addBookedCar(rentRequest).subscribe(data => this.refreshRentList());
       
       this.message = "Uspješno ste poslali zahtjev za iznajmljivanje";
+      var notification : Notification = {
+        title: "Zahtjev za iznajmljivanje vozila!",
+        text: "Uspješno ste poslali zahtjev za iznajmljivanje vozila u periodu od: " + rentRequest.rentedFrom.toString() + " do: " + rentRequest.rentedTo.toString(),
+        userId: Number(localStorage.getItem('userId')),
+        viewed: false
+      };
+      this.notificationService.addNotification(notification).subscribe();
       this.canSendRent = false;
 
       setTimeout(() => { this.message = "" }, 3000);
@@ -176,6 +186,11 @@ export class RentCarComponent implements OnInit {
   validateRentRequest(rentRequest: RentedCar): boolean {
     var rentValid = true;
     this.carRents.forEach(element => {
+      var rt = formatDate(element.rentedTo,'yyyy-MM-dd','en_US');
+      var rf = formatDate(rentRequest.rentedFrom,'yyyy-MM-dd','en_US');
+      console.log("baza rt: " + rt)
+      console.log("request rf: " + rf)
+      console.log(rt === rf)
       if (!element.requestCanceled) {
         if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedTo).getTime()) {
           rentValid = false;
@@ -189,9 +204,10 @@ export class RentCarComponent implements OnInit {
         if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getDate() == new Date(element.rentedFrom).getDate()) {
           rentValid = false;
         }
-        if (new Date(rentRequest.rentedFrom).getDate() == new Date(element.rentedTo).getDate()) {
+        if(rt === rf){
           rentValid = false;
         }
+        
       }
     });
     return rentValid;

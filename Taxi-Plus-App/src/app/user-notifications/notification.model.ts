@@ -1,5 +1,5 @@
 export class Notification {
-    id: number;
+    id?: number;
     title: string;
     text: string;
     userId: number;
