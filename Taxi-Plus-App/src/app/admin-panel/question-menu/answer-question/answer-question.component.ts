@@ -2,6 +2,8 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FaqService } from 'src/app/faq/faq.service';
+import { Notification } from 'src/app/user-notifications/notification.model';
+import { NotificationService } from 'src/app/user-notifications/notification.service';
 
 @Component({
   selector: 'app-answer-question',
@@ -10,7 +12,7 @@ import { FaqService } from 'src/app/faq/faq.service';
 })
 export class AnswerQuestionComponent implements OnInit {
 
-  constructor(private service: FaqService, private router: Router) { }
+  constructor(private service: FaqService, private router: Router, private notificationService: NotificationService) { }
 
   @Input() question: any;
 
@@ -52,6 +54,14 @@ export class AnswerQuestionComponent implements OnInit {
     this.service.answerQuestion(val, this.question.id).subscribe(res => {
       alert(res.toString());
     });
+
+    var notification : Notification = {
+      title: "Odgovor na postavljeno pitanje!",
+      text: "Dobili ste odgovor od strane osoblja na postavljeno pitanje. Vaše pitanje je glasilo ' " + this.text + " '. Odgovor na pitanje: ' " + val.answer + " '.",
+      userId: Number(this.userId),
+      viewed: false
+    };
+    this.notificationService.addNotification(notification).subscribe();
   }
 
 }

@@ -23,10 +23,9 @@ export class QuestionMenuComponent implements OnInit {
   }
 
   refreshQuestionList() {
-    this.faqService.getAllQuestionsFromServer().subscribe(data => {
+    this.faqService.getAllQuestionsFromServerWithFilter(this.filterType).subscribe(data => {
       this.questionList = data;
-      console.log("data")
-
+      this.questionList.reverse();
     });
 
   }
@@ -60,6 +59,7 @@ export class QuestionMenuComponent implements OnInit {
     this.faqService.getAllQuestionsFromServerWithFilter(this.filterType).subscribe(data => {
       console.log(data);
       this.questionList = data;
+      this.questionList.reverse();
     });
     if (this.filterType === '')
       this.questionFiltered = false;

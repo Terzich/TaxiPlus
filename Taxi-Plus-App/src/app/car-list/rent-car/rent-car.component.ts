@@ -161,9 +161,11 @@ export class RentCarComponent implements OnInit {
       this.rentService.addBookedCar(rentRequest).subscribe(data => this.refreshRentList());
       
       this.message = "Uspješno ste poslali zahtjev za iznajmljivanje";
+      var rf = formatDate(rentRequest.rentedFrom,'dd-MM-yyyy','en_US');
+      var rt = formatDate(rentRequest.rentedTo,'dd-MM-yyyy','en_US');
       var notification : Notification = {
         title: "Zahtjev za iznajmljivanje vozila!",
-        text: "Uspješno ste poslali zahtjev za iznajmljivanje vozila u periodu od: " + rentRequest.rentedFrom.toString() + " do: " + rentRequest.rentedTo.toString(),
+        text: "Uspješno ste poslali zahtjev za iznajmljivanje vozila " + this.Car.carName + " u periodu od: " + rf + " do: " + rt,
         userId: Number(localStorage.getItem('userId')),
         viewed: false
       };
@@ -188,9 +190,6 @@ export class RentCarComponent implements OnInit {
     this.carRents.forEach(element => {
       var rt = formatDate(element.rentedTo,'yyyy-MM-dd','en_US');
       var rf = formatDate(rentRequest.rentedFrom,'yyyy-MM-dd','en_US');
-      console.log("baza rt: " + rt)
-      console.log("request rf: " + rf)
-      console.log(rt === rf)
       if (!element.requestCanceled) {
         if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedTo).getTime()) {
           rentValid = false;

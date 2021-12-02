@@ -25,7 +25,7 @@ export class RentMenuComponent implements OnInit {
   refreshRentList() {
     this.rentService.getRentedCarsFromServer().subscribe(data => {
       this.rentedCarList = data;
-      console.log("data")
+      this.rentedCarList.reverse();
     });
 
   }
@@ -45,7 +45,13 @@ export class RentMenuComponent implements OnInit {
 
   closeClick() {
     this.ActivateRentDetails = false;
-    this.refreshRentList();
+    if(this.filterType === "")
+      this.refreshRentList();
+  }
+
+  rentChecked() {
+    console.log("uslo u event")
+    this.filterQuestions();
   }
 
   changeFilterType(checkbox: any) {
@@ -57,8 +63,8 @@ export class RentMenuComponent implements OnInit {
 
   filterQuestions() {
     this.rentService.getAllRequestsFromServerWithFilter(this.filterType).subscribe(data => {
-      console.log(data);
       this.rentedCarList = data;
+      this.rentedCarList.reverse();
     });
     if (this.filterType === '')
       this.requestFiltered = false;

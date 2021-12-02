@@ -53,7 +53,7 @@ namespace TaxiPlus.DAL.Repositories
                     list = await _context.questions.Where(q => q.UserId != null && q.Answer != null).ToListAsync();
                     break; 
                 default:
-                    list = await _context.questions.ToListAsync();
+                    list = await _context.questions.Where(q => q.UserId != null).ToListAsync();
                     break;
             }
 

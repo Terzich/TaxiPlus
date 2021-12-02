@@ -10,21 +10,33 @@
                 </div>
             </div>
             <div class="form-froup row">
-                <label class="col-sm-2 col-form-label" for="userId">Korisnik</label>
+                <label class="col-sm-2 col-form-label" for="nameAndSurname">Ime i prezime korisnika</label>
                 <div class="col-sm-10 text-center">
-                    <p id="userId" class="form-control" id="userId" name="userId">{{userId}}</p>
+                    <p id="nameAndSurname" class="form-control" id="nameAndSurname" name="nameAndSurname">{{nameAndSurname}}</p>
+                </div>
+            </div>
+            <div class="form-froup row">
+                <label class="col-sm-2 col-form-label" for="username">Korisničko ime</label>
+                <div class="col-sm-10 text-center">
+                    <p id="username" class="form-control" id="username" name="username">{{username}}</p>
+                </div>
+            </div>
+            <div class="form-froup row">
+                <label class="col-sm-2 col-form-label" for="username">Email adresa</label>
+                <div class="col-sm-10 text-center">
+                    <p id="email" class="form-control" id="email" name="email">{{email}}</p>
                 </div>
             </div>
             <div class="form-froup row">
                 <label class="col-sm-2 col-form-label" for="answer">Odgovor</label>
                 <div class="col-sm-10 text-center">
-                        <textarea name="answer" id="answer" cols="30" rows="10" placeholder="Unesite odgovor na pitanje" [ngModel]="answer" class="form-control" required #nc="ngModel"></textarea>
-                        <br><span class="help-block fst-italic fw-light text-danger" *ngIf="nc.invalid && nc.touched">Niste unijeli odgovor na pitanje!</span>
-                    </div>
+                    <textarea name="answer" id="answer" cols="30" rows="10" placeholder="Unesite odgovor na pitanje" [ngModel]="answer" class="form-control" required #nc="ngModel"></textarea>
+                    <br><span class="help-block fst-italic fw-light text-danger" *ngIf="nc.invalid && nc.touched">Niste unijeli odgovor na pitanje!</span>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Odgovori</button>
         </form>
-      
+
     </div>
-  
+
 </div>
