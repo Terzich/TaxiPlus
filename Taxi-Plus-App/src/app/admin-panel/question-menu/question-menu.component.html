@@ -1,12 +1,3 @@
-<!-- <button type="button" class="btn btn-primary float-right m-2" 
-data-bs-toggle="modal" data-bs-target="#exampleModal"
-(click)="addClick()"
-data-backdrop="static" data-keyboard="false"
->
-    Dodaj vozilo
-  </button> -->
-
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
@@ -72,7 +63,7 @@ data-backdrop="static" data-keyboard="false"
                 <p *ngIf="dataItem.userId === null" class="text-danger">X</p>
             </td>
             <td>
-                <p *ngIf="dataItem.userId !== null && dataItem.answer !== null">{{dataItem.answer | slice:0:40}}</p>
+                <p *ngIf="dataItem.userId !== null && dataItem.answer !== null">{{dataItem.answer | slice:0:40}} ...</p>
                 <p *ngIf="dataItem.userId === null" class="text-danger">X</p>
             </td>
             <td>

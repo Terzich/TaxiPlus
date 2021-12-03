@@ -89,7 +89,7 @@ export class AddEditCarComponent implements OnInit {
     var val = {carName: this.carName,
       numberOfDoors:this.numberOfDoors,
       yearOfManufacturing:this.yearOfManufacturing,
-      pricePerDay:this.pricePerDay,
+      pricePerDay:50,
       carManufacturerId: Number(this.carManufacturerId),
       colorId:this.colorId,
       fuelTypeId:this.fuelTypeId,

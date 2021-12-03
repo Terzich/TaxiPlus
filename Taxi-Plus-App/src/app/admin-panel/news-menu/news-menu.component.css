@@ -1,0 +1,22 @@
+img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+tr {
+    height: 102px;
+}
+
+tbody tr td {
+    padding-top: 10px;
+}
+
+#scndBtn {
+    margin-left: 20px;
+}
+
+@media only screen and (max-width: 1250px) {
+    #scndBtn {
+        margin-left: 0;
+    }
+}

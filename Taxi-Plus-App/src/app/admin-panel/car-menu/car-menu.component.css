@@ -1,0 +1,29 @@
+#scndBtn {
+    margin-left: 20px;
+}
+
+img {
+    max-width: 300px;
+    max-height: 250px;
+}
+
+tbody tr {
+    height: 250px;
+}
+
+tbody tr td {
+    vertical-align: middle;
+    padding: 5px;
+    font-size: 1.5rem;
+}
+
+button {
+    height: 60px;
+    width: 50px;
+}
+
+@media only screen and (max-width: 1250px) {
+    #scndBtn {
+        margin-left: 0;
+    }
+}

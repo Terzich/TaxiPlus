@@ -60,6 +60,7 @@ export class NewsMenuComponent implements OnInit {
   refreshNewsList(){
     this.service.getNews().subscribe(data=>{
       this.newsList=data;
+      this.newsList.reverse();
       this.DepartmentListWithoutFilter=data;
     });
   }

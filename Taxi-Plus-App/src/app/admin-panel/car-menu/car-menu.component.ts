@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CarManufacturerService } from 'src/app/car-list/car-manufacturer.service';
+import { Car } from 'src/app/car-list/car.model';
 import { CarService } from 'src/app/car-list/car.service';
 
 @Component({
@@ -9,7 +11,7 @@ import { CarService } from 'src/app/car-list/car.service';
 })
 export class CarMenuComponent implements OnInit {
 
-  constructor(private service:CarService, private router: Router) { }
+  constructor(private service:CarService, private router: Router, private multiService: CarManufacturerService) { }
 
   carList:any=[];
 
@@ -20,6 +22,11 @@ export class CarMenuComponent implements OnInit {
   DepartmentIdFilter:string="";
   DepartmentNameFilter:string="";
   DepartmentListWithoutFilter:any=[];
+
+  color: string;
+  carManufacturer: string;
+  carType: string;
+  fuelType: string;
 
   ngOnInit(): void {
     this.refreshCarList();
@@ -57,6 +64,21 @@ export class CarMenuComponent implements OnInit {
     this.service.getCarsFromServer().subscribe(data=>{
       this.carList=data;
       this.DepartmentListWithoutFilter=data;
+    });
+  }
+
+  loadAdditionalCarData(car: Car) {
+    this.multiService.getColorById(car.colorId).subscribe(data => {
+      this.color = data.colorName;
+    });
+    this.multiService.getFuelTypeById(car.fuelTypeId).subscribe(data => {
+      this.fuelType = data.fuelTypeName;
+    });
+    this.multiService.getCarTypeById(car.carTypeId).subscribe(data => {
+      this.carType = data.typeName;
+    });
+    this.multiService.getCarManufacturerById(car.carManufacturerId).subscribe(data => {
+      this.carManufacturer = data.manufacturerName;
     });
   }
 

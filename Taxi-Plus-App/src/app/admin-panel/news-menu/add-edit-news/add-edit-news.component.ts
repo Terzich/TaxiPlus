@@ -17,20 +17,8 @@ import { StringLiteralLike } from 'typescript';
 })
 export class AddEditNewsComponent implements OnInit {
 
-  checkedNumber: number;
 
   constructor(private service:NewsService, private router: Router) { }
-
-  @Input() car:any;
-  carId:number;
-  carName:string;
-  yearOfManufacturing: number;
-  numberOfDoors: number;
-  pricePerDay: number;
-  fuelTypeId: number;
-  colorId: number;
-  carTypeId: number;
-  carManufacturerId: number;
 
   newsTitle: string;
   content: string;
@@ -58,6 +46,8 @@ export class AddEditNewsComponent implements OnInit {
     }
     this.newsTitle = this.news.newsTitle;
     this.content = this.news.content;
+    this.base64Slika = this.news.image !== undefined ?  this.news.image : '';
+
   
   }
 
@@ -82,15 +72,18 @@ export class AddEditNewsComponent implements OnInit {
   imageCropped(event: ImageCroppedEvent){
     this.croppedImage = event.base64
   }
-
   onSubmit() {
   if(!this.form.valid){
       return;
   }
+   var date = new Date();
+   console.log(date);
+   
    if(this.news.id == 0){
     var val = {
       newsTitle: this.form.value.newsTitle,
       content: this.form.value.content,
+      publishedAt: date,
       image: this.base64Slika
 
     };
@@ -102,7 +95,9 @@ export class AddEditNewsComponent implements OnInit {
     var val = {
       newsTitle: this.form.value.newsTitle,
       content: this.form.value.content,
-      image: this.base64Slika
+      publishedAt: date,
+      image : String(this.base64Slika).replace('data:image/png;base64,', '')
+
 
     };
     this.service.updateNews(val, this.news.id).subscribe(res => {
