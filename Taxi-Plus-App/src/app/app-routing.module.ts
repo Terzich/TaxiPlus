@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { AdminPanelComponent } from "./admin-panel/admin-panel.component";
 import { CarMenuComponent } from "./admin-panel/car-menu/car-menu.component";
 import { DashboardComponent } from "./admin-panel/dashboard/dashboard.component";
@@ -52,7 +52,12 @@ const routes: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes),
+        RouterModule.forRoot(routes, {
+            useHash: true,
+            preloadingStrategy: PreloadAllModules,
+            scrollPositionRestoration: 'top',
+          })
     ],
     exports: [RouterModule]
 })
