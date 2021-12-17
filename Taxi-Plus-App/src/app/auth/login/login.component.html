@@ -10,7 +10,10 @@
           <input type="submit" class="fadeIn fourth" [disabled]="loginForm.invalid" value="Log In">
         
         </form>
+        <span>Ukoliko nemate korisnički račun <a routerLink="../../account/registration">kreirajte novi</a></span>
+          <a routerLink="../../" class="mt-4">Nazad na aplikaciju</a>
       </div>
+
     </div>
     <div *ngIf="isLoading" class="loading-spinner" style=" transform: translate(50%);">
         <div class="spinner-border" role="status" style=" transform: translate(50%);">

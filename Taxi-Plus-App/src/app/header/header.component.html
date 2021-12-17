@@ -2,8 +2,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">TAXI PLUS</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+          <a class="navbar-brand" routerLink="">TAXI PLUS</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
           (click)="toggleMenu()"
           >
             <span></span>
@@ -14,23 +14,23 @@
           <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Početna</a>
+                <a class="nav-link active" aria-current="page" routerLink="">Početna</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="car-list">Iznajmi vozilo</a>
+                <a class="nav-link" routerLink="car-list">Iznajmi vozilo</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Informacije
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="/news">Pregled novosti</a></li>
-                  <li><a class="dropdown-item" href="/company-offer">Cjenovnik usluga</a></li>
+                  <li><a class="dropdown-item" routerLink="news">Pregled novosti</a></li>
+                  <li><a class="dropdown-item" routerLink="company-offer">Cjenovnik usluga</a></li>
                
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/faq">Često postavljena pitanja</a>
+                <a class="nav-link" routerLink="faq">Često postavljena pitanja</a>
               </li>
             </ul>
             <ul class="navbar-nav ms-auto" *ngIf="isLogged">
@@ -40,12 +40,12 @@
 
           <ul class="navbar-nav ms-auto me-5 ">
             <li class="nav-item dropdown me-5" *ngIf="!isLogged">
-              <a class="nav-link dropdown-toggle text-danger fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle text-danger fw-bold" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{username}}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/rent-requests">Pregled zahtjeva za iznajmljivanje</a></li>
-                <li><a class=" dropdown-item" href="/user-notifications">Obavijesti</a></li>
+                <li><a class="dropdown-item" routerLink="rent-requests">Pregled zahtjeva za iznajmljivanje</a></li>
+                <li><a class=" dropdown-item" routerLink="user-notifications">Obavijesti</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" (click)="logOut()">Odjavi se</a></li>
               </ul>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaxiPlus.DAL.Database;
 
 namespace TaxiPlus.DAL.Migrations
 {
     [DbContext(typeof(TaxiPlusDbContext))]
-    partial class TaxiPlusDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211217214019_Data-Seed")]
+    partial class DataSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -759,7 +761,7 @@ namespace TaxiPlus.DAL.Migrations
                             FirstName = "Ahmed",
                             GenderId = 1,
                             LastName = "Terzic",
-                            Password = "518A69A38EAF1DCD6DFE01103906EACA",
+                            Password = "AdminFit!",
                             PhoneNumber = "38762650592",
                             RoleId = 1,
                             Username = "Admin"
@@ -774,7 +776,7 @@ namespace TaxiPlus.DAL.Migrations
                             FirstName = "User",
                             GenderId = 1,
                             LastName = "Fit",
-                            Password = "DCB20627FC8E6F9ECC3C52DE847BF1DB",
+                            Password = "UserFit",
                             PhoneNumber = "38711254",
                             RoleId = 2,
                             Username = "UserFit"

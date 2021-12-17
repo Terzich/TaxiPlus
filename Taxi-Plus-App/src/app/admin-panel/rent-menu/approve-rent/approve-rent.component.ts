@@ -86,7 +86,7 @@ export class ApproveRentComponent implements OnInit {
       viewed: false
     };
     this.notificationService.addNotification(notification).subscribe();
-    this.toastr.success('Uspješno ste odobrili zahtjev za iznajmljivanje voizla korisniku "' + this.user.firstName + ' ' + this.user.lastName +'".', 'Zahtjev odobren!');
+    this.toastr.success('Uspješno ste odobrili zahtjev za iznajmljivanje vozila korisniku "' + this.user.firstName + ' ' + this.user.lastName +'".', 'Zahtjev odobren!');
   }
 
   declineRentRequest() {
@@ -111,6 +111,6 @@ export class ApproveRentComponent implements OnInit {
     this.notificationService.addNotification(notification).subscribe();
 
     this.rentService.updateBookedCar(req, Number(this.rentRequest.id)).subscribe(()=> this.statusChanged.emit());
-    this.toastr.error('Uspješno ste odbili zahtjev za iznajmljivanje voizla korisniku "' + this.user.firstName + ' ' + this.user.lastName +'".', 'Zahtjev odbijen!');
+    this.toastr.error('Uspješno ste odbili zahtjev za iznajmljivanje vozila korisniku "' + this.user.firstName + ' ' + this.user.lastName +'".', 'Zahtjev odbijen!');
   }
 }

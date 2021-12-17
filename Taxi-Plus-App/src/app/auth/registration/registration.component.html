@@ -32,8 +32,8 @@
         <option [ngValue]="undefined" disabled>Izaberite spol</option>
         <option *ngFor="let c of genderList" value="{{c.id}}">{{c._Gender}}</option>
       </select>
-      <input type="text" id="email" #email="ngModel" class="fadeIn third" name="email" placeholder="email" ngModel required #ad="ngModel"> <br>
-      <span class="help-block fst-italic fw-light text-danger" *ngIf="ad.invalid && ad.touched">Niste unijeli email adresu!</span>
+      <input type="email" id="email" #email="ngModel" class="fadeIn third" email name="email" placeholder="email" ngModel required #ad="ngModel"> <br>
+      <span class="help-block fst-italic fw-light text-danger" *ngIf="ad.invalid && ad.touched">Niste unijeli email adresu ili nije u ispravnom formatu!</span>
 
       <input type="text" id="login" #username="ngModel" class="fadeIn second" name="username" placeholder="username"
         ngModel autocomplete="off" required #un="ngModel" (keyup)="checkUser($event)"> <br>
@@ -41,14 +41,16 @@
 
       <input type="password" id="password" #password="ngModel" class="fadeIn third" name="password"
         placeholder="password" ngModel required #pw="ngModel"> <br>
-        <span class="help-block fst-italic fw-light text-danger" *ngIf="pw.invalid && pw.touched">Niste unijeli korisničko ime!</span>
+        <span class="help-block fst-italic fw-light text-danger" *ngIf="pw.invalid && pw.touched">Niste unijeli password!</span> <br>
 
 
       <!-- <input type="submit" class="fadeIn fourth" value="Registruj se"> -->
-      <button type="submit" [disabled]="registrationForm.invalid || usernameTaken" class="btn btn-primary border-0 mt-2">Registruj se</button> <br>
-      <span class="text-danger" *ngIf="usernameTaken">korisničko ime je zauzeto!</span>
+      <button type="submit" [disabled]="registrationForm.invalid || usernameTaken || registrationForm.value.cityId === undefined || registrationForm.value.genderId === undefined" class="btn btn-primary border-0 mt-2">Registruj se</button> <br>
+      <span class="text-danger" *ngIf="usernameTaken">korisničko ime je zauzeto!</span> <br>
     </form>
+    <a routerLink="../../" class="mt-4">Nazad na aplikaciju</a>
   </div>
+
 </div>
 <div *ngIf="isLoading" class="loading-spinner" style=" transform: translate(50%);">
   <div class="spinner-border" role="status" style=" transform: translate(50%);">
