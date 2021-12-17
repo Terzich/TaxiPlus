@@ -10,7 +10,7 @@ export class User{
     public imageUrl: string;
     public cityName: string;
     public gender: string;
-    public userName: string;
+    public username: string;
     public email: string;
     public password: string;
     public roleId: number;
@@ -25,7 +25,7 @@ export class User{
             this.imageUrl = imageUrl;
             this.cityName = cityName;
             this.gender = gender;
-            this.userName = userName;
+            this.username = userName;
             this.email = email;
             this.password = password;
             this.roleId = roleId;

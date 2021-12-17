@@ -56,6 +56,8 @@ namespace TaxiPlus
             services.AddScoped<IBaseRepository<FuelTypeViewModel>, SqlServerFuelTypeRepository>();
             services.AddScoped<IBaseRepository<ColorViewModel>, SqlServerColorRepository>();
             services.AddScoped<IBaseRepository<CarTypeViewModel>, SqlServerCarTypeRepository>();
+            services.AddScoped<IBaseRepository<GenderViewModel>, SqlServerGenderRepository>();
+
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {

@@ -38,6 +38,21 @@ namespace TaxiPlus.DAL.Repositories
             var list = await _context.rentedCars.Where(rc => rc.CarId == carId).ToListAsync();
             return _mapper.Map<List<RentedCarViewModel>>(list);
         }
+
+        public async Task<List<RentedCarViewModel>> getAllForSingleUser(int userId)
+        {
+            var list = await _context.rentedCars.Where(rc => rc.UserId == userId).ToListAsync();
+            var result = _mapper.Map<List<RentedCarViewModel>>(list);
+
+            foreach (var item in result)
+            {
+                User user = _context.users.Find(item.UserId);
+                item.UserName = user.FirstName + " " + user.LastName;
+                item.CarName = _context.cars.Find(item.CarId).CarName;
+            }
+            return result;
+        }
+
         public async override Task<int> Insert(RentedCarUpsertRequest request)
         {
             var newFromDate = request.RentedFrom.AddDays(1);

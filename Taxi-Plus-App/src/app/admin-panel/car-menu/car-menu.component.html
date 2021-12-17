@@ -41,7 +41,7 @@
         <tr *ngFor="let dataItem of carList">
             <td>{{dataItem.id}}</td>
             <td>{{dataItem.carName}}</td>
-            <td>{{dataItem.yearOfManufacturing | date:'yyyy'}}</td>
+            <td>{{dataItem.yearOfManufacturing}}</td>
             <td>{{dataItem.numberOfDoors}}</td>
             <td>{{dataItem.pricePerDay}}</td>
             <td><img class="card-img-top img-fluid" src="data:image/png;base64,{{dataItem.image}}" alt="Card image cap"></td>

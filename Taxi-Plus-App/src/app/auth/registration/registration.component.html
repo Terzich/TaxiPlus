@@ -1,29 +1,57 @@
 <div class="wrapper fadeInDown">
-    
-    <div id="formContent">
-      <span class="material-icons"style="font-size: 50px">person_add</span>
-      <form #registrationForm= "ngForm" (ngSubmit) = "onSubmit()" autocomplete="off">
-          
-        <input type="text" id="firstName"  #firstName="ngModel"class="fadeIn third" name="firstName" placeholder="ime" ngModel>
-        <input type="text" id="lastName"  #lastName="ngModel"class="fadeIn third" name="lastName" placeholder="prezime" ngModel>
-        <input type="date" id="birthDate"  #birthDate="ngModel"class="fadeIn third" name="birthDate" placeholder="datum rodjenja" ngModel>
-        <input type="text" id="phoneNumber"  #phoneNumber="ngModel"class="fadeIn third" name="phoneNumber" placeholder="broj telefona" ngModel>
-        <input type="text" id="address"  #address="ngModel"class="fadeIn third" name="address" placeholder="adresa" ngModel>
-        <input type="text" id="firstName"  #firstName="ngModel"class="fadeIn third" name="firstName" placeholder="cityId (dodati)" ngModel>
-        <input type="text" id="firstName"  #firstName="ngModel"class="fadeIn third" name="firstName" placeholder="gender id (option dodati)" ngModel>
-        <input type="text" id="email"  #email="ngModel"class="fadeIn third" name="email" placeholder="email" ngModel>
-        
-        <input type="text" id="login" #username="ngModel" class="fadeIn second" name="username" placeholder="username" ngModel autocomplete="off">
-        <input type="password" id="password"  #password="ngModel"class="fadeIn third" name="password" placeholder="password" ngModel>
+
+  <div id="formContent">
+    <span class="material-icons" style="font-size: 50px">person_add</span>
+    <form #registrationForm="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+
+      <input type="text" id="firstName" #firstName="ngModel" class="fadeIn third" name="firstName" placeholder="ime"
+        ngModel required #fn="ngModel"><br>
+        <span class="help-block fst-italic fw-light text-danger" *ngIf="fn.invalid && fn.touched">Niste unijeli ime!</span>
+
+      <input type="text" id="lastName" #lastName="ngModel" class="fadeIn third" name="lastName" placeholder="prezime"
+        ngModel required #ln="ngModel"> <br>
+        <span class="help-block fst-italic fw-light text-danger" *ngIf="ln.invalid && ln.touched">Niste unijeli prezime!</span>
+
+      <input type="date" id="birthDate" #birthDate="ngModel" class="fadeIn third" name="birthDate"
+        placeholder="datum rodjenja" ngModel required #bd="ngModel"> <br>
+        <span class="help-block fst-italic fw-light text-danger" *ngIf="bd.invalid && bd.touched">Niste unijeli datum rođenja!</span>
+
+      <input type="text" id="phoneNumber" #phoneNumber="ngModel" class="fadeIn third" name="phoneNumber"
+        placeholder="broj telefona" ngModel required #pn="ngModel"> <br>
+        <span class="help-block fst-italic fw-light text-danger" *ngIf="pn.invalid && pn.touched">Niste unijeli broj telefona!</span>
+
+      <input type="text" id="address" #address="ngModel" class="fadeIn third" name="address" placeholder="adresa"
+        ngModel required #a="ngModel"> <br>
+        <span class="help-block fst-italic fw-light text-danger" *ngIf="a.invalid && a.touched">Niste unijeli adresu!</span>
+
+        <select class="form-control" [(ngModel)]="cityId" name="cityId">
+          <option [ngValue]="undefined" disabled>Izaberite grad</option>
+          <option *ngFor="let c of cityList" value="{{c.id}}">{{c.cityName}}</option>
+        </select>
+      <select class="form-control" [(ngModel)]="genderId" name="genderId">
+        <option [ngValue]="undefined" disabled>Izaberite spol</option>
+        <option *ngFor="let c of genderList" value="{{c.id}}">{{c._Gender}}</option>
+      </select>
+      <input type="text" id="email" #email="ngModel" class="fadeIn third" name="email" placeholder="email" ngModel required #ad="ngModel"> <br>
+      <span class="help-block fst-italic fw-light text-danger" *ngIf="ad.invalid && ad.touched">Niste unijeli email adresu!</span>
+
+      <input type="text" id="login" #username="ngModel" class="fadeIn second" name="username" placeholder="username"
+        ngModel autocomplete="off" required #un="ngModel" (keyup)="checkUser($event)"> <br>
+      <span class="help-block fst-italic fw-light text-danger" *ngIf="un.invalid && un.touched">Niste unijeli korisničko ime!</span>
+
+      <input type="password" id="password" #password="ngModel" class="fadeIn third" name="password"
+        placeholder="password" ngModel required #pw="ngModel"> <br>
+        <span class="help-block fst-italic fw-light text-danger" *ngIf="pw.invalid && pw.touched">Niste unijeli korisničko ime!</span>
 
 
-        <input type="submit" class="fadeIn fourth" value="Registruj se">
-      
-      </form>
-    </div>
+      <!-- <input type="submit" class="fadeIn fourth" value="Registruj se"> -->
+      <button type="submit" [disabled]="registrationForm.invalid || usernameTaken" class="btn btn-primary border-0 mt-2">Registruj se</button> <br>
+      <span class="text-danger" *ngIf="usernameTaken">korisničko ime je zauzeto!</span>
+    </form>
   </div>
-  <div *ngIf="isLoading" class="loading-spinner" style=" transform: translate(50%);">
-      <div class="spinner-border" role="status" style=" transform: translate(50%);">
-          <span class="sr-only">Loading...</span>
-        </div>
+</div>
+<div *ngIf="isLoading" class="loading-spinner" style=" transform: translate(50%);">
+  <div class="spinner-border" role="status" style=" transform: translate(50%);">
+    <span class="sr-only">Loading...</span>
   </div>
+</div>

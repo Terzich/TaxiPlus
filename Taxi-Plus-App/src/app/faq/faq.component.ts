@@ -43,7 +43,7 @@ export class FaqComponent implements OnInit {
       if (qId !== 0) {
         if (this.isUserLoggedIn){
           var notification : Notification = {
-            title: "Pitanje postavljeno osobolju!",
+            title: "Pitanje postavljeno osoblju!",
             text: "Uspješno ste postavili pitanje osoblju kompanije. Vaše pitanje glasi: ' "+ this.form.value.question + " '. Možete očekivati odgovor nakon što osoblje pregleda vaše pitanje!",
             userId: Number(localStorage.getItem('userId')),
             viewed: false

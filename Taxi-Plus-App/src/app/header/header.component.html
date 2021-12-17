@@ -26,8 +26,7 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="/news">Pregled novosti</a></li>
                   <li><a class="dropdown-item" href="/company-offer">Cjenovnik usluga</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+               
                 </ul>
               </li>
               <li class="nav-item">
@@ -42,10 +41,10 @@
           <ul class="navbar-nav ms-auto me-5 ">
             <li class="nav-item dropdown me-5" *ngIf="!isLogged">
               <a class="nav-link dropdown-toggle text-danger fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Test User
+                {{username}}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/news">Pregled zahtjeva za iznajmljivanje</a></li>
+                <li><a class="dropdown-item" href="/rent-requests">Pregled zahtjeva za iznajmljivanje</a></li>
                 <li><a class=" dropdown-item" href="/user-notifications">Obavijesti</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" (click)="logOut()">Odjavi se</a></li>

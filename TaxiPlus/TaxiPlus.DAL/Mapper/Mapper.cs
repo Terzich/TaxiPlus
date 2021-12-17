@@ -13,6 +13,7 @@ namespace TaxiPlus.DAL.Mapper
         public Mapper()
         {
             CreateMap<City, CityViewModel>().ReverseMap();
+            CreateMap<Gender, GenderViewModel>().ReverseMap();
             CreateMap<City, CityUpsertRequest>().ReverseMap();
             CreateMap<Car, CarViewModel>().ReverseMap();
             CreateMap<Car, CarUpsertRequest>().ReverseMap();

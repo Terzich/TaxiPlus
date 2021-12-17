@@ -38,6 +38,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RentMenuComponent } from './admin-panel/rent-menu/rent-menu.component';
 import { ApproveRentComponent } from './admin-panel/rent-menu/approve-rent/approve-rent.component';
+import { RentRequestsComponent } from './rent-requests/rent-requests.component';
+import { RentDetailsComponent } from './rent-requests/rent-details/rent-details.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { ApproveRentComponent } from './admin-panel/rent-menu/approve-rent/appro
     AnswerQuestionComponent,
     UserNotificationsComponent,
     RentMenuComponent,
-    ApproveRentComponent
+    ApproveRentComponent,
+    RentRequestsComponent,
+    RentDetailsComponent
   ],
   imports: [
     BrowserModule,

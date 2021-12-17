@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { FaqService } from 'src/app/faq/faq.service';
 import { Notification } from 'src/app/user-notifications/notification.model';
 import { NotificationService } from 'src/app/user-notifications/notification.service';
@@ -12,7 +13,7 @@ import { NotificationService } from 'src/app/user-notifications/notification.ser
 })
 export class AnswerQuestionComponent implements OnInit {
 
-  constructor(private service: FaqService, private router: Router, private notificationService: NotificationService) { }
+  constructor(private service: FaqService, private router: Router, private notificationService: NotificationService, private toastr: ToastrService) { }
 
   @Input() question: any;
 
@@ -52,7 +53,7 @@ export class AnswerQuestionComponent implements OnInit {
       answer: this.form.value.answer
     };
     this.service.answerQuestion(val, this.question.id).subscribe(res => {
-      alert(res.toString());
+      this.toastr.success('Uspješno ste odgovorili korisniku na postavljeno pitanje', 'Odgovor poslan!');
     });
 
     var notification : Notification = {

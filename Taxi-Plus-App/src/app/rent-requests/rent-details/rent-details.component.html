@@ -102,16 +102,8 @@
             class="fs-5 text-danger">{{rentRequest.totalPrice}}KM</span>."</p>
 </div>
 <div class="d-flex justify-content-end">
-    <!-- <button class="me-3 p-2 btn-success border-0" (click)="approveRentRequest()">Potvrdi zahtjev</button>
-
-    <button class="me-3 p-2 btn-danger border-0" (click)="declineRentRequest()">Odbij zahtjev</button> -->
-    
-    <div *ngIf="!rentRequest.requestCanceled && !rentRequest.rentApproved else cantValidate">
-        <button class="me-3 p-2 btn-success border-0" (click)="approveRentRequest()">Potvrdi zahtjev</button>
-
-        <button class="me-3 p-2 btn-danger border-0" (click)="declineRentRequest()">Odbij zahtjev</button>
-    </div>
-    <ng-template #cantValidate>
+    <button class="me-3 p-2 btn-danger border-0" (click)="declineRentRequest()" *ngIf="!rentRequest.requestCanceled && !rentRequest.rentApproved else textCanceled">Poništi zahtjev zahtjev</button>
+    <ng-template #textCanceled>
         <p *ngIf="rentRequest.rentApproved else rejected" class="text-success">Zahtjev odobren</p>
         <ng-template #rejected>
             <p class="text-danger">Zahtjev odbijen</p>

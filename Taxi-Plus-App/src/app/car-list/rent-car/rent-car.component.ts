@@ -1,4 +1,5 @@
 import { formatDate } from '@angular/common';
+import { ThrowStmt } from '@angular/compiler';
 import { decimalDigest } from '@angular/compiler/src/i18n/digest';
 import { Component, Input, OnInit } from '@angular/core';
 import { waitForAsync } from '@angular/core/testing';
@@ -31,6 +32,7 @@ export class RentCarComponent implements OnInit {
   fromDateTransformed: Date;
   toDateTransformed: Date;
 
+
   numberOfDays: number;
   totalPrice: number;
   message: string;
@@ -38,6 +40,9 @@ export class RentCarComponent implements OnInit {
 
   Car: Car;
   carRents: RentedCar[];
+  approvedRents: RentedCar[] = [];
+
+  carRentsTable: { rf: Date, rt: Date, }[];
   color: string;
   carManufacturer: string;
   carType: string;
@@ -71,7 +76,12 @@ export class RentCarComponent implements OnInit {
 
   checkCarAvailability(id: number) {
     this.rentService.getRentForSingleCar(id).subscribe(rentListFromApi => {
-      this.carRents = rentListFromApi
+      this.carRents = rentListFromApi;
+      rentListFromApi.forEach(element => {
+        if (element.rentApproved) {
+          this.approvedRents.push(element);
+        }
+      });
       this.carRents.forEach(element => {
         if (Date.now() >= new Date(element.rentedFrom).getTime() && Date.now() <= new Date(element.rentedTo).getTime()) {
           this.carAvailable = false;
@@ -81,9 +91,14 @@ export class RentCarComponent implements OnInit {
   }
 
   refreshRentList() {
-    this.rentService.getRentForSingleCar(this.Car.id).subscribe(data => {
-      this.carRents = data;
+    this.rentService.getRentForSingleCar(this.Car.id).subscribe(rentListFromApi => {
+      this.carRents = rentListFromApi;
+  
     });
+  }
+
+  loadApprovedRents() {
+
   }
 
   loadAdditionalCarData(car: Car) {
@@ -156,14 +171,20 @@ export class RentCarComponent implements OnInit {
       carId: this.Car.id
     };
 
+    if (new Date().getTime() > this.fromDateTransformed.getTime()) {
+      this.toastrService.warning('Molimo da unesete ispravan datum!', 'Željeni datum je prošao!');
+      return;
+    }
+
+
     var isRequestPossible = this.validateRentRequest(rentRequest);
     if (isRequestPossible) {
       this.rentService.addBookedCar(rentRequest).subscribe(data => this.refreshRentList());
-      
+
       this.message = "Uspješno ste poslali zahtjev za iznajmljivanje";
-      var rf = formatDate(rentRequest.rentedFrom,'dd-MM-yyyy','en_US');
-      var rt = formatDate(rentRequest.rentedTo,'dd-MM-yyyy','en_US');
-      var notification : Notification = {
+      var rf = formatDate(rentRequest.rentedFrom, 'dd-MM-yyyy', 'en_US');
+      var rt = formatDate(rentRequest.rentedTo, 'dd-MM-yyyy', 'en_US');
+      var notification: Notification = {
         title: "Zahtjev za iznajmljivanje vozila!",
         text: "Uspješno ste poslali zahtjev za iznajmljivanje vozila " + this.Car.carName + " u periodu od: " + rf + " do: " + rt,
         userId: Number(localStorage.getItem('userId')),
@@ -176,10 +197,10 @@ export class RentCarComponent implements OnInit {
       setTimeout(() => {
         this.canSendRent = true;
       }, 5000);
-     
+
     }
     else {
-      this.toastrService.error('Automobil je u željenom vremenskom periodu već izdat drugom korisniku!', 'Automobil zauzet!');
+      this.toastrService.error('Automobil je u željenom vremenskom periodu zauzet!', 'Automobil zauzet!');
     }
 
 
@@ -188,8 +209,8 @@ export class RentCarComponent implements OnInit {
   validateRentRequest(rentRequest: RentedCar): boolean {
     var rentValid = true;
     this.carRents.forEach(element => {
-      var rt = formatDate(element.rentedTo,'yyyy-MM-dd','en_US');
-      var rf = formatDate(rentRequest.rentedFrom,'yyyy-MM-dd','en_US');
+      var rt = formatDate(element.rentedTo, 'yyyy-MM-dd', 'en_US');
+      var rf = formatDate(rentRequest.rentedFrom, 'yyyy-MM-dd', 'en_US');
       if (!element.requestCanceled) {
         if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedTo).getTime()) {
           rentValid = false;
@@ -203,10 +224,10 @@ export class RentCarComponent implements OnInit {
         if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getDate() == new Date(element.rentedFrom).getDate()) {
           rentValid = false;
         }
-        if(rt === rf){
+        if (rt === rf) {
           rentValid = false;
         }
-        
+
       }
     });
     return rentValid;

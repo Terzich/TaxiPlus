@@ -16,14 +16,17 @@ export class HeaderComponent implements OnInit {
   collapsed = true;
   isLogged = localStorage.getItem('token') !== null ? false : true;
   adminLogged = false;
+  username: string;
   ActivateNotificationComp: boolean = false;
   @Output() toggleMenuEvent = new EventEmitter()
-  constructor(private loginService: AuthService, private router: Router, private toastr: ToastrService, private route: ActivatedRoute) { }
+  constructor(private loginService: AuthService, private router: Router, private toastr: ToastrService, private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit(): void {
     this.checkToken()
     this.loginService.loginStatusChange().subscribe(loggedIn => {
       this.checkToken()
+    });
+    this.userService.getUserById(Number(localStorage.getItem("userId"))).subscribe(data => {this.username = data.firstName + " " + data.lastName
     });
   }
 
@@ -50,7 +53,6 @@ export class HeaderComponent implements OnInit {
 
   openNotification(){
     this.ActivateNotificationComp = true;
-    console.log("uslo")
   }
 
   closeClick() {

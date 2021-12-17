@@ -59,4 +59,14 @@ export class CarManufacturerService {
     return this.http.get<any>(this.url + "cartype/"+id, { 'headers': this.options });
   }
 
+  getGendersFromServer(): Observable<any[]> {
+
+    return this.http.get<CarManufacturer[]>(this.url + "gender", { 'headers': this.options });
+  }
+
+  getCitiesFromServer(): Observable<any[]> {
+
+    return this.http.get<CarManufacturer[]>(this.url + "city", { 'headers': this.options });
+  }
+
 }

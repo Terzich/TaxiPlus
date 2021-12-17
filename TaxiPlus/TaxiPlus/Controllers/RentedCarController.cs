@@ -27,6 +27,13 @@ namespace TaxiPlus.Controllers
             return Ok(list);
         }
 
+        [HttpGet("getByUserId/{id}")]
+        public async Task<IActionResult> getForSingleUser(int id)
+        {
+            var list = await repositoryCustom.getAllForSingleUser(id);
+            return Ok(list);
+        }
+
         [HttpGet("getByFilter")]
         public async Task<IActionResult> FilterRequests([FromQuery] string filter)
         {

@@ -3,6 +3,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { ToastrService } from 'ngx-toastr';
 import { CarManufacturer } from 'src/app/car-list/car-manufacturer.model';
 import { CarManufacturerService } from 'src/app/car-list/car-manufacturer.service';
 import { CarService } from 'src/app/car-list/car.service';
@@ -18,7 +19,7 @@ import { StringLiteralLike } from 'typescript';
 export class AddEditNewsComponent implements OnInit {
 
 
-  constructor(private service:NewsService, private router: Router) { }
+  constructor(private service:NewsService, private router: Router, private toastr: ToastrService) { }
 
   newsTitle: string;
   content: string;
@@ -88,7 +89,8 @@ export class AddEditNewsComponent implements OnInit {
 
     };
     this.service.addNews(val).subscribe(res => {
-      alert("Vijest uspješno dodana. Id vijesti -" + res.toString());
+      this.toastr.success('Uspješno ste dodali novu obavijest', 'Obavijest dodana!');
+
     })
    }
    else{
@@ -101,7 +103,8 @@ export class AddEditNewsComponent implements OnInit {
 
     };
     this.service.updateNews(val, this.news.id).subscribe(res => {
-      alert("Vijest uspješno izmjenjena. Id vijesti -" + res.toString());
+      this.toastr.success('Uspješno ste izmjenuli obavijest', 'Obavijest izmijenjena!');
+
     })
    }
 

@@ -28,6 +28,10 @@ export class RentService {
     return this.http.get<RentedCar[]>(this.url + "/getByCarId/" + carId, { 'headers': this.options });
   }
 
+  getRentForSingleUser(carId: number): Observable<RentedCar[]> {
+    return this.http.get<RentedCar[]>(this.url + "/getByUserId/" + carId, { 'headers': this.options });
+  }
+
   getAllRequestsFromServerWithFilter(filter: string): Observable<RentedCar[]> {
     return this.http.get<RentedCar[]>(this.url + "/getByFilter?filter=" + filter, { "headers": this.options });
   }

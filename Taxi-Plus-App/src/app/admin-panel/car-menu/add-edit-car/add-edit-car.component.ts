@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { ToastrService } from 'ngx-toastr';
 import { CarManufacturer } from 'src/app/car-list/car-manufacturer.model';
 import { CarManufacturerService } from 'src/app/car-list/car-manufacturer.service';
 import { CarService } from 'src/app/car-list/car.service';
@@ -14,7 +15,7 @@ export class AddEditCarComponent implements OnInit {
   checkedNumber: number;
 
   constructor(private service:CarService, private carManufacturerService: CarManufacturerService, 
-    private router: Router) { }
+    private router: Router, private toastr: ToastrService) { }
 
   @Input() car:any;
   carId:number;
@@ -71,7 +72,7 @@ export class AddEditCarComponent implements OnInit {
     var val = {
                 carName:this.carName,
                 yearOfManufacturing: this.yearOfManufacturing,
-                numberOfDoors: 2,
+                numberOfDoors: this.numberOfDoors,
                 pricePerDay: 50,
                 carManufacturerId:  Number(this.carManufacturerId),
                 colorId: Number(this.colorId),
@@ -80,7 +81,8 @@ export class AddEditCarComponent implements OnInit {
                 image: this.base64Slika
               };
     this.service.addCar(val).subscribe(res=>{
-      alert(res.toString());
+      this.toastr.success('Uspješno ste dodali novi automobil', 'Automobil dodan!');
+
     });
   }
 
@@ -97,7 +99,8 @@ export class AddEditCarComponent implements OnInit {
       image : String(this.base64Slika).replace('data:image/png;base64,', '')
     };
     this.service.updateCar(val, this.car.id).subscribe(res=>{
-    alert(res.toString());
+      this.toastr.success('Uspješno ste izmjenuli automobil', 'Automobil izmijenjen!');
+
     });
   }
 
