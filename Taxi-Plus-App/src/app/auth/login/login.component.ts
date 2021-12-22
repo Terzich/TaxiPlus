@@ -2,6 +2,8 @@ import { LowerCasePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import {AuthService} from 'src/app/auth/auth.service'
 import { UserService } from 'src/app/user.service';
 import { LoginService } from '../login.service';
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit {
       else if(s[0].roleId == user){
         this.router.navigate([''])
       }
-      //ovaj if i else if probaj na fazon s[0].roleId == admin ? this.router.navigate(['/adminpanel']) ..... ako ti se da
+
       this.isLoading = false;
     }, 
     error => {

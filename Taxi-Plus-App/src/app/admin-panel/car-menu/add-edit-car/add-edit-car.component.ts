@@ -62,6 +62,7 @@ export class AddEditCarComponent implements OnInit {
     this.carManufacturerService.getCarTypesFromServer().subscribe(ctFromServer => {
       this.carTypeList = ctFromServer;
     });
+    console.log('broj vrata:'+this.numberOfDoors);
   }
   onItemChange(event: any){
     console.log(event.target.value)

@@ -202,8 +202,6 @@ export class RentCarComponent implements OnInit {
     else {
       this.toastrService.error('Automobil je u željenom vremenskom periodu zauzet!', 'Automobil zauzet!');
     }
-
-
   }
 
   validateRentRequest(rentRequest: RentedCar): boolean {
@@ -212,16 +210,21 @@ export class RentCarComponent implements OnInit {
       var rt = formatDate(element.rentedTo, 'yyyy-MM-dd', 'en_US');
       var rf = formatDate(rentRequest.rentedFrom, 'yyyy-MM-dd', 'en_US');
       if (!element.requestCanceled) {
-        if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedTo).getTime()) {
+        if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() 
+        && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedTo).getTime()) {
           rentValid = false;
         }
-        if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && (new Date(rentRequest.rentedTo).getTime() <= new Date(element.rentedTo).getTime() && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedFrom).getTime())) {
+        if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() 
+        && (new Date(rentRequest.rentedTo).getTime() <= new Date(element.rentedTo).getTime() 
+        && new Date(rentRequest.rentedTo).getTime() >= new Date(element.rentedFrom).getTime())) {
           rentValid = false;
         }
-        if (new Date(rentRequest.rentedFrom).getTime() >= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getTime() <= new Date(element.rentedTo).getTime()) {
+        if (new Date(rentRequest.rentedFrom).getTime() >= new Date(element.rentedFrom).getTime() 
+        && new Date(rentRequest.rentedTo).getTime() <= new Date(element.rentedTo).getTime()) {
           rentValid = false;
         }
-        if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() && new Date(rentRequest.rentedTo).getDate() == new Date(element.rentedFrom).getDate()) {
+        if (new Date(rentRequest.rentedFrom).getTime() <= new Date(element.rentedFrom).getTime() 
+        && new Date(rentRequest.rentedTo).getDate() == new Date(element.rentedFrom).getDate()) {
           rentValid = false;
         }
         if (rt === rf) {
