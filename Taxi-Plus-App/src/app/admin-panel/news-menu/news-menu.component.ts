@@ -46,8 +46,8 @@ export class NewsMenuComponent implements OnInit {
 
   deleteClick(item: any){
     if(confirm('Da li ste sigurni??')){
-      this.service.deleteNews(item.id).subscribe();
-      this.refreshNewsList();
+      this.service.deleteNews(item.id).subscribe(d => this.refreshNewsList());
+      // this.refreshNewsList();
     }
   }
 

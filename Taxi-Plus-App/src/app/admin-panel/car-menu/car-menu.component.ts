@@ -49,8 +49,8 @@ export class CarMenuComponent implements OnInit {
 
   deleteClick(item: any){
     if(confirm('Da li ste sigurni??')){
-      this.service.deleteCar(item.id).subscribe();
-      this.refreshCarList();
+      this.service.deleteCar(item.id).subscribe(d => this.refreshCarList());
+      
     }
   }
 

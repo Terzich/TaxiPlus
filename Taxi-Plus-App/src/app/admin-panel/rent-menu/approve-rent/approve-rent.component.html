@@ -26,90 +26,62 @@
     <div class="form-group p-2">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span
-                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
-                    id="">Ime i prezime</span>
+                <span class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center" id="">Ime i prezime</span>
             </div>
-            <input type="text"
-                class="form-control border-success bg-transparent text-center"
-                readonly value="{{user.firstName}}">
-            <input type="text"
-                class="form-control border-success bg-transparent text-center"
-                readonly value="{{user.lastName}}">
+            <input type="text" class="form-control border-success bg-transparent text-center" readonly value="{{user.firstName}}">
+            <input type="text" class="form-control border-success bg-transparent text-center" readonly value="{{user.lastName}}">
         </div>
     </div>
     <div class="form-group p-2">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span
-                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
-                    id="">Grad i adresa</span>
+                <span class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center" id="">Grad i adresa</span>
             </div>
-            <input type="text"
-                class="form-control border-success bg-transparent text-center"
-                readonly value="{{user.cityName}}">
-            <input type="text"
-                class="form-control border-success bg-transparent text-center"
-                readonly value="{{user.address}}">
+            <input type="text" class="form-control border-success bg-transparent text-center" readonly value="{{user.cityName}}">
+            <input type="text" class="form-control border-success bg-transparent text-center" readonly value="{{user.address}}">
         </div>
     </div>
     <div class="form-group p-2">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span
-                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
-                    id="inputGroup-sizing-default">Datum
+                <span class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center" id="inputGroup-sizing-default">Datum
                     rođenja</span>
             </div>
-            <input type="text"
-                class="form-control border-success bg-transparent text-center"
-                readonly value="{{user.birthDate | date}}">
+            <input type="text" class="form-control border-success bg-transparent text-center" readonly value="{{user.birthDate | date}}">
         </div>
     </div>
     <div class="form-group p-2">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span
-                    class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center"
-                    id="inputGroup-sizing-default">Broj
+                <span class="input-group-text bg-dark bg-gradient text-warning fw-bold text-center" id="inputGroup-sizing-default">Broj
                     telefona</span>
             </div>
-            <input type="text"
-                class="form-control border-success bg-transparent text-center"
-                readonly value="{{user.phoneNumber}}">
+            <input type="text" class="form-control border-success bg-transparent text-center" readonly value="{{user.phoneNumber}}">
         </div>
     </div>
     <div class="form-group p-2">
         <div class="input-group mb-3">
             <div class="input-group-prepend text-center">
-                <span class="input-group-text bg-dark bg-gradient text-warning fw-bold "
-                    id="inputGroup-sizing-default">Spol</span>
+                <span class="input-group-text bg-dark bg-gradient text-warning fw-bold " id="inputGroup-sizing-default">Spol</span>
             </div>
-            <input type="text"
-                class="form-control border-success bg-transparent text-center"
-                readonly value="{{user.gender}}">
+            <input type="text" class="form-control border-success bg-transparent text-center" readonly value="{{user.gender}}">
         </div>
     </div>
 
 </div>
 <div class="row">
-    <p class="fst-italic fw-bolder">" - Zahtjev za iznajmljivanje vozila je podnesen u periodu od: <span
-            class="text-primary">{{rentRequest.rentedFrom | date}}</span>,
-        do: <span class="text-primary">{{rentRequest.rentedTo | date}}."</span> <br>
-        " - Vozilo će biti iznajmljeno ukupno <span
-            class="text-danger fw-bold">{{numberOfDays}}</span> dana." <br>
-        " - Ukupna cijena iznajmljivanja vozila iznosi <span
-            class="fs-5 text-danger">{{rentRequest.totalPrice}}KM</span>."</p>
+    <p class="fst-italic fw-bolder">" - Zahtjev za iznajmljivanje vozila je podnesen u periodu od: <span class="text-primary">{{rentRequest.rentedFrom | date}}</span>, do: <span class="text-primary">{{rentRequest.rentedTo | date}}."</span> <br> " - Vozilo će biti iznajmljeno ukupno
+        <span class="text-danger fw-bold">{{numberOfDays}}</span> dana." <br> " - Ukupna cijena iznajmljivanja vozila iznosi <span class="fs-5 text-danger">{{rentRequest.totalPrice}}KM</span>."</p>
 </div>
 <div class="d-flex justify-content-end">
     <!-- <button class="me-3 p-2 btn-success border-0" (click)="approveRentRequest()">Potvrdi zahtjev</button>
 
     <button class="me-3 p-2 btn-danger border-0" (click)="declineRentRequest()">Odbij zahtjev</button> -->
-    
-    <div *ngIf="!rentRequest.requestCanceled && !rentRequest.rentApproved else cantValidate">
-        <button class="me-3 p-2 btn-success border-0" (click)="approveRentRequest()">Potvrdi zahtjev</button>
 
-        <button class="me-3 p-2 btn-danger border-0" (click)="declineRentRequest()">Odbij zahtjev</button>
+    <div *ngIf="!rentRequest.requestCanceled && !rentRequest.rentApproved else cantValidate">
+        <button class="me-3 p-2 btn-success border-0" (click)="approveRentRequest()" [disabled]="rentValuated">Potvrdi zahtjev</button>
+
+        <button class="me-3 p-2 btn-danger border-0" (click)="declineRentRequest()" [disabled]="rentValuated">Odbij zahtjev</button>
     </div>
     <ng-template #cantValidate>
         <p *ngIf="rentRequest.rentApproved else rejected" class="text-success">Zahtjev odobren</p>

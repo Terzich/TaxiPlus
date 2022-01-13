@@ -38,8 +38,8 @@ export class QuestionMenuComponent implements OnInit {
 
   deleteClick(item: any) {
     if (confirm('Da li ste sigurni??')) {
-      this.faqService.deleteQuestion(item.id).subscribe();
-      this.refreshQuestionList();
+      this.faqService.deleteQuestion(item.id).subscribe(d => this.refreshQuestionList());
+      
     }
   }
 

@@ -6,28 +6,26 @@
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
             <div class="bg-dark" id="sidebar-wrapper">
-                <div
-                    class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom text-warning">
+                <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom text-warning">
                     <i class="fas fa-user-secret me-2"></i>Admin panel</div>
                 <div class="list-group list-group-flush my-3">
-                    <a  routerLink = "" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                    <a routerLink="../adminpanel" class="list-group-item list-group-item-action bg-transparent second-text active"><i
                             class="fas fa-tachometer-alt me-2"></i>Info ploča</a>
-                    <a routerLink = "car-menu"
-                        class="list-group-item list-group-item-action bg-transparent text-warning fw-bold"><i
+                    <a routerLink="car-menu" class="list-group-item list-group-item-action bg-transparent text-warning fw-bold"><i
                             class="fas fa-car me-2"></i>Vozila</a>
-                    <a routerLink = "news-menu" class="list-group-item list-group-item-action bg-transparent text-warning fw-bold"><i
+                    <a routerLink="news-menu" class="list-group-item list-group-item-action bg-transparent text-warning fw-bold"><i
                             class="far fa-newspaper me-2"></i>Novosti</a>
-                    <a routerLink = "question-menu" class="list-group-item list-group-item-action bg-transparent text-warning fw-bold"><i
+                    <a routerLink="question-menu" class="list-group-item list-group-item-action bg-transparent text-warning fw-bold"><i
                             class="fas fa-question me-2"></i>Pregled postavljenih pitanja</a>
-                    <a routerLink = "rent-menu" class="list-group-item list-group-item-action bg-transparent text-warning fw-bold"><i
+                    <a routerLink="rent-menu" class="list-group-item list-group-item-action bg-transparent text-warning fw-bold"><i
                             class="fas fa-clipboard-check me-2"></i>Zahtjevi za iznajmljivanje vozila</a>
-                    <a  class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                    <a class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                             class="fas fa-power-off me-2" (click)="LogOut()"></i>Logout</a>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-sm-10 p-3">
-            <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
     </div>
 </div>

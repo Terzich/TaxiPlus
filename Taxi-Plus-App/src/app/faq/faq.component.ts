@@ -52,7 +52,7 @@ export class FaqComponent implements OnInit {
           this.toastr.success('Uspješno ste postavili pitanje!', 'Pitanje postavljeno!');
         }
         if (!this.isUserLoggedIn)
-          this.toastr.success('Uspješno ste postavili anonimno pitanje pitanje osoblju kompanije.', 'Anonimno pitanje postavljeno!');
+          this.toastr.success('Uspješno ste postavili anonimno pitanje osoblju kompanije.', 'Anonimno pitanje postavljeno!');
       }
     })
 

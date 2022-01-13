@@ -35,6 +35,8 @@ export class ApproveRentComponent implements OnInit {
   filterType = "";
   requestsFiltered = false;
 
+  rentValuated = false;;
+
   constructor(private carService: CarService, private userService: UserService, private multiService: CarManufacturerService,
     private rentService: RentService, private toastr: ToastrService, private notificationService: NotificationService) {}
 
@@ -85,6 +87,7 @@ export class ApproveRentComponent implements OnInit {
       userId: Number(this.rentRequest.userId),
       viewed: false
     };
+    this.rentValuated = true;
     this.notificationService.addNotification(notification).subscribe();
     this.toastr.success('Uspješno ste odobrili zahtjev za iznajmljivanje vozila korisniku "' + this.user.firstName + ' ' + this.user.lastName +'".', 'Zahtjev odobren!');
   }
@@ -112,5 +115,7 @@ export class ApproveRentComponent implements OnInit {
 
     this.rentService.updateBookedCar(req, Number(this.rentRequest.id)).subscribe(()=> this.statusChanged.emit());
     this.toastr.error('Uspješno ste odbili zahtjev za iznajmljivanje vozila korisniku "' + this.user.firstName + ' ' + this.user.lastName +'".', 'Zahtjev odbijen!');
+    this.rentValuated = true;
+ 
   }
 }

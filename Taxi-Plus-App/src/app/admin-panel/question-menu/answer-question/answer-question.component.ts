@@ -28,6 +28,8 @@ export class AnswerQuestionComponent implements OnInit {
 
   @ViewChild('f') form: NgForm
 
+  questionAnswered = false;
+
 
   role = localStorage.getItem('roleId')?.toString();
 
@@ -55,6 +57,8 @@ export class AnswerQuestionComponent implements OnInit {
     this.service.answerQuestion(val, this.question.id).subscribe(res => {
       this.toastr.success('Uspješno ste odgovorili korisniku na postavljeno pitanje', 'Odgovor poslan!');
     });
+
+    this.questionAnswered = true;
 
     var notification : Notification = {
       title: "Odgovor na postavljeno pitanje!",
